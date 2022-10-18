@@ -21,4 +21,9 @@ Route::group(['prefix' => 'auth'], function() {
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('refresh_user', 'AuthController@userInfo');
     Route::post('logout', 'AuthController@logout');
+
+    Route::group(['middleware' => 'roles:Client'], function () {
+        //acciones para clientes
+    });
 });
+
