@@ -3,4 +3,11 @@
 /*estilos generales*/
 .main {
   font-family: "Roboto Condensed", sans-serif;
+  position: relative;
+}
+
+.main .main-registrar{
+position: absolute;
+width: 100%;
+top: -10%;
 }
