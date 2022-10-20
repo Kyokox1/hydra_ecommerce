@@ -1,11 +1,11 @@
-import "./index.css"
-import Products from "./pages/Products";
+import "./app.css";
+import Login from "./pages/Login";
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   return (
-    <div >
-    <Products/>
-      <h1>Proyecto Hunteando</h1>
+    <div className="main">
+      <Login/>
     </div>
   );
 }
