@@ -13,10 +13,12 @@ export const getProductsSlice = createSlice({
 		getProductsStart(state) {
 			state.isLoading = true;
 		},
+
 		getProductsComplete(state, action) {
 			state.data = action.payload;
 			state.isLoading = false;
 		},
+
 		getProductsError(state, action) {
 			state.error = action.payload;
 			state.isLoading = false;
