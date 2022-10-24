@@ -1,0 +1,47 @@
+/*estilos de la pagina principal signIn*/
+.signIn {
+  border: 2px solid  #d26c1294;
+  width: 30%;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background-image: url("../../assets//fondoSignIn.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #d26c1294;
+}
+/*final de estilos de la pagina principal signIn*/
+/*inicio estilos componente logo*/
+.logo {
+  position: relative;
+  
+}
+.logo img {
+  margin: auto;
+}
+.logo h2 {
+  position: absolute;
+  top: 20%;
+  text-align: center;
+  right: 10;
+  width: 100%;
+}
+.logo h3 {
+  position: absolute;
+  top: 40%;
+  text-align: center;
+  right: 10;
+  width: 100%;
+}
+/*fin estilos componente logo*/
+/*inicio estilos componente formulario de registro*/
+.formSignIn form input{
+    border: 1px solid #d26c1294;
+    padding: 7px;
+    border-radius: 7px;
+    outline: none;
+}
+/*final estilos componente formulario de registro*/
+/*inicio estilos componente footerSignIn*/
+
+/*final estilos componente footerSignIn*/
