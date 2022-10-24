@@ -1,6 +1,13 @@
 import React from "react";
 
+//redux
+import { useSelector, useDispatch } from "react-redux";
+import { signClear } from "../../../features/sigIn/signSlice";
+
 const Form = () => {
+
+  const estado = useSelector((state) => state.sign);
+  const dispatch = useDispatch();
   return (
     <div className="form d-flex justify-content-center my-0">
       <form>
@@ -16,7 +23,7 @@ const Form = () => {
           <button>LOGIN</button>
         </div>
         <h5 className="text-center">Olvidaste la contraseña</h5>
-        <h5 className="text-center">Crea una cuenta</h5>
+        <h5 onClick={() => dispatch(signClear(!estado.estado))}  className="text-center crear-cuenta">Crea una cuenta</h5>
       </form>
     </div>
   );
