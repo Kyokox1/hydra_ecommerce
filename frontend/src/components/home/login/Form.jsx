@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 
-import { useDispatch } from "react-redux";
+//redux
+import { useSelector, useDispatch } from "react-redux";
+import { signClear } from "../../../features/sigIn/signSlice";
 import { loginUser } from "../../features/user/userSlice";
 
 const Form = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const estado = useSelector((state) => state.sign);
   const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
@@ -37,7 +41,7 @@ const Form = () => {
           <button>LOGIN</button>
         </div>
         <h5 className="text-center">Olvidaste la contraseña</h5>
-        <h5 className="text-center">Crea una cuenta</h5>
+        <h5 onClick={() => dispatch(signClear(!estado.estado))} className="text-center crear-cuenta">Crea una cuenta</h5>
       </form>
     </div>
   );
