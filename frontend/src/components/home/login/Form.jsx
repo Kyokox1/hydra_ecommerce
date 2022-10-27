@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Text } from "@chakra-ui/react";
 
 //redux
 import { useSelector, useDispatch } from "react-redux";
@@ -10,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 const Form = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+	const [isInvalidUser, setIsInvalidUser] = useState(false);
 
 	const estado = useSelector((state) => state.sign);
 	const user = useSelector((state) => state.user);
@@ -18,10 +20,10 @@ const Form = () => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		if (username === user.username && password === user.password) {
-			console.log("correcto!!!");
-			navigate("/productos");
-		}
+		if (username !== user.username || password !== user.password)
+			return setIsInvalidUser(true);
+
+		navigate("/productos");
 	};
 
 	return (
@@ -42,6 +44,17 @@ const Form = () => {
 						value={password}
 						onChange={(event) => setPassword(event.target.value)}
 					/>
+					{isInvalidUser && (
+						<Text
+							as="span"
+							pos="absolute"
+							bottom="-20px"
+							color="red"
+							fontSize="xs"
+						>
+							Usario o Contraseña incorrecto
+						</Text>
+					)}
 				</div>
 				<div className="d-flex justify-content-center">
 					<button>LOGIN</button>
