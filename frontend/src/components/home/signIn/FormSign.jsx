@@ -15,7 +15,7 @@ const FormSign = () => {
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [cellPhone, setCellPhone] = useState("");
 
-	const [showPassword, setShowPassword] = useState(true);
+	const [showPassword, setShowPassword] = useState(false);
 
 	const dispatch = useDispatch();
 
