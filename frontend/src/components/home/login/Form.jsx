@@ -40,7 +40,7 @@ const Form = () => {
 				<div className="form-contraseña d-flex flex-column my-4">
 					<label>CONTRASEÑA</label>
 					<input
-						type="pasword"
+						type="password"
 						value={password}
 						onChange={(event) => setPassword(event.target.value)}
 					/>

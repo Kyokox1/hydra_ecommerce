@@ -1,4 +1,6 @@
+import { IconButton } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 // redux
 import { useDispatch } from "react-redux";
@@ -6,11 +8,14 @@ import { signClear } from "../../../features/sigIn/signSlice";
 import { registerUser } from "../../../features/user/userSlice";
 
 const FormSign = () => {
+	// state form
 	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [cellPhone, setCellPhone] = useState("");
+
+	const [showPassword, setShowPassword] = useState(true);
 
 	const dispatch = useDispatch();
 
@@ -47,7 +52,7 @@ const FormSign = () => {
 				<div className="formSignIn-usuario d-flex flex-column my-4">
 					<label>CORREO ELECTRONICO</label>
 					<input
-						type="text"
+						type="email"
 						value={email}
 						onChange={(event) => setEmail(event.target.value)}
 					/>
@@ -55,15 +60,33 @@ const FormSign = () => {
 				<div className="formSignIn-contraseña d-flex flex-column my-4">
 					<label>CONTRASEÑA</label>
 					<input
-						type="pasword"
+						type={showPassword ? "text" : "password"}
 						value={password}
 						onChange={(event) => setPassword(event.target.value)}
+					/>
+					<IconButton
+						onClick={() =>
+							setShowPassword((prevState) => !prevState)
+						}
+						aria-label="show password"
+						icon={
+							showPassword ? (
+								<AiFillEye />
+							) : (
+								<AiFillEyeInvisible />
+							)
+						}
+						pos="absolute"
+						right="0"
+						bottom="0"
+						isRound
+						bgColor="transparent"
 					/>
 				</div>
 				<div className="formSignIn-usuario d-flex flex-column my-4">
 					<label>REPETIR CONTRASEÑA</label>
 					<input
-						type="text"
+						type={showPassword ? "text" : "password"}
 						value={confirmPassword}
 						onChange={(event) =>
 							setConfirmPassword(event.target.value)
