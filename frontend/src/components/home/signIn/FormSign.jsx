@@ -52,7 +52,7 @@ const FormSign = () => {
 				<div className="formSignIn-usuario d-flex flex-column my-4">
 					<label>CORREO ELECTRONICO</label>
 					<input
-						type="email"
+						type="text"
 						value={email}
 						onChange={(event) => setEmail(event.target.value)}
 					/>
