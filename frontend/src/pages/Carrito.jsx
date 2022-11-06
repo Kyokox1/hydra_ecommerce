@@ -1,9 +1,5 @@
-import React from 'react'
-
 const Carrito = () => {
-  return (
-    <div>Carrito</div>
-  )
-}
+	return <div>Carrito</div>;
+};
 
-export default Carrito
+export default Carrito;

@@ -7,7 +7,7 @@
 	padding: 29px 56px;
 }
 .login .login-caja2 {
-	background-image: url("../../../assets/fondoSign.png");
+	background-image: url('../../../assets/fondoSign.png');
 	border-radius: 0 10px 10px 0;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -21,7 +21,7 @@
 
 @media (max-width: 575.98px) {
 	.login .login-caja2 {
-		background-image: url("../../../assets/login.png");
+		background-image: url('../../../assets/login.png');
 		border-radius: 0 0 10px 10px;
 		background-repeat: no-repeat;
 		background-size: cover;
@@ -42,7 +42,7 @@
 		height: 400px;
 	}
 	.login .login-caja2 {
-		background-image: url("../../../assets/login.png");
+		background-image: url('../../../assets/login.png');
 		border-radius: 0 0 10px 10px;
 		background-repeat: no-repeat;
 		background-size: cover;
@@ -169,7 +169,7 @@
 }
 .footerLogin::after {
 	position: absolute;
-	content: "";
+	content: '';
 	top: 20px;
 	right: 50%;
 	border-bottom: 2px solid #010101;
@@ -183,7 +183,7 @@
 	}
 	.footerLogin::after {
 		position: absolute;
-		content: "";
+		content: '';
 		top: 20px;
 		right: 50%;
 		border-bottom: 2px solid #010101;

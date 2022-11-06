@@ -1,74 +1,88 @@
-import { IconButton } from "@chakra-ui/react";
-import React, { useState } from "react";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { IconButton } from '@chakra-ui/react';
+import { useState } from 'react';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+
+// components, hooks, services
+import { TextError } from './TextError';
 
 // redux
-import { useDispatch } from "react-redux";
-import { signClear } from "../../../features/sigIn/signSlice";
-import { registerUser } from "../../../features/user/userSlice";
+import { useDispatch } from 'react-redux';
+
+// forms
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { useNavigate } from 'react-router-dom';
+import { registerUser } from '../../../features/user/userSlice';
+
+const schema = yup.object().shape({
+	username: yup
+		.string()
+		.max(20, 'el usuario debe tener menos de 20 caracteres')
+		.required('usuario requerido'),
+	email: yup.string().email('email inválido').required('email requerido'),
+	password: yup
+		.string()
+		.required('contraseña requerida')
+		.min(6, 'la contraseña debe tener más de 6 caracteres')
+		.max(20, 'la contraseña debe tener menos de 20 caracteres'),
+	confirmPassword: yup
+		.string()
+		.oneOf([yup.ref('password'), null], 'las contraseñas no coinciden')
+		.required('confirmación requerido'),
+	cellPhone: yup.string().required('celular requerido (solo números)')
+});
 
 const FormSign = () => {
-	// state form
-	const [username, setUsername] = useState("");
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	const [confirmPassword, setConfirmPassword] = useState("");
-	const [cellPhone, setCellPhone] = useState("");
+	const {
+		register,
+		handleSubmit,
+		formState: { errors }
+	} = useForm({
+		resolver: yupResolver(schema)
+	});
+
+	const navigate = useNavigate();
 
 	const [showPassword, setShowPassword] = useState(false);
 
 	const dispatch = useDispatch();
 
-	// validaciones
-	const isFormComplete =
-		username && email && password && confirmPassword && cellPhone;
-	const isPasswordEqual = password === confirmPassword;
-
 	// submit
-	const handleSubmit = (event) => {
-		event.preventDefault();
-
-		if (!isFormComplete || !isPasswordEqual) return;
-		const userData = { username, password, email, cellPhone };
-
-		dispatch(registerUser(userData));
-		dispatch(signClear(false));
+	const onSubmit = (data) => {
+		const { username: name, password, confirmPassword, email } = data;
+		dispatch(
+			registerUser({ name, email, password, confirmPassword, navigate })
+		);
 	};
 
 	return (
-		<div className="formSignIn">
-			<form onSubmit={handleSubmit}>
-				<div className="d-flex justify-content-center">
-					<button>Crear Cuenta</button>
+		<div className='formSignIn'>
+			<form onSubmit={handleSubmit(onSubmit)}>
+				<div className='d-flex justify-content-center'>
+					<button type='submit'>Crear Cuenta</button>
 				</div>
-				<div className="formSignIn-usuario d-flex flex-column my-4">
+				<div className='formSignIn-usuario d-flex flex-column my-4'>
 					<label>USUARIO</label>
-					<input
-						type="text"
-						value={username}
-						onChange={(event) => setUsername(event.target.value)}
-					/>
+					<input type='text' {...register('username')} />
+					<TextError>{errors.username?.message}</TextError>
 				</div>
-				<div className="formSignIn-usuario d-flex flex-column my-4">
+				<div className='formSignIn-usuario d-flex flex-column my-4'>
 					<label>CORREO ELECTRONICO</label>
-					<input
-						type="text"
-						value={email}
-						onChange={(event) => setEmail(event.target.value)}
-					/>
+					<input type='text' {...register('email')} />
+					<TextError>{errors.email?.message}</TextError>
 				</div>
-				<div className="formSignIn-contraseña d-flex flex-column my-4">
+				<div className='formSignIn-contraseña d-flex flex-column my-4'>
 					<label>CONTRASEÑA</label>
 					<input
-						type={showPassword ? "text" : "password"}
-						value={password}
-						onChange={(event) => setPassword(event.target.value)}
+						type={showPassword ? 'text' : 'password'}
+						{...register('password')}
 					/>
 					<IconButton
 						onClick={() =>
 							setShowPassword((prevState) => !prevState)
 						}
-						aria-label="show password"
+						aria-label='show password'
 						icon={
 							showPassword ? (
 								<AiFillEye />
@@ -76,30 +90,26 @@ const FormSign = () => {
 								<AiFillEyeInvisible />
 							)
 						}
-						pos="absolute"
-						right="0"
-						bottom="0"
+						pos='absolute'
+						right='0'
+						bottom='0'
 						isRound
-						bgColor="transparent"
+						bgColor='transparent'
 					/>
+					<TextError>{errors.password?.message}</TextError>
 				</div>
-				<div className="formSignIn-usuario d-flex flex-column my-4">
+				<div className='formSignIn-usuario d-flex flex-column my-4'>
 					<label>REPETIR CONTRASEÑA</label>
 					<input
-						type={showPassword ? "text" : "password"}
-						value={confirmPassword}
-						onChange={(event) =>
-							setConfirmPassword(event.target.value)
-						}
+						type={showPassword ? 'text' : 'password'}
+						{...register('confirmPassword')}
 					/>
+					<TextError>{errors.confirmPassword?.message}</TextError>
 				</div>
-				<div className="formSignIn-usuario d-flex flex-column my-4">
-					<label>Telefono/movil</label>
-					<input
-						type="text"
-						value={cellPhone}
-						onChange={(event) => setCellPhone(event.target.value)}
-					/>
+				<div className='formSignIn-usuario d-flex flex-column my-4'>
+					<label>TELÉFONO / MÓVIL</label>
+					<input type='number' {...register('cellPhone')} />
+					<TextError>{errors.cellPhone?.message}</TextError>
 				</div>
 			</form>
 		</div>

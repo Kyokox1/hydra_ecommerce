@@ -6,7 +6,7 @@
 	margin: 0 auto;
 	padding: 20px 60px;
 	background-image: linear-gradient(#0101015d, #010101a7),
-		url("../../../assets/fondoSignIn.png");
+		url('../../../assets/fondoSignIn.png');
 	background-position: right;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -55,7 +55,7 @@
 	border-radius: 7px;
 	outline: none;
 }
-.formSignIn-contraseña {
+.formSignIn div {
 	position: relative;
 }
 /*final estilos componente formulario de registro*/
