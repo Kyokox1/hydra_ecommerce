@@ -15,6 +15,7 @@ import userReducer from '../features/user/userSlice';
 import productsReducer from '../features/products/getProductsSlice';
 import signReducer from '../features/sigIn/signSlice';
 import jwtReducer from '../features/user/jwtSlice';
+import productsCartReducer from '../features/products/productsCartSlice';
 
 // ?persist state
 const persistConfig = {
@@ -37,7 +38,8 @@ export const store = configureStore({
 		user: persistedUserReducer,
 		products: productsReducer,
 		sign: signReducer,
-		jwt: persistedReducer
+		jwt: persistedReducer,
+		cartProducts: productsCartReducer
 	},
 
 	middleware: (getDefaultMiddleware) =>
