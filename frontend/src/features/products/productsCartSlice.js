@@ -31,6 +31,8 @@ const productsCartSLice = createSlice({
 	}
 });
 
+export const productsInCart = (state) => state.cartProducts.products;
+
 export const { addProduct, removeProduct, incrementProduct, decreaseProduct } =
 	productsCartSLice.actions;
 

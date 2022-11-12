@@ -5,8 +5,10 @@ import Carrito from '../pages/Carrito';
 import Comprar from '../pages/Comprar';
 import Contacto from '../pages/Contacto';
 import Home from '../pages/Home';
+import Login from '../pages/Login';
 import { Productos } from '../pages/Productos';
 import Promociones from '../pages/Promociones';
+import SignIn from '../pages/SignIn';
 
 const RoutesComp = () => {
 	return (
@@ -20,6 +22,8 @@ const RoutesComp = () => {
 					<Route path='/contacto' element={<Contacto />} />
 					<Route path='/carrito' element={<Carrito />} />
 				</Route>
+				<Route path='/login' element={<Login />} />
+				<Route path='/register' element={<SignIn />} />
 			</Routes>
 		</BrowserRouter>
 	);

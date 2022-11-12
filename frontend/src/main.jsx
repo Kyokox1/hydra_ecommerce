@@ -4,6 +4,7 @@ import App from './App';
 
 // styles
 import { ChakraProvider } from '@chakra-ui/react';
+import { theme } from './theme';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 
@@ -20,7 +21,7 @@ root.render(
 	<React.StrictMode>
 		<Provider store={store}>
 			<PersistGate loading={null} persistor={persistor}>
-				<ChakraProvider>
+				<ChakraProvider theme={theme}>
 					<App />
 				</ChakraProvider>
 			</PersistGate>
