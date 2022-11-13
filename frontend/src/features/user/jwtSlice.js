@@ -1,20 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-	jwt: null,
-	user: null
+	jwt: null
 };
 
 const jwtSlice = createSlice({
 	name: 'jwt',
 	initialState,
 	reducers: {
-		changeJwt(state, action) {
-			state.jwt = action.payload.jwt;
+		updateJwt(state, action) {
+			state.jwt = action.payload;
 		}
 	}
 });
 
-export const { changeJwt } = jwtSlice.actions;
+export const currentToken = (state) => state.jwt.jwt;
+
+export const { updateJwt } = jwtSlice.actions;
 
 export default jwtSlice.reducer;

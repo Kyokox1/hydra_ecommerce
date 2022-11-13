@@ -6,7 +6,8 @@ import { BsFillPersonFill } from 'react-icons/bs';
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
-import { currentToken, logoutUser } from '../features/user/userSlice';
+import { logoutUser } from '../features/user/userSlice';
+import { currentToken } from '../features/user/jwtSlice';
 
 // assets
 import whiteLogo from '../assets/logo-white.png';

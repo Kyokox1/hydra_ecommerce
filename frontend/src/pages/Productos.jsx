@@ -7,15 +7,20 @@ import {
 	Stack,
 	Text
 } from '@chakra-ui/react';
-import { useDispatch, useSelector } from 'react-redux';
 
-// assets
-import bgProducts from '../assets/bg-products.png';
-import { ProductItem } from '../components/products/ProductItem';
+// redux
+import { useDispatch, useSelector } from 'react-redux';
 import {
 	addProduct,
 	productsInCart
 } from '../features/products/productsCartSlice';
+
+// assets
+import bgProducts from '../assets/bg-products.png';
+
+// components and hooks
+import { useUserAuth } from '../hooks/useUserAuth';
+import { ProductItem } from '../components/products/ProductItem';
 
 const productsArray = [
 	{
@@ -53,10 +58,11 @@ const productsArray = [
 export const Productos = () => {
 	const dispatch = useDispatch();
 	const productsCart = useSelector(productsInCart);
+	const { isUserLogged } = useUserAuth();
 
 	console.log(productsCart);
-
 	const handleAddProduct = (product) => {
+		if (!isUserLogged) return;
 		dispatch(addProduct(product));
 	};
 

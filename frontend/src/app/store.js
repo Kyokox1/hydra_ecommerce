@@ -18,28 +18,31 @@ import jwtReducer from '../features/user/jwtSlice';
 import productsCartReducer from '../features/products/productsCartSlice';
 
 // ?persist state
-const persistConfig = {
+const persistConfigToken = {
 	key: 'jwt',
 	version: 1,
 	storage
 };
 
-const persistConfigUser = {
-	key: 'user',
+const persistConfigProducts = {
+	key: 'products',
 	version: 1,
 	storage
 };
 
-const persistedReducer = persistReducer(persistConfig, jwtReducer);
-const persistedUserReducer = persistReducer(persistConfigUser, userReducer);
+const persistedReducerToken = persistReducer(persistConfigToken, jwtReducer);
+const persistedReducerCartProducts = persistReducer(
+	persistConfigProducts,
+	productsCartReducer
+);
 
 export const store = configureStore({
 	reducer: {
-		user: persistedUserReducer,
+		user: userReducer,
 		products: productsReducer,
 		sign: signReducer,
-		jwt: persistedReducer,
-		cartProducts: productsCartReducer
+		jwt: persistedReducerToken,
+		cartProducts: persistedReducerCartProducts
 	},
 
 	middleware: (getDefaultMiddleware) =>

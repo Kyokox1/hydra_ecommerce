@@ -11,7 +11,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 //  redux
 import { useDispatch, useSelector } from 'react-redux';
-import { currentToken, logoutUser } from '../features/user/userSlice';
+import { logoutUser } from '../features/user/userSlice';
 
 // assets
 import whiteLogo from '../assets/logo-white.png';
@@ -20,16 +20,16 @@ import { BsFillPersonFill } from 'react-icons/bs';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 
 // components
-import { NavLinkChakra } from '../components/Layout/NavLinkChakra';
 import { productsInCart } from '../features/products/productsCartSlice';
 import { NavList } from '../components/Layout/NavList';
+import { useUserAuth } from '../hooks/useUserAuth';
 
 export const NavBarBlack = () => {
-	const jwt = useSelector(currentToken);
+	const { jwt, isUserLogged } = useUserAuth();
 	const productsCart = useSelector(productsInCart);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-
+	console.log(productsCart);
 	const handleLogout = () => {
 		dispatch(logoutUser({ jwt, navigate }));
 	};
@@ -99,7 +99,7 @@ export const NavBarBlack = () => {
 						isRound
 						icon={<AiOutlineShoppingCart />}
 					/>
-					{Boolean(productsCart.length) && (
+					{Boolean(productsCart.length) && isUserLogged ? (
 						<Text
 							as='span'
 							display='flex'
@@ -116,7 +116,7 @@ export const NavBarBlack = () => {
 						>
 							{productsCart.length}
 						</Text>
-					)}
+					) : null}
 				</Flex>
 			</Stack>
 		</Flex>
