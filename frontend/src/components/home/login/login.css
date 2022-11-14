@@ -1,192 +1,194 @@
 /*estilos de pagina login principal*/
 .login {
-  background-color: #d26c1294;
-  border-radius: 10px;
+	background-color: #d26c1294;
+	border-radius: 10px;
 }
 .login .login-caja1 {
-  padding: 29px 56px;
+	padding: 29px 56px;
 }
 .login .login-caja2 {
-  background-image: url("../../../assets/fondoSign.png");
-  border-radius: 0 10px 10px 0;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+	background-image: url('../../../assets/fondoSign.png');
+	border-radius: 0 10px 10px 0;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
 }
 .login .login-form {
-  background-color: #ffffff;
-  height: 100%;
-  border-radius: 10px;
+	background-color: #ffffff;
+	height: 100%;
+	border-radius: 10px;
 }
 
 @media (max-width: 575.98px) {
-  .login .login-caja2 {
-    background-image: url("../../../assets/login.png");
-    border-radius: 0 0 10px 10px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  }
+	.login .login-caja2 {
+		background-image: url('../../../assets/login.png');
+		border-radius: 0 0 10px 10px;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+	}
 }
 @media (max-width: 767.98px) {
-  .login {
-    margin-bottom: 50px;
-  }
-  .login .login-caja1 {
-    padding: 20px 30px;
-  }
-  .login .login-caja1 {
-    height: 600px;
-  }
-  .login .login-caja2 {
-    height: 400px;
-  }
-  .login .login-caja2 {
-    background-image: url("../../../assets/login.png");
-    border-radius: 0 0 10px 10px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  }
+	.login {
+		margin-bottom: 50px;
+	}
+	.login .login-caja1 {
+		padding: 20px 30px;
+	}
+	.login .login-caja1 {
+		height: 600px;
+	}
+	.login .login-caja2 {
+		height: 400px;
+	}
+	.login .login-caja2 {
+		background-image: url('../../../assets/login.png');
+		border-radius: 0 0 10px 10px;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+	}
 }
 @media (max-width: 991.98px) {
-  .login .login-caja1 {
-    padding: 20px;
-  }
-  .login .login-caja1 {
-    height: 600px;
-  }
-  .login .login-caja2 {
-    height: 400px;
-  }
+	.login .login-caja1 {
+		padding: 20px;
+	}
+	.login .login-caja1 {
+		height: 600px;
+	}
+	.login .login-caja2 {
+		height: 400px;
+	}
 }
 
 /*final de estilos de la pagina login principal*/
 /*inicio componente title*/
 .title h2 {
-  font-size: 48px;
-  font-weight: 700;
-  padding: 10px 0;
+	font-size: 48px;
+	font-weight: 700;
+	padding: 10px 0;
 }
 .title h3 {
-  font-size: 36px;
-  padding: 10px 0 0 0;
+	font-size: 36px;
+	padding: 10px 0 0 0;
 }
 @media (max-width: 767.98px) {
-  .title h2 {
-    font-size: 36px;
-    font-weight: 400;
-    padding: 5px 0;
-  }
-  .title h3 {
-    font-size: 24px;
-    padding: 5px 0 0 0;
-  }
+	.title h2 {
+		font-size: 36px;
+		font-weight: 400;
+		padding: 5px 0;
+	}
+	.title h3 {
+		font-size: 24px;
+		padding: 5px 0 0 0;
+	}
 }
 @media (max-width: 991.98px) {
-  .title h2 {
-    font-size: 40px;
-    font-weight: 500;
-    padding: 5px 0;
-  }
-  .title h3 {
-    font-size: 30px;
-    padding: 5px 0 0 0;
-  }
+	.title h2 {
+		font-size: 40px;
+		font-weight: 500;
+		padding: 5px 0;
+	}
+	.title h3 {
+		font-size: 30px;
+		padding: 5px 0 0 0;
+	}
 }
 /*final componente title*/
 /*inicio componente formulario*/
 .form {
-  width: 80%;
-  margin: 20px auto;
+	width: 80%;
+	margin: 20px auto;
 }
 .form form {
-  width: 70%;
+	width: 70%;
 }
 .form form input {
-  border: 1px solid #d26c1294;
-  padding: 7px;
-  border-radius: 7px;
-  outline: none;
+	border: 1px solid #d26c1294;
+	padding: 7px;
+	border-radius: 7px;
+	outline: none;
 }
 .form form button {
-  border: 1px solid #d26c1294;
-  padding: 5px 20px;
-  border-radius: 5px;
+	border: 1px solid #d26c1294;
+	padding: 5px 20px;
+	border-radius: 5px;
 }
-
-.form .crear-cuenta{
-  cursor: pointer;
+.form-contraseña {
+	position: relative;
+}
+.form .crear-cuenta {
+	cursor: pointer;
 }
 @media (max-width: 767.98px) {
-  .form {
-    width: 90%;
-    margin: 20px auto;
-  }
-  .form form {
-    width: 90%;
-  }
-  .form form input {
-    border: 1px solid #d26c1294;
-    padding: 5px;
-    border-radius: 7px;
-    outline: none;
-  }
-  .form form button {
-    border: 1px solid #d26c1294;
-    padding: 3px 10px;
-    border-radius: 5px;
-  }
+	.form {
+		width: 90%;
+		margin: 20px auto;
+	}
+	.form form {
+		width: 90%;
+	}
+	.form form input {
+		border: 1px solid #d26c1294;
+		padding: 5px;
+		border-radius: 7px;
+		outline: none;
+	}
+	.form form button {
+		border: 1px solid #d26c1294;
+		padding: 3px 10px;
+		border-radius: 5px;
+	}
 }
 @media (max-width: 991.98px) {
-  .form {
-    width: 90%;
-    margin: 20px auto;
-  }
-  .form form {
-    width: 90%;
-  }
-  .form form input {
-    border: 1px solid #d26c1294;
-    padding: 5px;
-    border-radius: 7px;
-    outline: none;
-  }
-  .form form button {
-    border: 1px solid #d26c1294;
-    padding: 3px 10px;
-    border-radius: 5px;
-  }
+	.form {
+		width: 90%;
+		margin: 20px auto;
+	}
+	.form form {
+		width: 90%;
+	}
+	.form form input {
+		border: 1px solid #d26c1294;
+		padding: 5px;
+		border-radius: 7px;
+		outline: none;
+	}
+	.form form button {
+		border: 1px solid #d26c1294;
+		padding: 3px 10px;
+		border-radius: 5px;
+	}
 }
 
 /*final componente formulario*/
 /*inicio componente footerLogin*/
 .footerLogin {
-  padding-top: 40px;
-  position: relative;
+	padding-top: 40px;
+	position: relative;
 }
 .footerLogin::after {
-  position: absolute;
-  content: "";
-  top: 20px;
-  right: 50%;
-  border-bottom: 2px solid #010101;
-  width: 90%;
-  transform: translateX(50%);
+	position: absolute;
+	content: '';
+	top: 20px;
+	right: 50%;
+	border-bottom: 2px solid #010101;
+	width: 90%;
+	transform: translateX(50%);
 }
 @media (max-width: 767.98px) {
-  .footerLogin {
-    padding-top: 40px;
-    position: relative;
-  }
-  .footerLogin::after {
-    position: absolute;
-    content: "";
-    top: 20px;
-    right: 50%;
-    border-bottom: 2px solid #010101;
-    width: 90%;
-    transform: translateX(50%);
-  }
+	.footerLogin {
+		padding-top: 40px;
+		position: relative;
+	}
+	.footerLogin::after {
+		position: absolute;
+		content: '';
+		top: 20px;
+		right: 50%;
+		border-bottom: 2px solid #010101;
+		width: 90%;
+		transform: translateX(50%);
+	}
 }
 /*final componente footerLogin*/

@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
 	data: [],
@@ -7,16 +7,18 @@ const initialState = {
 };
 
 export const getProductsSlice = createSlice({
-	name: "products",
+	name: 'products',
 	initialState,
 	reducers: {
 		getProductsStart(state) {
 			state.isLoading = true;
 		},
+
 		getProductsComplete(state, action) {
 			state.data = action.payload;
 			state.isLoading = false;
 		},
+
 		getProductsError(state, action) {
 			state.error = action.payload;
 			state.isLoading = false;

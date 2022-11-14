@@ -15,7 +15,7 @@ class CreateProductSaleTable extends Migration
     {
         Schema::create('product_sale', function (Blueprint $table) {
             $table->id();
-            $table->int('quantity_products');
+            $table->integer('quantity_products');
             $table->foreignId('product_id')->constrained();
             $table->foreignId('sale_id')->constrained();
             $table->double('total');

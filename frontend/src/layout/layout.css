@@ -1,32 +1,32 @@
 /*inicio navBar*/
 .navBar {
-  background-image: url("../assets//navBar.png");
+	background-image: url('../assets//navBar.png');
 }
 .navBar .navBar-contenedor {
-  color: #ffffff;
+	color: #ffffff;
 }
 .navBar .navBar-contenedor ul {
-  gap: 20px;
+	gap: 20px;
 
-  padding: 0 50px;
-  align-items: center;
+	padding: 0 50px;
+	align-items: center;
 }
 .navBar .navBar-contenedor ul li {
-  text-decoration: none;
+	text-decoration: none;
 
-  list-style: none;
-  gap: 10px;
+	list-style: none;
+	gap: 10px;
 }
 
 .navBar .navBar-contenedor .navBar-contenedor__buscar {
-  padding: 0 40px;
-  gap: 10px;
-  align-items: center;
+	padding: 0 40px;
+	gap: 10px;
+	align-items: center;
 }
 
 .navBar .navBar-contenedor .navBar-contenedor__carrito {
-  align-items: center;
-  gap: 5px;
-  font-size: 20px;
+	align-items: center;
+	gap: 5px;
+	font-size: 20px;
 }
 /*final navBar*/

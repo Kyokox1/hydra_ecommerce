@@ -19,7 +19,7 @@ class CreateSalesTable extends Migration
             $table->dateTime('date_sale');
             $table->dateTime('intervalos_cuotas');
             $table->double('abono_inicial');
-            $table->int('cant_cuotas');         
+            $table->integer('cant_cuotas');         
             $table->timestamps();
         });
     }
