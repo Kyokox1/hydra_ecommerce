@@ -6,10 +6,11 @@ import { BsFillPersonFill } from 'react-icons/bs';
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
-import { currentToken, logoutUser } from '../features/user/userSlice';
+import { logoutUser } from '../features/user/userSlice';
+import { currentToken } from '../features/user/jwtSlice';
 
 // assets
-import logo from '../assets/logos.png';
+import whiteLogo from '../assets/logo-white.png';
 
 const NavBar = () => {
 	const jwt = useSelector(currentToken);
@@ -23,7 +24,7 @@ const NavBar = () => {
 	return (
 		<div className='navBar'>
 			<div className='container navBar-contenedor d-flex justify-content-between'>
-				<img src={logo} alt='logo' />
+				<img src={whiteLogo} alt='logo' />
 
 				<div className='d-flex '>
 					<ul

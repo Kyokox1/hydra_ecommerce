@@ -5,6 +5,7 @@ import {
 	postSignUpUser
 } from '../../services/auth';
 import { signClear } from '../sigIn/signSlice';
+import { updateJwt } from './jwtSlice';
 
 const initialState = {
 	user: {},
@@ -39,13 +40,20 @@ export const userSlice = createSlice({
 	}
 });
 
-export const currentToken = (state) => state.user.jwt;
 export const currentUser = (state) => state.user.user;
 export const userIsLoading = (state) => state.user.isLoading;
 export const userError = (state) => state.user.error;
 
 export const registerUser =
-	({ email, name, password, confirmPassword, navigate }) =>
+	({
+		email,
+		name,
+		password,
+		confirmPassword,
+		navigate,
+		resetForm,
+		setisEmailInvalid
+	}) =>
 	async (dispatch) => {
 		try {
 			dispatch(fetchUserStart);
@@ -58,11 +66,13 @@ export const registerUser =
 			});
 			const { token: jwt, user, status } = response;
 
-			if (!status || status !== 'success') return;
+			if (!status || status !== 'success') return setisEmailInvalid(true);
 
 			dispatch(fetchUserComplete({ user, jwt }));
 			dispatch(signClear(false));
+			dispatch(updateJwt(jwt));
 			navigate('/productos');
+			resetForm();
 		} catch (error) {
 			dispatch(fetchUserError(error));
 		}
@@ -81,8 +91,8 @@ export const loginUser =
 
 			if (!status || status !== 'success')
 				return dispatch(fetchUserError(true));
-
 			dispatch(fetchUserComplete({ user, jwt: token }));
+			dispatch(updateJwt(token));
 		} catch (error) {
 			dispatch(fetchUserError(error));
 		}
@@ -99,6 +109,7 @@ export const logoutUser =
 			if (!status || status !== 'success') return;
 
 			dispatch(fetchUserReset());
+			dispatch(updateJwt(null));
 			navigate('/');
 		} catch (error) {
 			dispatch(fetchUserError(error));

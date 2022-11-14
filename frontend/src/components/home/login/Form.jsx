@@ -1,38 +1,36 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { signClear } from '../../../features/sigIn/signSlice';
-import {
-	currentToken,
-	loginUser,
-	userError
-} from '../../../features/user/userSlice';
+import { loginUser, userError } from '../../../features/user/userSlice';
 
 // router
 import { useNavigate } from 'react-router-dom';
 
 // components and hooks
 import { TextError } from '../signIn/TextError';
+import { useUserAuth } from '../../../hooks/useUserAuth';
 
 const Form = () => {
 	const isInvalidUser = useSelector(userError);
-	const jwt = useSelector(currentToken);
-
-	const isLogged = Boolean(jwt);
+	const { isUserLogged } = useUserAuth();
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
 
 	const estado = useSelector((state) => state.sign);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (isLogged) navigate('/productos');
-	}, [isLogged]);
+		if (!isUserLogged) return;
+		navigate('/productos');
+		setEmail('');
+		setPassword('');
+	}, [isUserLogged]);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		const email = event.target.email.value;
-		const password = event.target.password.value;
 		dispatch(loginUser({ email, password }));
 	};
 
@@ -41,11 +39,19 @@ const Form = () => {
 			<form onSubmit={handleSubmit}>
 				<div className='form-usuario d-flex flex-column my-4'>
 					<label>EMAIL</label>
-					<input name='email' type='text' />
+					<input
+						type='text'
+						value={email}
+						onChange={(event) => setEmail(event.target.value)}
+					/>
 				</div>
 				<div className='form-contraseña d-flex flex-column my-4'>
 					<label>CONTRASEÑA</label>
-					<input name='password' type='password' />
+					<input
+						type='password'
+						value={password}
+						onChange={(event) => setPassword(event.target.value)}
+					/>
 					{isInvalidUser && (
 						<TextError>Email o Contraseña incorrecto</TextError>
 					)}

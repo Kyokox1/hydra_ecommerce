@@ -1,5 +1,5 @@
 import { IconButton } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
 // components, hooks, services
@@ -37,14 +37,17 @@ const FormSign = () => {
 	const {
 		register,
 		handleSubmit,
+		reset,
 		formState: { errors }
 	} = useForm({
 		resolver: yupResolver(schema)
 	});
+	// const emailStatus = useSelector(userError);
 
 	const navigate = useNavigate();
 
 	const [showPassword, setShowPassword] = useState(false);
+	const [isEmailInvalid, setisEmailInvalid] = useState(false);
 
 	const dispatch = useDispatch();
 
@@ -52,9 +55,25 @@ const FormSign = () => {
 	const onSubmit = (data) => {
 		const { username: name, password, confirmPassword, email } = data;
 		dispatch(
-			registerUser({ name, email, password, confirmPassword, navigate })
+			registerUser({
+				name,
+				email,
+				password,
+				confirmPassword,
+				navigate,
+				resetForm: reset,
+				setisEmailInvalid
+			})
 		);
 	};
+
+	useEffect(() => {
+		if (!isEmailInvalid) return;
+		const time = setTimeout(() => {
+			setisEmailInvalid(false);
+		}, 3000);
+		return () => clearTimeout(time);
+	}, [isEmailInvalid]);
 
 	return (
 		<div className='formSignIn'>
@@ -70,7 +89,11 @@ const FormSign = () => {
 				<div className='formSignIn-usuario d-flex flex-column my-4'>
 					<label>CORREO ELECTRONICO</label>
 					<input type='text' {...register('email')} />
-					<TextError>{errors.email?.message}</TextError>
+					<TextError>
+						{isEmailInvalid
+							? 'El email ya esta registrado'
+							: errors.email?.message}
+					</TextError>
 				</div>
 				<div className='formSignIn-contraseña d-flex flex-column my-4'>
 					<label>CONTRASEÑA</label>
@@ -96,6 +119,7 @@ const FormSign = () => {
 						isRound
 						bgColor='transparent'
 					/>
+
 					<TextError>{errors.password?.message}</TextError>
 				</div>
 				<div className='formSignIn-usuario d-flex flex-column my-4'>
