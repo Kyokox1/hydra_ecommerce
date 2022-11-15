@@ -23,7 +23,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('logout', 'AuthController@logout');
 
     Route::group(['middleware' => 'roles:Client'], function () {
-        //acciones para clientes
+        Route::get('products','ProductController@index')->name('products.index');
+        Route::get('products/search','ProductController@filterProduct')->name('products.filter');
+        Route::get('products/{id}','ProductController@show')->name('products.show');
     });
 });
 

@@ -14,9 +14,13 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products=Product::where('stock','>', 0)->with('category')->get();
+        return response()->json($products);
     }
-
+    public function filterProduct(Request $request){
+        $products=Product::search($request->column,$request->search);
+        return response()->json($products);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -44,9 +48,10 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        //
+        $product=Product::findOrfail($id);
+        return response()->json($product->load('category'));
     }
 
     /**
