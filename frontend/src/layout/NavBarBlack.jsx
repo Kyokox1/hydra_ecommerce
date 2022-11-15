@@ -15,6 +15,7 @@ import { logoutUser } from '../features/user/userSlice';
 
 // assets
 import whiteLogo from '../assets/logo-white.png';
+import navBarBg from '../assets/navBar.png';
 import { FiSearch } from 'react-icons/fi';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
@@ -29,7 +30,7 @@ export const NavBarBlack = () => {
 	const productsCart = useSelector(productsInCart);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	console.log(productsCart);
+
 	const handleLogout = () => {
 		dispatch(logoutUser({ jwt, navigate }));
 	};
@@ -37,88 +38,98 @@ export const NavBarBlack = () => {
 	return (
 		<Flex
 			as='header'
-			justify='space-around'
-			pos='absolute'
+			pos='fixed'
 			top='0'
 			w='100%'
 			color='white'
-			zIndex='100'
+			zIndex='900'
 		>
-			<Link to='/productos'>
-				<Image src={whiteLogo} alt='logo' />
-			</Link>
-			<Stack
-				as='nav'
-				direction='row'
-				w='70%'
-				justifyContent='space-evenly'
-				alignItems='center'
-			>
-				<NavList gap='20px' mayus={true} />
-				<FormControl
-					as='form'
-					display='flex'
-					w='100px'
+			<Flex pos='relative' justify='space-around' w='inherit'>
+				<Image
+					pos='absolute'
+					src={navBarBg}
+					left='0'
+					bottom='0'
+					w='100%'
+					opacity='0.9'
+					zIndex='-1'
+				/>
+				<Link to='/productos'>
+					<Image src={whiteLogo} alt='logo' />
+				</Link>
+				<Stack
+					as='nav'
+					direction='row'
+					w='70%'
+					justifyContent='space-evenly'
 					alignItems='center'
-					borderBottom='white 1px solid'
 				>
-					<Input
-						placeholder='Buscar'
-						_placeholder={{ color: 'white' }}
-						variant='unstyled'
-						_focus={{ border: 'none' }}
-					/>
-					<IconButton
-						color='gray'
-						type='submit'
-						icon={<FiSearch />}
-						colorScheme='white'
-						isRound
-					/>
-				</FormControl>
-				<Flex
-					justify='center'
-					align='center'
-					pos='relative'
-					fontSize='1.5rem'
-				>
-					<IconButton
-						fontSize='inherit'
-						onClick={handleLogout}
-						variant='ghost'
-						color='white'
-						colorScheme='whiteAlpha'
-						isRound
-						icon={<BsFillPersonFill />}
-					/>
-					<IconButton
-						fontSize='inherit'
-						variant='ghost'
-						color='white'
-						colorScheme='whiteAlpha'
-						isRound
-						icon={<AiOutlineShoppingCart />}
-					/>
-					{Boolean(productsCart.length) && isUserLogged ? (
-						<Text
-							as='span'
-							display='flex'
-							justifyContent='center'
-							alignItems='center'
-							pos='absolute'
-							top='2px'
-							right='5px'
-							h='15px'
-							w='15px'
-							fontSize='.8rem'
-							bgColor='red'
-							borderRadius='50%'
-						>
-							{productsCart.length}
-						</Text>
-					) : null}
-				</Flex>
-			</Stack>
+					<NavList gap='20px' mayus={true} />
+					<FormControl
+						as='form'
+						display='flex'
+						w='100px'
+						alignItems='center'
+						borderBottom='white 1px solid'
+					>
+						<Input
+							placeholder='Buscar'
+							_placeholder={{ color: 'white' }}
+							variant='unstyled'
+							_focus={{ border: 'none' }}
+						/>
+						<IconButton
+							color='gray'
+							type='submit'
+							icon={<FiSearch />}
+							colorScheme='white'
+							isRound
+						/>
+					</FormControl>
+					<Flex
+						justify='center'
+						align='center'
+						pos='relative'
+						fontSize='1.5rem'
+					>
+						<IconButton
+							fontSize='inherit'
+							onClick={handleLogout}
+							variant='ghost'
+							color='white'
+							colorScheme='whiteAlpha'
+							isRound
+							icon={<BsFillPersonFill />}
+						/>
+						<IconButton
+							fontSize='inherit'
+							variant='ghost'
+							color='white'
+							colorScheme='whiteAlpha'
+							isRound
+							icon={<AiOutlineShoppingCart />}
+						/>
+						{Boolean(productsCart.length) && isUserLogged ? (
+							<Text
+								as='span'
+								display='flex'
+								justifyContent='center'
+								alignItems='center'
+								pos='absolute'
+								top='2px'
+								right='5px'
+								h='15px'
+								w='15px'
+								fontSize='.8rem'
+								bgColor='red'
+								borderRadius='50%'
+							>
+								{productsCart.length}
+							</Text>
+						) : null}
+					</Flex>
+				</Stack>
+			</Flex>
 		</Flex>
 	);
 };

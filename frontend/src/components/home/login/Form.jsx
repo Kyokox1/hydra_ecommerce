@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'react';
+import { Button, Spinner } from '@chakra-ui/react';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { signClear } from '../../../features/sigIn/signSlice';
-import { loginUser, userError } from '../../../features/user/userSlice';
+import {
+	loginUser,
+	userError,
+	userIsLoading
+} from '../../../features/user/userSlice';
 
 // router
 import { useNavigate } from 'react-router-dom';
@@ -13,12 +18,14 @@ import { TextError } from '../signIn/TextError';
 import { useUserAuth } from '../../../hooks/useUserAuth';
 
 const Form = () => {
-	const isInvalidUser = useSelector(userError);
-	const { isUserLogged } = useUserAuth();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const { isUserLogged } = useUserAuth();
 
+	const isInvalidUser = useSelector(userError);
+	const isLoading = useSelector(userIsLoading);
 	const estado = useSelector((state) => state.sign);
+
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
@@ -57,7 +64,13 @@ const Form = () => {
 					)}
 				</div>
 				<div className='d-flex justify-content-center'>
-					<button type='submit'>LOGIN</button>
+					<Button type='submit' fontWeight='100'>
+						{isLoading ? (
+							<Spinner color='orange' mx='8px' />
+						) : (
+							'LOGIN'
+						)}
+					</Button>
 				</div>
 				<h5 className='text-center'>Olvidaste la contraseña</h5>
 				<h5

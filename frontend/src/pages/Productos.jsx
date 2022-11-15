@@ -20,7 +20,8 @@ import bgProducts from '../assets/bg-products.png';
 
 // components and hooks
 import { useUserAuth } from '../hooks/useUserAuth';
-import { ProductItem } from '../components/products/ProductItem';
+import { ProductsCardItem } from '../components/products/ProductsCardItem';
+import { useNavigate } from 'react-router-dom';
 
 const productsArray = [
 	{
@@ -58,11 +59,12 @@ const productsArray = [
 export const Productos = () => {
 	const dispatch = useDispatch();
 	const productsCart = useSelector(productsInCart);
+	const navigate = useNavigate();
 	const { isUserLogged } = useUserAuth();
 
 	console.log(productsCart);
 	const handleAddProduct = (product) => {
-		if (!isUserLogged) return;
+		if (!isUserLogged) return navigate('/');
 		dispatch(addProduct(product));
 	};
 
@@ -75,10 +77,16 @@ export const Productos = () => {
 			bgRepeat='no-repeat'
 			bgImage={bgProducts}
 			color='white'
-			pt='100px'
+			pt='120px'
 			pb='50px'
 		>
-			<Stack w='70%' alignItems='center' pl='100px' gap='30px'>
+			<Stack
+				w='80%'
+				maxW='1040px'
+				alignItems='center'
+				pl='100px'
+				gap='30px'
+			>
 				<FormControl
 					as='form'
 					w='max-content'
@@ -111,10 +119,10 @@ export const Productos = () => {
 				<Grid
 					w='100%'
 					gridTemplateColumns='repeat(auto-fill, minmax(150px,1fr))'
-					gap='10px'
+					gap='15px'
 				>
 					{productsArray.map((product) => (
-						<ProductItem
+						<ProductsCardItem
 							key={`product-${product.id}`}
 							handleAddProduct={() => handleAddProduct(product)}
 							name={product.name}
@@ -127,8 +135,7 @@ export const Productos = () => {
 					bgColor='#D9D9D9'
 					color='black'
 					fontWeight='200'
-					px='30px'
-					py='10px'
+					p='10px 30px'
 				>
 					VER TODOS LOS PRODUCTOS
 				</Button>

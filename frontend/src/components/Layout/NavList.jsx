@@ -5,7 +5,7 @@ const navElement = [
 	{ name: 'inicio', path: '/' },
 	{ name: 'productos', path: 'productos' },
 	{ name: 'promociones', path: 'promociones' },
-	{ name: 'comprar', path: 'como compro' },
+	{ name: 'comprar', path: 'comprar' },
 	{ name: 'contacto', path: 'contacto' }
 ];
 

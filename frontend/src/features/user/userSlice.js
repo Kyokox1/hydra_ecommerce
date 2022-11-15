@@ -56,7 +56,7 @@ export const registerUser =
 	}) =>
 	async (dispatch) => {
 		try {
-			dispatch(fetchUserStart);
+			dispatch(fetchUserStart());
 			// ? Call the API
 			const response = await postSignUpUser({
 				email,
@@ -82,7 +82,7 @@ export const loginUser =
 	({ email, password }) =>
 	async (dispatch) => {
 		try {
-			dispatch(fetchUserStart);
+			dispatch(fetchUserStart());
 			// ? Call the API
 			const { status, token, user } = await postLoginUser({
 				email,
@@ -102,7 +102,7 @@ export const logoutUser =
 	({ jwt, navigate }) =>
 	async (dispatch) => {
 		try {
-			dispatch(fetchUserStart);
+			dispatch(fetchUserStart());
 			// ? Call the API
 			const { status } = await postLogoutUser({ jwt });
 
