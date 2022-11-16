@@ -1,0 +1,34 @@
+import { Stack, Link as LinkChakra } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
+
+const LoginNav = () => {
+	return (
+		<Stack textAlign='center'>
+			<LinkChakra
+				to='/signIn'
+				as={Link}
+				fontWeight='300'
+				_hover={{
+					textDecoration: 'none',
+					color: '#E68C11'
+				}}
+			>
+				Olvidaste Contraseña
+			</LinkChakra>
+			<LinkChakra
+				to='/signIn'
+				as={Link}
+				textDecoration='none'
+				fontWeight='300'
+				_hover={{
+					textDecoration: 'none',
+					color: '#E68C11'
+				}}
+			>
+				Crear una cuenta
+			</LinkChakra>
+		</Stack>
+	);
+};
+
+export default LoginNav;

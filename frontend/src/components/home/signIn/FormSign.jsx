@@ -1,19 +1,27 @@
-import { IconButton } from '@chakra-ui/react';
+import {
+	IconButton,
+	FormControl,
+	FormLabel,
+	Spinner,
+	Input,
+	Box
+} from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
 // components, hooks, services
 import { TextError } from './TextError';
+import { ButtonAuth } from '../login/ButtonAuth';
 
 // redux
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerUser, userIsLoading } from '~/features/user/userSlice';
 
 // forms
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-import { registerUser } from '../../../features/user/userSlice';
+import * as yup from 'yup';
 
 const schema = yup.object().shape({
 	username: yup
@@ -38,18 +46,21 @@ const FormSign = () => {
 		register,
 		handleSubmit,
 		reset,
-		formState: { errors }
+		formState: { errors },
+		setFocus
 	} = useForm({
 		resolver: yupResolver(schema)
 	});
-	// const emailStatus = useSelector(userError);
 
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const [showPassword, setShowPassword] = useState(false);
 	const [isEmailInvalid, setisEmailInvalid] = useState(false);
 
-	const dispatch = useDispatch();
+	useEffect(() => {
+		setFocus('username');
+	}, [setFocus]);
 
 	// submit
 	const onSubmit = (data) => {
@@ -66,6 +77,7 @@ const FormSign = () => {
 			})
 		);
 	};
+	const isLoading = useSelector(userIsLoading);
 
 	useEffect(() => {
 		if (!isEmailInvalid) return;
@@ -76,67 +88,89 @@ const FormSign = () => {
 	}, [isEmailInvalid]);
 
 	return (
-		<div className='formSignIn'>
-			<form onSubmit={handleSubmit(onSubmit)}>
-				<div className='d-flex justify-content-center'>
-					<button type='submit'>Crear Cuenta</button>
-				</div>
-				<div className='formSignIn-usuario d-flex flex-column my-4'>
-					<label>USUARIO</label>
-					<input type='text' {...register('username')} />
-					<TextError>{errors.username?.message}</TextError>
-				</div>
-				<div className='formSignIn-usuario d-flex flex-column my-4'>
-					<label>CORREO ELECTRONICO</label>
-					<input type='text' {...register('email')} />
-					<TextError>
-						{isEmailInvalid
-							? 'El email ya esta registrado'
-							: errors.email?.message}
-					</TextError>
-				</div>
-				<div className='formSignIn-contraseña d-flex flex-column my-4'>
-					<label>CONTRASEÑA</label>
-					<input
-						type={showPassword ? 'text' : 'password'}
-						{...register('password')}
-					/>
-					<IconButton
-						onClick={() =>
-							setShowPassword((prevState) => !prevState)
-						}
-						aria-label='show password'
-						icon={
-							showPassword ? (
-								<AiFillEye />
-							) : (
-								<AiFillEyeInvisible />
-							)
-						}
-						pos='absolute'
-						right='0'
-						bottom='0'
-						isRound
-						bgColor='transparent'
-					/>
+		<FormControl
+			onSubmit={handleSubmit(onSubmit)}
+			as='form'
+			display='flex'
+			flexDir='column'
+			gap='30px'
+			w='max-content'
+			pt='20px'
+		>
+			<Box pos='relative'>
+				<FormLabel m='0'>USUARIO</FormLabel>
+				<Input
+					id='username'
+					type='text'
+					variant='flushed'
+					{...register('username')}
+				/>
+				<TextError>{errors.username?.message}</TextError>
+			</Box>
+			<Box pos='relative'>
+				<FormLabel m='0'>CORREO ELECTRONICO</FormLabel>
+				<Input
+					id='email'
+					variant='flushed'
+					type='text'
+					{...register('email')}
+				/>
+				<TextError>
+					{isEmailInvalid
+						? 'El email ya esta registrado'
+						: errors.email?.message}
+				</TextError>
+			</Box>
+			<Box pos='relative'>
+				<FormLabel m='0'>CONTRASEÑA</FormLabel>
+				<Input
+					type={showPassword ? 'text' : 'password'}
+					variant='flushed'
+					{...register('password')}
+				/>
+				<IconButton
+					onClick={() => setShowPassword((prevState) => !prevState)}
+					aria-label='show password'
+					icon={showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
+					pos='absolute'
+					right='0'
+					bottom='0'
+					isRound
+					bgColor='transparent'
+					_hover={{ background: '#ffffff10' }}
+					_focus={{ background: '#ffffff10' }}
+				/>
 
-					<TextError>{errors.password?.message}</TextError>
-				</div>
-				<div className='formSignIn-usuario d-flex flex-column my-4'>
-					<label>REPETIR CONTRASEÑA</label>
-					<input
-						type={showPassword ? 'text' : 'password'}
-						{...register('confirmPassword')}
-					/>
-					<TextError>{errors.confirmPassword?.message}</TextError>
-				</div>
-				<div className='formSignIn-usuario d-flex flex-column my-4'>
-					<label>TELÉFONO / MÓVIL</label>
-					<input type='number' {...register('cellPhone')} />
-					<TextError>{errors.cellPhone?.message}</TextError>
-				</div>
-			</form>
-		</div>
+				<TextError>{errors.password?.message}</TextError>
+			</Box>
+			<Box pos='relative'>
+				<FormLabel m='0'>REPETIR CONTRASEÑA</FormLabel>
+				<Input
+					id='confirmPassword'
+					type={showPassword ? 'text' : 'password'}
+					variant='flushed'
+					{...register('confirmPassword')}
+				/>
+				<TextError>{errors.confirmPassword?.message}</TextError>
+			</Box>
+			<Box pos='relative'>
+				<FormLabel m='0'>TELÉFONO / MÓVIL</FormLabel>
+				<Input
+					id='cellPhone'
+					type='number'
+					variant='flushed'
+					{...register('cellPhone')}
+				/>
+				<TextError>{errors.cellPhone?.message}</TextError>
+			</Box>
+			<ButtonAuth px='80px'>
+				{isLoading ? (
+					<Spinner color='white' mx='36.5px' />
+				) : (
+					'REGISTRARTE'
+				)}
+			</ButtonAuth>
+		</FormControl>
 	);
 };
 

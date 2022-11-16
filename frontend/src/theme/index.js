@@ -7,5 +7,9 @@ export const theme = extendTheme({
 			// ...
 			900: '#1a202c'
 		}
+	},
+	fonts: {
+		heading: `'Titillium Web', sans-serif`,
+		body: `'Titillium Web', sans-serif`
 	}
 });

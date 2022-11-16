@@ -1,6 +1,6 @@
 import { Box, Button, Heading, Image, Stack, Text } from '@chakra-ui/react';
 
-import product from '../../assets/mock-product.png';
+import product from '/assets/mock-product.png';
 
 export const ProductsCardItem = ({
 	img,

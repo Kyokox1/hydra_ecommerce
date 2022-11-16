@@ -13,15 +13,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
 	addProduct,
 	productsInCart
-} from '../features/products/productsCartSlice';
+} from '~/features/products/productsCartSlice';
+import { useNavigate } from 'react-router-dom';
 
 // assets
-import bgProducts from '../assets/bg-products.png';
+import bgProducts from '/assets/bg-products.png';
 
 // components and hooks
-import { useUserAuth } from '../hooks/useUserAuth';
-import { ProductsCardItem } from '../components/products/ProductsCardItem';
-import { useNavigate } from 'react-router-dom';
+import { useUserAuth } from '~/hooks/useUserAuth';
+// import { ProductsCardItem } from '~/components/products/ProductsCardItem';
+import { ProductsCardItem } from '~/components/products/ProductsCardItem';
+import { getProducts1 } from '~/features/products/getProductsSlice';
+import { useEffect } from 'react';
 
 const productsArray = [
 	{
@@ -58,11 +61,15 @@ const productsArray = [
 
 export const Productos = () => {
 	const dispatch = useDispatch();
-	const productsCart = useSelector(productsInCart);
+	// const productsCart = useSelector(productsInCart);
 	const navigate = useNavigate();
-	const { isUserLogged } = useUserAuth();
+	const { isUserLogged, jwt } = useUserAuth();
 
-	console.log(productsCart);
+	useEffect(() => {
+		dispatch(getProducts1({ jwt }));
+	}, []);
+
+	// console.log(productsCart);
 	const handleAddProduct = (product) => {
 		if (!isUserLogged) return navigate('/');
 		dispatch(addProduct(product));
@@ -95,16 +102,14 @@ export const Productos = () => {
 					justifyContent='center'
 				>
 					<Text
-						as='label'
 						pr='10px'
-						w='150px'
-						htmlFor='filters'
+						w='170px'
+						textAlign='end'
 						borderRight='1px solid gray'
 					>
 						Ordernar Por
 					</Text>
 					<Select
-						id='filters'
 						color='gray'
 						placeholder='Seleccione'
 						bgColor='transparent'

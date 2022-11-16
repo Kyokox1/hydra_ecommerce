@@ -3,7 +3,7 @@ import { Box, Flex, Grid, Text } from '@chakra-ui/react';
 import { FaFacebookF } from 'react-icons/fa';
 import { AiFillInstagram } from 'react-icons/ai';
 
-import { NavList } from '../components/Layout/NavList';
+import { NavList } from '~/components/Layout/NavList';
 
 const Footer = () => {
 	return (

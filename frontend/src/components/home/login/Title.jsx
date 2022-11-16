@@ -1,15 +1,9 @@
-import React from 'react';
-
+import { Heading } from '@chakra-ui/react';
 const Title = () => {
 	return (
-		<div className='title'>
-			<h2 className='text-center'>
-				TW
-				<br />
-				HYRA STORE
-			</h2>
-			<h3 className='text-center'>Bienvenidos</h3>
-		</div>
+		<Heading as='h2' fontWeight='400' fontSize='4rem' color='white'>
+			Bienvenido
+		</Heading>
 	);
 };
 

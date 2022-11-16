@@ -1,11 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-	postLoginUser,
-	postLogoutUser,
-	postSignUpUser
-} from '../../services/auth';
-import { signClear } from '../sigIn/signSlice';
+import { postLoginUser, postLogoutUser, postSignUpUser } from '~/services/auth';
 import { updateJwt } from './jwtSlice';
+import { signClear } from '../sigIn/signSlice';
 
 const initialState = {
 	user: {},

@@ -1,6 +1,6 @@
 /*inicio navBar*/
 .navBar {
-	background-image: url('../assets//navBar.png');
+	background-image: url('/assets//navBar.png');
 }
 .navBar .navBar-contenedor {
 	color: #ffffff;
