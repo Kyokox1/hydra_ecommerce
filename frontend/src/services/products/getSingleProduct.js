@@ -1,11 +1,10 @@
 import { API_URL_LOCAL } from '../auth';
 
-export const getSingleProduct = async ({ jwt, id = '1' }) => {
+export const getSingleProduct = async ({ id = '1' }) => {
 	try {
 		const options = {
 			method: 'GET',
 			headers: {
-				Authorization: `Bearer ${jwt}`,
 				Accept: 'application/json',
 				'Content-Type': 'application/json'
 			}

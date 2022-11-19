@@ -9,10 +9,12 @@ import { loginUser, userError, userIsLoading } from '~/features/user/userSlice';
 import { useUserAuth } from '~/hooks/useUserAuth';
 import { TextError } from '../signIn/TextError';
 import { ButtonAuth } from './ButtonAuth';
+import { useNavigate } from 'react-router-dom';
 
 const FormLogin = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const navigate = useNavigate();
 	const { isUserLogged } = useUserAuth();
 	const emailRef = useRef();
 
@@ -33,7 +35,7 @@ const FormLogin = () => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		dispatch(loginUser({ email, password }));
+		dispatch(loginUser({ email, password, navigate }));
 	};
 
 	return (

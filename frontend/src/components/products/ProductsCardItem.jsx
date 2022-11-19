@@ -1,4 +1,5 @@
 import { Box, Button, Heading, Image, Stack, Text } from '@chakra-ui/react';
+import { useMemo } from 'react';
 
 import product from '/assets/mock-product.png';
 
@@ -7,8 +8,12 @@ export const ProductsCardItem = ({
 	name = 'CREMA DE CHOCOLATE WHISKY 12 AÑOS',
 	price = '100.000,00',
 	prevPrice,
-	handleAddProduct
+	handleAddProduct,
+	stock,
+	count
 }) => {
+	const canBuyProduct = useMemo(() => stock <= count(), [count, stock]);
+
 	return (
 		<Box
 			display='flex'
@@ -32,6 +37,7 @@ export const ProductsCardItem = ({
 			</Stack>
 			<Button
 				onClick={handleAddProduct}
+				disabled={canBuyProduct}
 				h='max-content'
 				p='12px 25px'
 				fontSize='0.875rem'

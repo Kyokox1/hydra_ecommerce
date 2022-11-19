@@ -1,68 +1,111 @@
-import { NavLink, useNavigate } from 'react-router-dom';
-import { IconButton } from '@chakra-ui/react';
-import { FiSearch } from 'react-icons/fi';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
-import { BsFillPersonFill } from 'react-icons/bs';
+import { useState } from 'react';
+import {
+	Flex,
+	FormControl,
+	IconButton,
+	Image,
+	Input,
+	Stack,
+	Text
+} from '@chakra-ui/react';
+import { Link, useNavigate } from 'react-router-dom';
 
-// redux
+//  redux
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '~/features/user/userSlice';
-import { currentToken } from '~/features/user/jwtSlice';
+import { searchProducts } from '~/features/products/getProductsSlice';
 
 // assets
 import whiteLogo from '/assets/logo-white.png';
+import navBarBg from '/assets/navBar.png';
+import { FiSearch } from 'react-icons/fi';
+import { BsFillPersonFill } from 'react-icons/bs';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 
-const NavBar = () => {
-	const jwt = useSelector(currentToken);
+// components
+import { productsInCart } from '~/features/products/productsCartSlice';
+import { NavList } from '~/components/Layout/NavList';
+import { useUserAuth } from '~/hooks/useUserAuth';
+
+export const NavBar = () => {
+	const { jwt, isUserLogged } = useUserAuth();
+	const productsCart = useSelector(productsInCart);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const [search, setSearch] = useState('');
 
 	const handleLogout = () => {
 		dispatch(logoutUser({ jwt, navigate }));
 	};
 
-	return (
-		<div className='navBar'>
-			<div className='container navBar-contenedor d-flex justify-content-between'>
-				<img src={whiteLogo} alt='logo' />
+	const handleSearch = (event) => {
+		event.preventDefault();
+		dispatch(searchProducts({ search }));
+	};
 
-				<div className='d-flex '>
-					<ul
-						className='d-flex'
-						// className={mobile ? "show" : "deploy-nav"}
-						// onClick={() => setMobile(false)}
+	return (
+		<Flex
+			as='header'
+			pos='fixed'
+			top='0'
+			w='100%'
+			color='white'
+			zIndex='900'
+			fontFamily='Roboto, sans-serif'
+		>
+			<Flex pos='relative' justify='space-around' w='inherit'>
+				<Image
+					pos='absolute'
+					src={navBarBg}
+					left='0'
+					bottom='0'
+					w='100%'
+					opacity='0.9'
+					zIndex='-1'
+				/>
+				<Link to='/productos'>
+					<Image src={whiteLogo} alt='logo' />
+				</Link>
+				<Stack
+					as='nav'
+					direction='row'
+					w='70%'
+					justifyContent='space-evenly'
+					alignItems='center'
+				>
+					<NavList gap='20px' mayus={true} />
+					<FormControl
+						onSubmit={handleSearch}
+						as='form'
+						display='flex'
+						w='100px'
+						alignItems='center'
+						borderBottom='white 1px solid'
 					>
-						<li>
-							<NavLink className='nav-link' to='/'>
-								INICIO
-							</NavLink>
-						</li>
-						<li>
-							<NavLink className='nav-link' to='productos'>
-								PRODUCTOS
-							</NavLink>
-						</li>
-						<li>
-							<NavLink className='nav-link' to='promociones'>
-								PROMOCIONES
-							</NavLink>
-						</li>
-						<li>
-							<NavLink className='nav-link' to='comprar'>
-								COMO COMPRO
-							</NavLink>
-						</li>
-						<li>
-							<NavLink className='nav-link' to='contacto'>
-								CONTACTO
-							</NavLink>
-						</li>
-					</ul>
-					<div className='navBar-contenedor__buscar d-flex'>
-						Buscar <FiSearch />
-					</div>
-					<div className='navBar-contenedor__carrito d-flex'>
+						<Input
+							value={search}
+							onChange={(event) => setSearch(event.target.value)}
+							placeholder='Buscar'
+							_placeholder={{ color: 'white' }}
+							variant='unstyled'
+							_focus={{ border: 'none' }}
+						/>
 						<IconButton
+							color='gray'
+							type='submit'
+							icon={<FiSearch />}
+							colorScheme='white'
+							isRound
+						/>
+					</FormControl>
+					<Flex
+						justify='center'
+						align='center'
+						pos='relative'
+						fontSize='1.5rem'
+					>
+						<IconButton
+							fontSize='inherit'
 							onClick={handleLogout}
 							variant='ghost'
 							color='white'
@@ -70,16 +113,35 @@ const NavBar = () => {
 							isRound
 							icon={<BsFillPersonFill />}
 						/>
-						<span>
-							<NavLink className='nav-link' to='carrito'>
-								<AiOutlineShoppingCart />
-							</NavLink>
-						</span>
-					</div>
-				</div>
-			</div>
-		</div>
+						<IconButton
+							fontSize='inherit'
+							variant='ghost'
+							color='white'
+							colorScheme='whiteAlpha'
+							isRound
+							icon={<AiOutlineShoppingCart />}
+						/>
+						{Boolean(productsCart.length) && isUserLogged ? (
+							<Text
+								as='span'
+								display='flex'
+								justifyContent='center'
+								alignItems='center'
+								pos='absolute'
+								top='2px'
+								right='5px'
+								h='15px'
+								w='15px'
+								fontSize='.8rem'
+								bgColor='red'
+								borderRadius='50%'
+							>
+								{productsCart.length}
+							</Text>
+						) : null}
+					</Flex>
+				</Stack>
+			</Flex>
+		</Flex>
 	);
 };
-
-export default NavBar;

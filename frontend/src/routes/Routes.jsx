@@ -3,7 +3,6 @@ import Layout from '~/layout/Layout';
 import Carrito from '~/pages/Carrito';
 import Comprar from '~/pages/Comprar';
 import Contacto from '~/pages/Contacto';
-import Home from '~/pages/Home';
 import Login from '~/pages/Login';
 import { Productos } from '~/pages/Productos';
 import Promociones from '~/pages/Promociones';

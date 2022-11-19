@@ -75,7 +75,7 @@ export const registerUser =
 	};
 
 export const loginUser =
-	({ email, password }) =>
+	({ email, password, navigate }) =>
 	async (dispatch) => {
 		try {
 			dispatch(fetchUserStart());
@@ -89,6 +89,7 @@ export const loginUser =
 				return dispatch(fetchUserError(true));
 			dispatch(fetchUserComplete({ user, jwt: token }));
 			dispatch(updateJwt(token));
+			navigate('/productos');
 		} catch (error) {
 			dispatch(fetchUserError(error));
 		}

@@ -9,7 +9,7 @@ const Home = () => {
 	const estado = useSelector((state) => state.sign);
 	return (
 		<div className='home'>
-			<Login />
+p			<Login />
 			<div className='home-registrar'>
 				{estado.estado ? <SignIn /> : <></>}
 			</div>
