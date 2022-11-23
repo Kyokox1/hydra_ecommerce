@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Ecommerce | Hunteando',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Hunteando</b>ECM',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -312,76 +312,55 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'text'        => 'Dashboard',
+            'url'         => '/home',
+            'icon'        => 'fas fa-tachometer-alt',
+            // 'label'       => 4,
+            // 'label_color' => 'success',
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'Configuración'],
         [
-            'text' => 'profile',
+            'text' => 'Categorias',
             'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-cubes',
         ],
         [
-            'text' => 'change_password',
+            'text' => 'Productos',
             'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'icon' => 'fab fa-product-hunt',
         ],
         [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
+            'text'    => 'Usuarios',
+            'icon'    => 'fas fa-users',
             'submenu' => [
                 [
-                    'text' => 'level_one',
+                    'text' => 'Roles',
                     'url'  => '#',
                 ],
                 [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
+                    'text' => 'Registros',
                     'url'  => '#',
                 ],
             ],
         ],
-        ['header' => 'labels'],
+        ['header' => 'Transacciones'],
         [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
+            'text'    => 'Ventas',
+            'icon'    => 'fas fa-users',
+            'submenu' => [
+                [
+                    'text' => 'Ventas Pendientes',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Ventas Aceptadas',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Ventas Canceladas',
+                    'url'  => '#',
+                ],
+            ],
         ],
     ],
 
