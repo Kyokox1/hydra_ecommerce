@@ -1,11 +1,11 @@
-import "./index.css"
-import Products from "./pages/Products";
+import "./app.css";
+
+import RoutesComp from "./routes/Routes";
 
 function App() {
   return (
-    <div >
-    <Products/>
-      <h1>Proyecto Hunteando</h1>
+    <div className="main">
+      <RoutesComp />
     </div>
   );
 }
