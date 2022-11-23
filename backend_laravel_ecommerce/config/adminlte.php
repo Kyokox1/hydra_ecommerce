@@ -321,7 +321,7 @@ return [
         ['header' => 'Configuración'],
         [
             'text' => 'Categorias',
-            'url'  => 'admin/settings',
+            'url'  => 'categories',
             'icon' => 'fas fa-cubes',
         ],
         [
