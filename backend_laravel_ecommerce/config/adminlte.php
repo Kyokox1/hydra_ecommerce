@@ -339,7 +339,7 @@ return [
                 ],
                 [
                     'text' => 'Registros',
-                    'url'  => '#',
+                    'url'  => 'registers',
                 ],
             ],
         ],

@@ -30,7 +30,7 @@ class AuthController extends Controller
         $token=$user->createToken($request->device_name)->plainTextToken;
         return response()->json([
             'status' => 'success',
-            'user'=>$user->with('role')->get(),
+            'user'=>$user,
             'type_token'=>'Bearer',
             'token'=>$token,
         ]);
@@ -43,7 +43,7 @@ class AuthController extends Controller
         if (Auth::attempt($request->only('email','password'))) {
             return response()->json([
                 'status' => 'success',
-                'user'=>Auth::user()->with('role')->get(),
+                'user'=>Auth::user(),
                 'type_token'=>'Bearer',
                 'token' => $request->user()->createToken($request->device_name)->plainTextToken,
             ], 200);
