@@ -335,7 +335,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Roles',
-                    'url'  => '#',
+                    'url'  => 'roles',
                 ],
                 [
                     'text' => 'Registros',

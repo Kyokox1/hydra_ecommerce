@@ -22,5 +22,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('categories','CategoryController');
 Route::resource('products','ProductController');
+Route::resource('roles','RoleController');
 //vista - edit GET categories/{categoryId}/edit
 //index - index get categories
