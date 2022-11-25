@@ -15,7 +15,8 @@ class ProductController extends Controller
     public function index()
     {
         $products=Product::where('stock','>', 0)->with('category')->get();
-        return response()->json($products);
+        return view('admin.products.index');
+      
     }
     public function filterProduct(Request $request){
         $products=Product::search($request->column,$request->search);

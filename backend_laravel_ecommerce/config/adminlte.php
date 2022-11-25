@@ -326,7 +326,7 @@ return [
         ],
         [
             'text' => 'Productos',
-            'url'  => 'admin/settings',
+            'url'  => 'products',
             'icon' => 'fab fa-product-hunt',
         ],
         [
