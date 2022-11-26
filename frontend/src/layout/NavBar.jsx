@@ -8,7 +8,7 @@ import {
 	Stack,
 	Text
 } from '@chakra-ui/react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 //  redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -32,6 +32,7 @@ export const NavBar = () => {
 	const productsCart = useSelector(productsInCart);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const { pathname } = useLocation();
 	const [search, setSearch] = useState('');
 
 	const handleLogout = () => {
@@ -40,7 +41,10 @@ export const NavBar = () => {
 
 	const handleSearch = (event) => {
 		event.preventDefault();
-		dispatch(searchProducts({ search }));
+		if (pathname !== '/productos') navigate('/productos');
+
+		dispatch(searchProducts({ search, pathname, navigate }));
+		setSearch('');
 	};
 
 	return (

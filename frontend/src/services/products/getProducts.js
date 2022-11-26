@@ -12,8 +12,6 @@ export const getProducts = async () => {
 
 		const response = await fetch(`${API_URL_LOCAL}/api/products`, options);
 		const data = await response.json();
-		console.log(response);
-		console.log(data);
 		return data;
 	} catch (error) {
 		console.log(error);

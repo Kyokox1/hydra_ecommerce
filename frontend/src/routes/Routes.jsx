@@ -4,6 +4,7 @@ import Carrito from '~/pages/Carrito';
 import Comprar from '~/pages/Comprar';
 import Contacto from '~/pages/Contacto';
 import Login from '~/pages/Login';
+import { Product } from '~/pages/Product';
 import { Productos } from '~/pages/Productos';
 import Promociones from '~/pages/Promociones';
 import SignIn from '~/pages/SignIn';
@@ -16,6 +17,7 @@ const RoutesComp = () => {
 					<Route index element={<Login />} />
 					<Route path='signIn' element={<SignIn />} />
 					<Route path='productos' element={<Productos />} />
+					<Route path='product/:id' element={<Product />} />
 					<Route path='promociones' element={<Promociones />} />
 					<Route path='comprar' element={<Comprar />} />
 					<Route path='contacto' element={<Contacto />} />

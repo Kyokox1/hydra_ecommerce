@@ -14,9 +14,9 @@ import { useNavigate } from 'react-router-dom';
 const FormLogin = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const emailRef = useRef();
 	const navigate = useNavigate();
 	const { isUserLogged } = useUserAuth();
-	const emailRef = useRef();
 
 	const isInvalidUser = useSelector(userError);
 	const isLoading = useSelector(userIsLoading);
