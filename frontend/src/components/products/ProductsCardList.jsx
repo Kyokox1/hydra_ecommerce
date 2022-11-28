@@ -48,6 +48,7 @@ export const ProductsCardList = ({ products }) => {
 
 	return (
 		<Grid
+			as='section'
 			w='100%'
 			gridTemplateColumns='repeat(auto-fill, minmax(150px,1fr))'
 			gap='15px'
@@ -56,6 +57,7 @@ export const ProductsCardList = ({ products }) => {
 				<ProductsCardItem
 					key={`product-${product.id}`}
 					handleAddProduct={() => handleAddProduct(product)}
+					id={product.id}
 					name={product.name}
 					price={product.cost}
 					prevPrice={product.price}

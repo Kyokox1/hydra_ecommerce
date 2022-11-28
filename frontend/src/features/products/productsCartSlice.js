@@ -27,13 +27,26 @@ const productsCartSLice = createSlice({
 					? product.count--
 					: product
 			);
+		},
+		incrementProductCount(state, action) {
+			state.products.map((product) =>
+				product.id === action.payload.id
+					? ((product.count += action.payload.count),
+					  (product.stock -= action.payload.count))
+					: product
+			);
 		}
 	}
 });
 
 export const productsInCart = (state) => state.cartProducts.products;
 
-export const { addProduct, removeProduct, incrementProduct, decreaseProduct } =
-	productsCartSLice.actions;
+export const {
+	addProduct,
+	removeProduct,
+	incrementProduct,
+	decreaseProduct,
+	incrementProductCount
+} = productsCartSLice.actions;
 
 export default productsCartSLice.reducer;

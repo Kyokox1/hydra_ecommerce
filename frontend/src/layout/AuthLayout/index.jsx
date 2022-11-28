@@ -15,7 +15,13 @@ const AuthLayout = ({ children }) => {
 			bgSize='contain'
 			color='#F3F3F3'
 		>
-			<Flex direction='column' gap='30px' w='max-content' align='center'>
+			<Flex
+				as='section'
+				direction='column'
+				gap='30px'
+				w='max-content'
+				align='center'
+			>
 				{children}
 			</Flex>
 		</Flex>

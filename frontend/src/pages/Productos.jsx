@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import { Button, Flex, Stack, Spinner } from '@chakra-ui/react';
+import { Flex, Stack, Spinner } from '@chakra-ui/react';
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,6 +16,7 @@ import bgProducts from '/assets/bg-products.png';
 // components and hooks
 import { ProductsCardList } from '~/components/products/productsCardList';
 import { Filters } from '~/components/products/Filters';
+import { ButtonGray } from '~/components/products/ButtonGray';
 
 export const Productos = () => {
 	// TODO Refactorizar código esta un despelote.
@@ -60,8 +61,8 @@ export const Productos = () => {
 			bgRepeat='no-repeat'
 			bgImage={bgProducts}
 			color='white'
-			pt='120px'
 			pb='50px'
+			pt='120px'
 		>
 			<Stack
 				w='80%'
@@ -81,17 +82,11 @@ export const Productos = () => {
 						<ProductsCardList products={products} />
 					)}
 				</Flex>
-				<Button
-					onClick={showMoreProducts}
-					bgColor='#D9D9D9'
-					color='black'
-					fontWeight='200'
-					p='10px 30px'
-				>
+				<ButtonGray onClick={showMoreProducts}>
 					{showAllProducts
 						? 'VER MENOS PRODUCTOS'
 						: 'VER TODOS LOS PRODUCTOS'}
-				</Button>
+				</ButtonGray>
 			</Stack>
 		</Flex>
 	);
