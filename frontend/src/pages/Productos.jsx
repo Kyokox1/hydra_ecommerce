@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useContext } from 'react';
 import { Flex, Stack, Spinner } from '@chakra-ui/react';
 
 // redux
@@ -17,6 +17,7 @@ import bgProducts from '/assets/bg-products.png';
 import { ProductsCardList } from '~/components/products/productsCardList';
 import { Filters } from '~/components/products/Filters';
 import { ButtonGray } from '~/components/products/ButtonGray';
+import { SearchContext } from '~/context/searchContext';
 
 export const Productos = () => {
 	// TODO Refactorizar código esta un despelote.
@@ -26,6 +27,7 @@ export const Productos = () => {
 
 	const [showAllProducts, setShowAllProducts] = useState(false);
 	const [selectFilters, setSelectFilters] = useState('');
+	const { isSearch, setIsSearch } = useContext(SearchContext);
 
 	// ? funcion que recorta el array de productos en la vista
 	const productsSlice = productsList.slice(0, 10);
@@ -46,10 +48,10 @@ export const Productos = () => {
 			dispatch(
 				searchProducts({ search: selectFilters, name: 'category_id' })
 			);
+			setIsSearch(false);
 			return;
 		}
-
-		dispatch(getProducts());
+		if (!isSearch) dispatch(getProducts());
 	}, [selectFilters]);
 
 	return (

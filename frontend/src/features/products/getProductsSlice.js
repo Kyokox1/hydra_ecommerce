@@ -40,12 +40,11 @@ export const getProducts = () => async (dispatch) => {
 };
 
 export const searchProducts =
-	({ search, name, pathname, navigate }) =>
+	({ search, name }) =>
 	async (dispatch) => {
 		try {
 			dispatch(getProductsStart());
 			// ? Call the API
-			if (pathname !== '/productos') await navigate('/productos');
 			const response = await getFiltersProducts({ search, name });
 			dispatch(getProductsComplete(response));
 		} catch (error) {

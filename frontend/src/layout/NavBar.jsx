@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import {
 	Flex,
 	FormControl,
@@ -26,6 +26,7 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { productsInCart } from '~/features/products/productsCartSlice';
 import { NavList } from '~/components/Layout/NavList';
 import { useUserAuth } from '~/hooks/useUserAuth';
+import { SearchContext } from '~/context/searchContext';
 
 export const NavBar = () => {
 	const { jwt, isUserLogged } = useUserAuth();
@@ -34,6 +35,7 @@ export const NavBar = () => {
 	const navigate = useNavigate();
 	const { pathname } = useLocation();
 	const [search, setSearch] = useState('');
+	const { setIsSearch } = useContext(SearchContext);
 
 	const handleLogout = () => {
 		dispatch(logoutUser({ jwt, navigate }));
@@ -43,7 +45,8 @@ export const NavBar = () => {
 		event.preventDefault();
 		if (pathname !== '/productos') navigate('/productos');
 
-		dispatch(searchProducts({ search, pathname, navigate }));
+		dispatch(searchProducts({ search }));
+		setIsSearch(true);
 		setSearch('');
 	};
 

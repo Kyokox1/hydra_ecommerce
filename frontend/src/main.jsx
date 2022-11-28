@@ -12,6 +12,7 @@ import { store } from './app/store';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
+import { SearchProvider } from './context/searchContext';
 
 const persistor = persistStore(store);
 
@@ -20,9 +21,11 @@ root.render(
 	<React.StrictMode>
 		<Provider store={store}>
 			<PersistGate loading={null} persistor={persistor}>
-				<ChakraProvider theme={theme}>
-					<App />
-				</ChakraProvider>
+				<SearchProvider>
+					<ChakraProvider theme={theme}>
+						<App />
+					</ChakraProvider>
+				</SearchProvider>
 			</PersistGate>
 		</Provider>
 	</React.StrictMode>
