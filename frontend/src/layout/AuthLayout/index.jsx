@@ -7,12 +7,13 @@ const AuthLayout = ({ children }) => {
 			as='main'
 			direction='column'
 			justify='center'
-			p='100px 0 10px 20%'
+			align={{ base: 'center', lg: 'initial' }}
+			p={{ base: '100px 0 0 0', lg: '100px 0 10px 20%' }}
 			minH='100vh'
 			bgImage={bgSign}
-			bgPos='right'
+			bgPos={{ base: 'center', lg: 'right' }}
 			bgRepeat='no-repeat'
-			bgSize='contain'
+			bgSize={{ base: 'cover', lg: 'contain' }}
 			color='#F3F3F3'
 		>
 			<Flex

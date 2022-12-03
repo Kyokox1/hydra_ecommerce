@@ -7,7 +7,12 @@ import { NavList } from '~/components/Layout/NavList';
 
 const Footer = () => {
 	return (
-		<Box as='footer' color='white' py='40px'>
+		<Box
+			display={{ base: 'none', lg: 'block' }}
+			as='footer'
+			color='white'
+			py='40px'
+		>
 			<Grid
 				gridTemplateColumns={'repeat(3,minmax(200px,300px))'}
 				justifyContent='center'

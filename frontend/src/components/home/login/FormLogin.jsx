@@ -10,10 +10,13 @@ import { useUserAuth } from '~/hooks/useUserAuth';
 import { TextError } from '../signIn/TextError';
 import { ButtonAuth } from './ButtonAuth';
 import { useNavigate } from 'react-router-dom';
+import { useShowPassword } from '~/hooks/useShowPassword';
+import { EyeIcon } from '../EyeIcon';
 
 const FormLogin = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const { showPassword, handleShowPassword } = useShowPassword();
 	const emailRef = useRef();
 	const navigate = useNavigate();
 	const { isUserLogged } = useUserAuth();
@@ -66,10 +69,14 @@ const FormLogin = () => {
 				</FormLabel>
 				<Input
 					id='password'
-					type='password'
+					type={showPassword ? 'text' : 'password'}
 					value={password}
 					onChange={(event) => setPassword(event.target.value)}
 					variant='flushed'
+				/>
+				<EyeIcon
+					onClick={handleShowPassword}
+					showPassword={showPassword}
 				/>
 				{isInvalidUser && (
 					<TextError>Email o Contraseña incorrecto</TextError>

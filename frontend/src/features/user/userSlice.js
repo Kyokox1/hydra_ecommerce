@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { postLoginUser, postLogoutUser, postSignUpUser } from '~/services/auth';
 import { updateJwt } from './jwtSlice';
-import { signClear } from '../sigIn/signSlice';
 
 const initialState = {
 	user: {},
@@ -16,6 +15,9 @@ export const userSlice = createSlice({
 	reducers: {
 		fetchUserStart(state) {
 			state.isLoading = true;
+		},
+		fetchUserCancelLoading(state) {
+			state.isLoading = false;
 		},
 		fetchUserComplete(state, action) {
 			state.user = action.payload.user;
@@ -40,6 +42,7 @@ export const currentUser = (state) => state.user.user;
 export const userIsLoading = (state) => state.user.isLoading;
 export const userError = (state) => state.user.error;
 
+// ? middlewares
 export const registerUser =
 	({
 		email,
@@ -62,10 +65,13 @@ export const registerUser =
 			});
 			const { token: jwt, user, status } = response;
 
-			if (!status || status !== 'success') return setisEmailInvalid(true);
+			if (!status || status !== 'success') {
+				setisEmailInvalid(true);
+				dispatch(fetchUserCancelLoading());
+				return;
+			}
 
 			dispatch(fetchUserComplete({ user, jwt }));
-			dispatch(signClear(false));
 			dispatch(updateJwt(jwt));
 			navigate('/productos');
 			resetForm();
@@ -116,6 +122,7 @@ export const logoutUser =
 // Action creators are generated for each case reducer function
 export const {
 	fetchUserStart,
+	fetchUserCancelLoading,
 	fetchUserComplete,
 	fetchUserError,
 	fetchUserReset

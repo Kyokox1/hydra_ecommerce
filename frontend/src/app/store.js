@@ -13,7 +13,6 @@ import storage from 'redux-persist/lib/storage';
 // ?reducers
 import userReducer from '~/features/user/userSlice';
 import productsReducer from '~/features/products/getProductsSlice';
-import signReducer from '~/features/sigIn/signSlice';
 import jwtReducer from '~/features/user/jwtSlice';
 import productsCartReducer from '~/features/products/productsCartSlice';
 
@@ -40,7 +39,6 @@ export const store = configureStore({
 	reducer: {
 		user: userReducer,
 		products: productsReducer,
-		sign: signReducer,
 		jwt: persistedReducerToken,
 		cartProducts: persistedReducerCartProducts
 	},

@@ -1,13 +1,5 @@
-import {
-	IconButton,
-	FormControl,
-	FormLabel,
-	Spinner,
-	Input,
-	Box
-} from '@chakra-ui/react';
+import { FormControl, FormLabel, Spinner, Input, Box } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
 // components, hooks, services
 import { TextError } from './TextError';
@@ -22,6 +14,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
+import { useShowPassword } from '~/hooks/useShowPassword';
+import { EyeIcon } from '../EyeIcon';
 
 const schema = yup.object().shape({
 	username: yup
@@ -55,7 +49,7 @@ const FormSign = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const [showPassword, setShowPassword] = useState(false);
+	const { showPassword, handleShowPassword } = useShowPassword();
 	const [isEmailInvalid, setisEmailInvalid] = useState(false);
 
 	useEffect(() => {
@@ -128,19 +122,10 @@ const FormSign = () => {
 					variant='flushed'
 					{...register('password')}
 				/>
-				<IconButton
-					onClick={() => setShowPassword((prevState) => !prevState)}
-					aria-label='show password'
-					icon={showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
-					pos='absolute'
-					right='0'
-					bottom='0'
-					isRound
-					bgColor='transparent'
-					_hover={{ background: '#ffffff10' }}
-					_focus={{ background: '#ffffff10' }}
+				<EyeIcon
+					onClick={handleShowPassword}
+					showPassword={showPassword}
 				/>
-
 				<TextError>{errors.password?.message}</TextError>
 			</Box>
 			<Box pos='relative'>

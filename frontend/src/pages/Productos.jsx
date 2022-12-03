@@ -27,7 +27,7 @@ export const Productos = () => {
 
 	const [showAllProducts, setShowAllProducts] = useState(false);
 	const [selectFilters, setSelectFilters] = useState('');
-	const { isSearch, setIsSearch } = useContext(SearchContext);
+	const { isSearching, setIsSearching } = useContext(SearchContext);
 
 	// ? funcion que recorta el array de productos en la vista
 	const productsSlice = productsList.slice(0, 10);
@@ -48,11 +48,13 @@ export const Productos = () => {
 			dispatch(
 				searchProducts({ search: selectFilters, name: 'category_id' })
 			);
-			setIsSearch(false);
+			setIsSearching(false);
 			return;
 		}
-		if (!isSearch) dispatch(getProducts());
-	}, [selectFilters]);
+		if (!isSearching) dispatch(getProducts());
+	}, [selectFilters, isSearching]);
+
+	console.log(Boolean(productsList.length));
 
 	return (
 		<Flex

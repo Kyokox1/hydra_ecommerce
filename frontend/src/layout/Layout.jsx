@@ -3,6 +3,7 @@ import { Flex } from '@chakra-ui/react';
 
 import Footer from './Footer';
 import { NavBar } from './NavBar';
+import { FooterMobile } from './FooterMobile';
 
 import './layout.css';
 
@@ -12,6 +13,7 @@ const Layout = () => {
 			<NavBar />
 			<Outlet />
 			<Footer />
+			<FooterMobile />
 		</Flex>
 	);
 };
