@@ -8,7 +8,7 @@ const AuthLayout = ({ children }) => {
 			direction='column'
 			justify='center'
 			align={{ base: 'center', lg: 'initial' }}
-			p={{ base: '100px 0 0 0', lg: '100px 0 10px 20%' }}
+			p={{ base: '120px 0 0 0', lg: '120px 0 10px 20%' }}
 			minH='100vh'
 			bgImage={bgSign}
 			bgPos={{ base: 'center', lg: 'right' }}

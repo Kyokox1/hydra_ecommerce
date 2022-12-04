@@ -16,7 +16,7 @@ export const NavBar = () => {
 			as='header'
 			pos='fixed'
 			top='0'
-			w='100%'
+			w='100vw'
 			color='white'
 			zIndex='900'
 			fontFamily='Roboto, sans-serif'
@@ -39,6 +39,7 @@ export const NavBar = () => {
 					as='nav'
 					direction='row'
 					w='70%'
+					gap='30px'
 					justifyContent='space-evenly'
 					alignItems='center'
 				>

@@ -3,15 +3,13 @@ import { NavLinkChakra } from './NavLinkChakra';
 
 const navElement = [
 	{ name: 'inicio', path: '/' },
-	{ name: 'productos', path: 'productos' },
-	{ name: 'promociones', path: 'promociones' },
-	{ name: 'comprar', path: 'comprar' },
-	{ name: 'contacto', path: 'contacto' }
+	{ name: 'sabores', path: 'sabores' },
+	{ name: 'promociones', path: 'promociones' }
 ];
 
 export const NavList = ({ direction = 'row', gap = '0', mayus = false }) => {
 	return (
-		<Flex direction={direction} gap={gap}>
+		<Flex direction={direction} flex='1' justify='space-around' gap={gap}>
 			{navElement.map(({ name, path }) => (
 				<NavLinkChakra key={`nav-${name}`} to={path}>
 					{mayus ? name.toUpperCase() : name}

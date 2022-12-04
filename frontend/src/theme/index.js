@@ -11,5 +11,29 @@ export const theme = extendTheme({
 	fonts: {
 		heading: `'Titillium Web', sans-serif`,
 		body: `'Titillium Web', sans-serif`
+	},
+	styles: {
+		global: {
+			a: {
+				TextDecoder: 'none',
+				_hover: { color: 'inherit' }
+			},
+			'@media (min-width: 990px)': {
+				'::-webkit-scrollbar': {
+					position: 'absolute',
+					width: '6px',
+					background: '#22252f'
+				},
+
+				'::-webkit-scrollbar-thumb': {
+					background: '#8e99c7',
+					'border-radius': '999px'
+				},
+
+				'::-webkit-scrollbar-thumb:hover': {
+					background: '#adb5d6'
+				}
+			}
+		}
 	}
 });

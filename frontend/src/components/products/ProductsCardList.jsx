@@ -10,34 +10,34 @@ import { useUserAuth } from '~/hooks/useUserAuth';
 import { ProductsCardItem } from './ProductsCardItem';
 
 export const ProductsCardList = ({ products }) => {
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
-	const { isUserLogged } = useUserAuth();
+	// const dispatch = useDispatch();
+	// const navigate = useNavigate();
+	// const { isUserLogged } = useUserAuth();
 	const productsCart = useSelector(productsInCart);
 
 	// ? agregar productos al carrito
-	const handleAddProduct = (product) => {
-		if (!isUserLogged) return navigate('/');
+	// const handleAddProduct = (product) => {
+	// 	if (!isUserLogged) return navigate('/');
 
-		const { name, price, cost, stock, id, description, image } = product;
-		const isProductExistInCart = productsCart.some(
-			(productElement) => product.id === productElement.id
-		);
-		const productCart = {
-			id,
-			name,
-			description,
-			price,
-			cost,
-			stock,
-			image,
-			count: 1
-		};
+	// 	const { name, price, cost, stock, id, description, image } = product;
+	// 	const isProductExistInCart = productsCart.some(
+	// 		(productElement) => product.id === productElement.id
+	// 	);
+	// 	const productCart = {
+	// 		id,
+	// 		name,
+	// 		description,
+	// 		price,
+	// 		cost,
+	// 		stock,
+	// 		image,
+	// 		count: 1
+	// 	};
 
-		if (!isProductExistInCart) return dispatch(addProduct(productCart));
+	// 	if (!isProductExistInCart) return dispatch(addProduct(productCart));
 
-		dispatch(incrementProduct(product));
-	};
+	// 	dispatch(incrementProduct(product));
+	// };
 
 	const countProductInCart = (id) => {
 		const productCart = productsCart.find((product) => product.id === id);
@@ -50,13 +50,12 @@ export const ProductsCardList = ({ products }) => {
 		<Grid
 			as='section'
 			w='100%'
-			gridTemplateColumns='repeat(auto-fill, minmax(150px,1fr))'
+			gridTemplateColumns='repeat(auto-fill, minmax(160px,1fr))'
 			gap='15px'
 		>
 			{products().map((product) => (
 				<ProductsCardItem
 					key={`product-${product.id}`}
-					handleAddProduct={() => handleAddProduct(product)}
 					id={product.id}
 					name={product.name}
 					price={product.cost}

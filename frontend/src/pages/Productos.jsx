@@ -20,7 +20,7 @@ import { ButtonGray } from '~/components/products/ButtonGray';
 import { SearchContext } from '~/context/searchContext';
 
 export const Productos = () => {
-	// TODO Refactorizar código esta un despelote.
+	// TODO Refactorizar código.
 	const productsList = useSelector(productsStore);
 	const isLoading = useSelector(isLoadingProducts);
 	const dispatch = useDispatch();
@@ -54,8 +54,6 @@ export const Productos = () => {
 		if (!isSearching) dispatch(getProducts());
 	}, [selectFilters, isSearching]);
 
-	console.log(Boolean(productsList.length));
-
 	return (
 		<Flex
 			as='main'
@@ -65,15 +63,15 @@ export const Productos = () => {
 			bgRepeat='no-repeat'
 			bgImage={bgProducts}
 			color='white'
-			pb='50px'
-			pt='120px'
+			pb='80px'
+			pt='150px'
 		>
 			<Stack
 				w='80%'
 				maxW='1040px'
 				alignItems='center'
-				pl='100px'
-				gap='30px'
+				pl='50px'
+				gap='80px'
 			>
 				<Filters
 					selectFilters={selectFilters}

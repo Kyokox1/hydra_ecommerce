@@ -21,7 +21,6 @@ export const ProductsCardItem = ({
 	name,
 	price,
 	prevPrice,
-	handleAddProduct,
 	stock,
 	count
 }) => {
@@ -38,15 +37,16 @@ export const ProductsCardItem = ({
 			borderRadius='4px'
 			textAlign='center'
 			bgColor='rgba(243, 243, 243, 0.09)'
+			maxH='360px'
 		>
 			<Link to={`/product/${id}`}>
 				<Image src={product} alt={`${name}`} />
 			</Link>
 			<Stack fontSize='.875rem' pb='10px'>
 				<LinkChakra
+					as={Link}
 					_hover={{ color: '#E56C10' }}
 					transition={'color .3s ease'}
-					as={Link}
 					to={`/product/${id}`}
 				>
 					<Heading as='h3' fontWeight='100' fontSize='inherit'>
@@ -58,9 +58,9 @@ export const ProductsCardItem = ({
 				</Text>
 				<Text fontWeight='100'>{price}</Text>
 			</Stack>
-			<ButtonOrange onClick={handleAddProduct} disabled={canBuyProduct}>
-				COMPRAR
-			</ButtonOrange>
+			<Link to={`/product/${id}`}>
+				<ButtonOrange disabled={canBuyProduct}>COMPRAR</ButtonOrange>
+			</Link>
 		</Box>
 	);
 };

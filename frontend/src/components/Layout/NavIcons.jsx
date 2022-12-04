@@ -1,4 +1,4 @@
-import { Flex, IconButton, Text } from '@chakra-ui/react';
+import { Flex, IconButton, Text, Box, useDisclosure } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
 // ? redux
@@ -12,12 +12,14 @@ import { useUserAuth } from '~/hooks/useUserAuth';
 // ? assets
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { BsFillPersonFill } from 'react-icons/bs';
+import { ModalCart } from '~/layout/ModalCart/ModalCart';
 
 export const NavIcons = () => {
 	const { jwt, isUserLogged } = useUserAuth();
 	const productsCart = useSelector(productsInCart);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const { isOpen, onClose, onOpen } = useDisclosure();
 
 	const handleLogout = () => {
 		dispatch(logoutUser({ jwt, navigate }));
@@ -33,14 +35,18 @@ export const NavIcons = () => {
 				isRound
 				icon={<BsFillPersonFill />}
 			/>
-			<IconButton
-				fontSize='inherit'
-				variant='ghost'
-				color='white'
-				colorScheme='whiteAlpha'
-				isRound
-				icon={<AiOutlineShoppingCart />}
-			/>
+			<Box pos='relative'>
+				<IconButton
+					onClick={onOpen}
+					fontSize='inherit'
+					variant='ghost'
+					color='white'
+					colorScheme='whiteAlpha'
+					isRound
+					icon={<AiOutlineShoppingCart />}
+				/>
+				<ModalCart isOpen={isOpen} onClose={onClose} />
+			</Box>
 			{Boolean(productsCart.length) && isUserLogged ? (
 				<Text
 					as='span'

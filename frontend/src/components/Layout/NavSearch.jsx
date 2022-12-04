@@ -31,8 +31,8 @@ export const NavSearch = () => {
 
 	return (
 		<FormControl
-			onSubmit={handleSearch}
 			as='form'
+			onSubmit={handleSearch}
 			display='flex'
 			w='100px'
 			alignItems='center'
