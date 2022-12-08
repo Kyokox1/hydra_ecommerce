@@ -12,7 +12,7 @@ import { useUserAuth } from '~/hooks/useUserAuth';
 // ? assets
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { BsFillPersonFill } from 'react-icons/bs';
-import { ModalCart } from '~/layout/ModalCart/ModalCart';
+import { ModalCart } from '~/components/Layout/modal-cart/ModalCart';
 
 export const NavIcons = () => {
 	const { jwt, isUserLogged } = useUserAuth();

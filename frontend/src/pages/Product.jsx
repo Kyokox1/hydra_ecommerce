@@ -42,8 +42,6 @@ export const Product = () => {
 		);
 	}, [product, productsCart]);
 
-	// const stockCart = findProductInCart()?.stock || stock;
-
 	const stockCart = () => {
 		if (findProductInCart()?.stock === 0) return 0;
 		if (!findProductInCart()?.stock) return stock;
@@ -58,11 +56,8 @@ export const Product = () => {
 
 	const { isUserLogged } = useUserAuth();
 
-	console.log(productsCart);
-	console.log(id);
-
 	const handleAddToCart = (product) => {
-		if (!isUserLogged) return navigate('/');
+		if (!isUserLogged) return navigate('/login');
 
 		const isProductExistInCart = productsCart.some(
 			(productElement) => product.id === productElement.id

@@ -73,7 +73,7 @@ export const registerUser =
 
 			dispatch(fetchUserComplete({ user, jwt }));
 			dispatch(updateJwt(jwt));
-			navigate('/productos');
+			navigate('/');
 			resetForm();
 		} catch (error) {
 			dispatch(fetchUserError(error));
@@ -95,7 +95,7 @@ export const loginUser =
 				return dispatch(fetchUserError(true));
 			dispatch(fetchUserComplete({ user, jwt: token }));
 			dispatch(updateJwt(token));
-			navigate('/productos');
+			navigate('/');
 		} catch (error) {
 			dispatch(fetchUserError(error));
 		}
@@ -113,7 +113,7 @@ export const logoutUser =
 
 			dispatch(fetchUserReset());
 			dispatch(updateJwt(null));
-			navigate('/');
+			navigate('/login');
 		} catch (error) {
 			dispatch(fetchUserError(error));
 		}

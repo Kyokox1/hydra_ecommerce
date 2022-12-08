@@ -1,5 +1,5 @@
 // components
-import AuthLayout from '~/layout/AuthLayout';
+import AuthLayout from '~/layout/auth-layout';
 import Title from '~/components/home/login/Title';
 import FormLogin from '~/components/home/login/FormLogin';
 import LoginNav from '~/components/home/login/LoginNav';

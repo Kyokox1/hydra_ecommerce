@@ -27,7 +27,7 @@ export const theme = extendTheme({
 
 				'::-webkit-scrollbar-thumb': {
 					background: '#8e99c7',
-					'border-radius': '999px'
+					borderRadius: '999px'
 				},
 
 				'::-webkit-scrollbar-thumb:hover': {

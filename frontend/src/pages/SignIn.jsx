@@ -3,7 +3,7 @@ import FormSign from '~/components/home/signIn/FormSign';
 // import FooterSign from '~/components/home/signIn/FooterSign';
 
 // redux
-import AuthLayout from '~/layout/AuthLayout';
+import AuthLayout from '~/layout/auth-layout';
 // import FooterAuth from '~/components/home/login/FooterAuth';
 
 const SignIn = () => {

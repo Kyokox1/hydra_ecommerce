@@ -35,6 +35,14 @@ const productsCartSLice = createSlice({
 					  (product.stock -= action.payload.count))
 					: product
 			);
+		},
+		decrementProductCount(state, action) {
+			state.products.map((product) =>
+				product.id === action.payload.id
+					? ((product.count -= action.payload.count),
+					  (product.stock += action.payload.count))
+					: product
+			);
 		}
 	}
 });
@@ -46,7 +54,8 @@ export const {
 	removeProduct,
 	incrementProduct,
 	decreaseProduct,
-	incrementProductCount
+	incrementProductCount,
+	decrementProductCount
 } = productsCartSLice.actions;
 
 export default productsCartSLice.reducer;
