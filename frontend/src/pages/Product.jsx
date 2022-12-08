@@ -25,7 +25,7 @@ import {
 import { useUserAuth } from '~/hooks/useUserAuth';
 import { ButtonGray } from '~/components/products/ButtonGray';
 
-export const Product = () => {
+const Product = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const productsCart = useSelector(productsInCart);
@@ -34,7 +34,7 @@ export const Product = () => {
 	const [count, setCount] = useState(0);
 	const navigate = useNavigate();
 
-	const { name, description, image, price, cost, code, stock } = product;
+	const { name, price, cost, code, stock } = product;
 
 	const findProductInCart = useCallback(() => {
 		return productsCart.find(
@@ -205,3 +205,5 @@ export const Product = () => {
 		</Flex>
 	);
 };
+
+export default Product;

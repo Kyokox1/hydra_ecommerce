@@ -5,9 +5,7 @@ import {
 	DrawerOverlay,
 	DrawerContent,
 	DrawerCloseButton,
-	Flex,
-	Box,
-	Text
+	Box
 } from '@chakra-ui/react';
 
 // ? redux
@@ -15,12 +13,13 @@ import { useSelector } from 'react-redux';
 import { productsInCart } from '~/features/products/productsCartSlice';
 
 // ? components
-import { BorderContainer } from './BorderContainer';
-import { CartProductItem } from './cartProductItem';
 import { FooterCart } from './FooterCart';
 import { PostalCode } from './PostalCode';
 import { ShippingOptions } from './ShippingOptions';
 import { PresentCart } from './PresentCart';
+import { CartSubTitle } from './CartSubTitle';
+import { CartSubTotal } from './CartSubTotal';
+import { CartProductList } from './CartProductList';
 
 export const ModalCart = ({ isOpen, onClose }) => {
 	const productsCart = useSelector(productsInCart);
@@ -50,31 +49,15 @@ export const ModalCart = ({ isOpen, onClose }) => {
 						gap='30px'
 						fontSize='.8rem'
 					>
-						<BorderContainer>
-							<Text>PRODUCTO</Text>
-							<Text>SUBTOTAL</Text>
-						</BorderContainer>
+						<CartSubTitle />
 						{/* productList */}
-						<Flex py='10px' pl='10%' flexDir='column' gap='20px'>
-							{productsCart.length ? (
-								productsCart.map((product) => (
-									<CartProductItem
-										key={`cart-${product.id}`}
-										{...product}
-									/>
-								))
-							) : (
-								<Text>SIN PRODUCTOS</Text>
-							)}
-						</Flex>
+						<CartProductList productsCart={productsCart} />
 						{/* productList */}
 
-						<BorderContainer>
-							<Text>Sub Total (sin envio):</Text>
-							<Text fontSize='1rem'>
-								{productsCart.length ? `$${totalCost}` : '$000'}
-							</Text>
-						</BorderContainer>
+						<CartSubTotal
+							productsCart={productsCart}
+							totalCost={totalCost}
+						/>
 						<Box pl='10%'>
 							<PostalCode />
 						</Box>

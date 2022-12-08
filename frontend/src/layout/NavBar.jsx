@@ -32,7 +32,7 @@ export const NavBar = () => {
 					opacity='0.9'
 					zIndex='-1'
 				/>
-				<Link to='/productos'>
+				<Link to='/'>
 					<Image src={whiteLogo} alt='logo' />
 				</Link>
 				<Stack

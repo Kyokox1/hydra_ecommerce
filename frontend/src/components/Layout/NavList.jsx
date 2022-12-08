@@ -3,8 +3,8 @@ import { NavLinkChakra } from './NavLinkChakra';
 
 const navElement = [
 	{ name: 'inicio', path: '/' },
-	{ name: 'sabores', path: 'sabores' },
-	{ name: 'promociones', path: 'promociones' }
+	{ name: 'sabores', path: 'flavors' },
+	{ name: 'promociones', path: 'promotions' }
 ];
 
 export const NavList = ({ direction = 'row', gap = '0', mayus = false }) => {

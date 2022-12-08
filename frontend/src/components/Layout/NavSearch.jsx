@@ -22,7 +22,7 @@ export const NavSearch = () => {
 
 	const handleSearch = (event) => {
 		event.preventDefault();
-		if (pathname !== '/productos') navigate('/productos');
+		if (pathname !== '/') navigate('/');
 
 		dispatch(searchProducts({ search }));
 		setIsSearching(true);

@@ -1,23 +1,27 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from '~/layout/Layout';
-import Comprar from '~/pages/Comprar';
-import Login from '~/pages/Login';
-import { Product } from '~/pages/Product';
-import { Productos } from '~/pages/Productos';
-import Promociones from '~/pages/Promociones';
+import Home from '~/pages/Home';
 import SignIn from '~/pages/SignIn';
+import Login from '~/pages/Login';
+import Product from '~/pages/Product';
+import Promotions from '~/pages/Promotions';
+import Checkout from '~/pages/Checkout';
+import Sucess from '~/pages/Sucess';
+import Flavors from '~/pages/Flavors';
 
 const RoutesComp = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
 				<Route path='/' element={<Layout />}>
-					<Route index element={<Productos />} />
+					<Route index element={<Home />} />
 					<Route path='login' element={<Login />} />
 					<Route path='signIn' element={<SignIn />} />
-					<Route path='promociones' element={<Promociones />} />
-					<Route path='sabores' element={<Comprar />} />
+					<Route path='promotions' element={<Promotions />} />
+					<Route path='flavors' element={<Flavors />} />
 					<Route path='product/:id' element={<Product />} />
+					<Route path='checkout' element={<Checkout />} />
+					<Route path='sucess' element={<Sucess />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>
