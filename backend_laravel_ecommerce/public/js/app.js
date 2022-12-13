@@ -37359,13 +37359,11 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
   !*** ./resources/js/modals/category.js ***!
   \*****************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
-  Axios = _require["default"];
 (function () {
   var btn = $('#edit-categories');
-  var inpCategory = $('.name-category');
+  var inpCategory = $('.name-category'); //.val()
   var titleCategory = $('#title-categoria');
   var btnSubmit = $('#btn-submit');
   var category = btn.data('category');

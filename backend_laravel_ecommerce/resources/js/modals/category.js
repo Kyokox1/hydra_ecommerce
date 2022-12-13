@@ -1,8 +1,7 @@
-const { default: Axios } = require("axios");
 
 (function(){
     const btn=$('#edit-categories');
-    const inpCategory=$('.name-category');
+    const inpCategory=$('.name-category'); //.val()
     const titleCategory=$('#title-categoria');
     const btnSubmit=$('#btn-submit')
     const category=btn.data('category');
@@ -12,8 +11,6 @@ const { default: Axios } = require("axios");
     })
     btnSubmit.on('click',function(e){
         e.preventDefault();
-        
         const url=`/categories/${category.id}`
-        
     })
 })()
