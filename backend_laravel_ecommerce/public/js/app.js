@@ -37296,6 +37296,12 @@ module.exports = function(module) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+__webpack_require__(/*! ./modals/category */ "./resources/js/modals/category.js");
 
 /***/ }),
 
@@ -37348,6 +37354,33 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/modals/category.js":
+/*!*****************************************!*\
+  !*** ./resources/js/modals/category.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
+  Axios = _require["default"];
+(function () {
+  var btn = $('#edit-categories');
+  var inpCategory = $('.name-category');
+  var titleCategory = $('#title-categoria');
+  var btnSubmit = $('#btn-submit');
+  var category = btn.data('category');
+  btn.on('click', function () {
+    inpCategory.val(category.name);
+    titleCategory.text('Editar Categoría');
+  });
+  btnSubmit.on('click', function (e) {
+    e.preventDefault();
+    var url = "/categories/".concat(category.id);
+  });
+})();
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -37366,8 +37399,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Documentos\ecommerce-s1-g6\backend_laravel_ecommerce\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Documentos\ecommerce-s1-g6\backend_laravel_ecommerce\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\Hunteando\ecommerce-s1-g6\backend_laravel_ecommerce\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\Hunteando\ecommerce-s1-g6\backend_laravel_ecommerce\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
