@@ -14,18 +14,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.categories.index');
+        $categories=Category::paginate(5);
+        return view('admin.categories.index',compact('categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +27,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required|min:5'
+        ]);
+        $category=new Category();
+        $category->name=$request->name;
+        $category->save();
+        return redirect()->route('categories.index')->withSuccess('Se registro correctamente la categoría');
     }
 
     /**
@@ -69,7 +67,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name'=>'required|min:5'
+        ]);
+        $category=new Category();
+        $category->name=$request->name;
+        $category->save();
+        return redirect()->response()->json(['status'=>'success','message'=>'Se actualizó correctamente']);
     }
 
     /**
