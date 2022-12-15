@@ -55,7 +55,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        
+        return view('admin.categories.edit',compact('category'));
     }
 
     /**
@@ -70,10 +70,9 @@ class CategoryController extends Controller
         $request->validate([
             'name'=>'required|min:5'
         ]);
-        $category=new Category();
         $category->name=$request->name;
         $category->save();
-        return redirect()->response()->json(['status'=>'success','message'=>'Se actualizó correctamente']);
+        return redirect()->route('categories.index')->withSuccess('Se actualizó correctamente la categoría');
     }
 
     /**
@@ -84,6 +83,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return response()->json(['status'=>'success','message'=>'Se eliminó el registro']);
     }
 }

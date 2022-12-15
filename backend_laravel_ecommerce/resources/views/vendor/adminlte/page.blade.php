@@ -49,6 +49,7 @@
         @endif
 
     </div>
+    @yield('scripts')
 @stop
 
 @section('adminlte_js')

@@ -38,15 +38,20 @@
                                     <th style="width: 40px">Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="table">
                                 @foreach ($categories as $category)
                                     <tr>
                                         <td>{{ $category->id }}</td>
                                         <td>{{ $category->name }}</td>
-                                        <td>
-                                            <button id="edit-categories" class="btn btn-warning" data-toggle="modal" data-target="#modal-categories" data-category={{ $category }}>
+                                        <td class="d-flex justify-content-lg-center">
+                                            <a href="{{ route('categories.edit', $category->id) }}"
+                                                class="btn btn-warning mr-1">
                                                 <i class="fas fa-edit"></i>
-                                            </button>
+                                            </a>
+                                            <a href="#" class="btn btn-danger" data-table="categories"
+                                                data-id={{ $category->id }}>
+                                                X
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -66,4 +71,7 @@
         </div>
     </div>
     @include('admin.categories.modal')
+@endsection
+@section('scripts')
+    @include('admin.util')
 @endsection

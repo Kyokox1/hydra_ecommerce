@@ -37296,12 +37296,6 @@ module.exports = function(module) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-$.ajaxSetup({
-  headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-  }
-});
-__webpack_require__(/*! ./modals/category */ "./resources/js/modals/category.js");
 
 /***/ }),
 
@@ -37351,31 +37345,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
-
-/***/ }),
-
-/***/ "./resources/js/modals/category.js":
-/*!*****************************************!*\
-  !*** ./resources/js/modals/category.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-(function () {
-  var btn = $('#edit-categories');
-  var inpCategory = $('.name-category'); //.val()
-  var titleCategory = $('#title-categoria');
-  var btnSubmit = $('#btn-submit');
-  var category = btn.data('category');
-  btn.on('click', function () {
-    inpCategory.val(category.name);
-    titleCategory.text('Editar Categoría');
-  });
-  btnSubmit.on('click', function (e) {
-    e.preventDefault();
-    var url = "/categories/".concat(category.id);
-  });
-})();
 
 /***/ }),
 
