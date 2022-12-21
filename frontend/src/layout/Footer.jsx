@@ -1,7 +1,8 @@
-import { Box, Grid, Text } from '@chakra-ui/react';
+import { Box, Grid, Text, Stack } from '@chakra-ui/react';
+import { FooterSubscribe } from '~/components/Layout/footer/FooterSubscribe';
 
 import { NavList } from '~/components/Layout/NavList';
-import FooterSocialMedia from './footer/FooterSocialMedia';
+import FooterSocialMedia from '../components/Layout/footer/FooterSocialMedia';
 
 const Footer = () => {
 	return (
@@ -18,15 +19,15 @@ const Footer = () => {
 				textAlign='center'
 				rowGap='50px'
 			>
-				<Box>
+				<Box as='section'>
 					<Text>SEGURIDAD</Text>
 					<Text color='gray'>Protegemos tus datos personales</Text>
 				</Box>
-				<Box>
+				<Box as='section'>
 					<Text>MEDIOS DE PAGO</Text>
 					<Text color='gray'>todas las tarjetas</Text>
 				</Box>
-				<Box>
+				<Box as='section'>
 					<Text>ENVIOS A TODO EL PAIS</Text>
 					<Text color='gray'>
 						Recibe el pedido en tu casa o retiralo en la sucursal de
@@ -34,6 +35,7 @@ const Footer = () => {
 					</Text>
 				</Box>
 				<Box
+					as='section'
 					display='flex'
 					flexDir='column'
 					gap='5px'
@@ -44,11 +46,14 @@ const Footer = () => {
 						<NavList direction='column' />
 					</Box>
 				</Box>
-				<Box fontSize='1.2rem'>
+				<Box as='section' fontSize='1.2rem'>
 					<Text>CONTACTO</Text>
 					<Text color='gray'>0800-12345678</Text>
 				</Box>
-				<FooterSocialMedia />
+				<Stack as='section' gap='20px'>
+					<FooterSocialMedia />
+					<FooterSubscribe />
+				</Stack>
 			</Grid>
 		</Box>
 	);

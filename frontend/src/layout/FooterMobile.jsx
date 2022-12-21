@@ -1,16 +1,9 @@
-import {
-	Box,
-	Flex,
-	Text,
-	Stack,
-	FormControl,
-	Input,
-	Button
-} from '@chakra-ui/react';
+import { Box, Flex, Text } from '@chakra-ui/react';
 import { AiFillInstagram } from 'react-icons/ai';
 
 import { BsFillCreditCardFill, BsFillTelephoneFill } from 'react-icons/bs';
 import { FaFacebookF } from 'react-icons/fa';
+import { FooterMobileSubscribe } from '~/components/Layout/footer-mobile/FooterMobileSubscribe';
 
 const footerNav = [
 	'Términos y Condiciones',
@@ -29,7 +22,7 @@ export const FooterMobile = () => {
 			py='40px'
 			gap='30px'
 		>
-			<Flex justify='space-evenly' textAlign='center'>
+			<Flex as='section' justify='space-evenly' textAlign='center'>
 				<Box
 					maxW='120px'
 					gap='10px'
@@ -51,26 +44,19 @@ export const FooterMobile = () => {
 				</Box>
 			</Flex>
 
-			<Flex align='center'>
-				<Flex flexDir='column'>
-					<Text>SUSCRÍBITE!</Text>
-					<Text>Recibe novedades y promociones</Text>
-				</Flex>
-				<FormControl as='form' display='flex'>
-					<Input
-						_placeholder='ingrese su e-mail'
-						variant='unstyled'
-					/>
-					<Button type='submit'>ok</Button>
-				</FormControl>
-			</Flex>
+			<FooterMobileSubscribe />
 
-			<Flex justify='center' gap='40px' align='center'>
+			<Flex as='section' justify='center' gap='40px' align='center'>
 				<FaFacebookF size='1.6rem' />
 				<AiFillInstagram size='2rem' />
 			</Flex>
 
-			<Flex justify='space-around' fontSize='.8rem' align='center'>
+			<Flex
+				as='section'
+				justify='space-around'
+				fontSize='.8rem'
+				align='center'
+			>
 				{footerNav.map((element) => (
 					<Text key={`footer ${element}`} w='min-content'>
 						{element}

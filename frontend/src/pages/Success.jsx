@@ -1,5 +1,5 @@
 import { Flex, Heading } from '@chakra-ui/react';
-import FooterSocialMedia from '~/layout/footer/FooterSocialMedia';
+import FooterSocialMedia from '~/components/Layout/footer/FooterSocialMedia';
 
 import bgSuccess from '/assets/bg-success.png';
 
