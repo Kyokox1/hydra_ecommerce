@@ -1,11 +1,7 @@
 import { FormControl, Text, Select } from '@chakra-ui/react';
 
 // ? Diccionario para filtrar productos
-const FILTERS = {
-	CHOCOLATE: '1',
-	MIEL: '2',
-	LICOR: '3'
-};
+import { FILTERS } from '~/constans';
 
 export const Filters = ({ selectFilters, setSelectFilters }) => {
 	return (
@@ -34,9 +30,11 @@ export const Filters = ({ selectFilters, setSelectFilters }) => {
 				pl='10px'
 				cursor='pointer'
 			>
-				<option value={FILTERS.CHOCOLATE}>Chocolate</option>
-				<option value={FILTERS.MIEL}>Miel</option>
-				<option value={FILTERS.LICOR}>Licor</option>
+				{FILTERS.map(({ name, value }) => (
+					<option key={`${name}-select`} value={value}>
+						{name}
+					</option>
+				))}
 			</Select>
 		</FormControl>
 	);

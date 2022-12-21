@@ -1,4 +1,12 @@
-import { Flex, IconButton, Text, Box, useDisclosure } from '@chakra-ui/react';
+import {
+	Flex,
+	IconButton,
+	Text,
+	Box,
+	useDisclosure,
+	Popover,
+	PopoverTrigger
+} from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
 // ? redux
@@ -13,28 +21,43 @@ import { useUserAuth } from '~/hooks/useUserAuth';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { ModalCart } from '~/components/Layout/modal-cart/ModalCart';
+import { PopoverAuthUser } from './popover-auth-user/PopoverAuthUser';
 
 export const NavIcons = () => {
 	const { jwt, isUserLogged } = useUserAuth();
+	const { isOpen, onClose, onOpen } = useDisclosure();
 	const productsCart = useSelector(productsInCart);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const { isOpen, onClose, onOpen } = useDisclosure();
 
-	const handleLogout = () => {
-		dispatch(logoutUser({ jwt, navigate }));
+	const handleLogout = (closePopover) => {
+		dispatch(logoutUser({ jwt, navigate, closePopover }));
 	};
+
 	return (
 		<Flex justify='center' align='center' pos='relative' fontSize='1.5rem'>
-			<IconButton
-				fontSize='inherit'
-				onClick={handleLogout}
-				variant='ghost'
-				color='white'
-				colorScheme='whiteAlpha'
-				isRound
-				icon={<BsFillPersonFill />}
-			/>
+			<Popover placement='bottom-end'>
+				{({ isOpen, onClose }) => (
+					<>
+						<PopoverTrigger>
+							<IconButton
+								fontSize='inherit'
+								variant='ghost'
+								color='white'
+								colorScheme='whiteAlpha'
+								isRound
+								icon={<BsFillPersonFill />}
+							/>
+						</PopoverTrigger>
+						<PopoverAuthUser
+							handleLogout={() => handleLogout(onClose)}
+							isUserLogged={isUserLogged}
+							onClose={onClose}
+						/>
+					</>
+				)}
+			</Popover>
+
 			<Box pos='relative'>
 				<IconButton
 					onClick={onOpen}

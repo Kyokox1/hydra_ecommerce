@@ -19,9 +19,11 @@ export const FooterCart = ({ totalCost, onClose }) => {
 				>
 					Ver mas productos
 				</LinkChakra>
-				<ButtonOrange color='black' p='15px 25px' onClick={onClose}>
-					Iniciar Compra
-				</ButtonOrange>
+				<Link to='/checkout'>
+					<ButtonOrange color='black' p='15px 25px' onClick={onClose}>
+						Iniciar Compra
+					</ButtonOrange>
+				</Link>
 			</Flex>
 		</DrawerFooter>
 	);

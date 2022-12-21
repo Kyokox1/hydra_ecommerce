@@ -8,7 +8,7 @@ import {
 	productsStore
 } from '~/features/products/getProductsSlice';
 
-export const useProducts = ({ selectFilters }) => {
+export const useProducts = ({ selectFilters, productsInView = 10 }) => {
 	const [showAllProducts, setShowAllProducts] = useState(false);
 	const { isSearching } = useContext(SearchContext);
 
@@ -17,7 +17,8 @@ export const useProducts = ({ selectFilters }) => {
 	const isLoading = useSelector(isLoadingProducts);
 
 	// ? funcion que recorta el array de productos en la vista
-	const productsSlice = productsList.slice(0, 10);
+	// if (!productsList.length) return;
+	const productsSlice = productsList?.slice(0, productsInView);
 
 	// ? Mostrar mas productos en la view
 	const showMoreProducts = () => {
@@ -34,5 +35,11 @@ export const useProducts = ({ selectFilters }) => {
 		if (!isSearching && !selectFilters) dispatch(getProducts());
 	}, [selectFilters, isSearching]);
 
-	return { isLoading, showMoreProducts, products, showAllProducts };
+	return {
+		isLoading,
+		showMoreProducts,
+		products,
+		showAllProducts,
+		productsList
+	};
 };

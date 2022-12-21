@@ -1,32 +1,28 @@
 import { RadioGroup, Flex, Radio, Text, Box } from '@chakra-ui/react';
-
-const optionsShipping = [
-	{
-		header: 'Envio a domicilio',
-		textHeader: 'Andreani Estandar',
-		textBody: 'Llega entre el martes #### y el miercoles ####',
-		price: '$1300',
-		value: '1'
-	},
-	{
-		header: 'Retirar por punto',
-		textHeader: 'Punto de Retiro',
-		textBody: 'Llega entre el martes #### y el miercoles ####',
-		price: '$1000',
-		value: '2'
-	}
-];
+import { useDispatch, useSelector } from 'react-redux';
+import { optionsShipping } from '~/constans/optionsShipping';
+import {
+	changeShippingOption,
+	shippingCartState
+} from '~/features/cart/cartSlice';
 
 export const ShippingOptions = () => {
+	const shippingOption = useSelector(shippingCartState);
+	const dispatch = useDispatch();
+
+	const onChangeShippingOption = (event) => {
+		dispatch(changeShippingOption(event.target.value));
+	};
+
 	return (
 		<RadioGroup
 			as='section'
-			defaultValue={optionsShipping[0].value}
 			display='flex'
 			flexDir='column'
 			gap='10px'
+			defaultValue={shippingOption}
 		>
-			{optionsShipping.map((option) => (
+			{optionsShipping.map((option, i) => (
 				<Flex key={option.header} flexDir='column'>
 					<Text>{option.header}</Text>
 					<Flex
@@ -39,6 +35,8 @@ export const ShippingOptions = () => {
 							<Radio
 								h='max-content'
 								value={option.value}
+								isChecked={shippingOption === option.value}
+								onChange={onChangeShippingOption}
 								colorScheme='green'
 							/>
 							<Box>

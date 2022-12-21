@@ -1,14 +1,4 @@
-import { useEffect, useState, useCallback, useContext } from 'react';
 import { Flex, Stack, Spinner } from '@chakra-ui/react';
-
-// redux
-import { useDispatch, useSelector } from 'react-redux';
-import {
-	getProducts,
-	isLoadingProducts,
-	productsStore,
-	searchProducts
-} from '~/features/products/getProductsSlice';
 
 // assets
 import bgProducts from '/assets/bg-products.png';
@@ -16,13 +6,11 @@ import bgProducts from '/assets/bg-products.png';
 // components and hooks
 import { ProductsCardList } from '~/components/products/productsCardList';
 import { Filters } from '~/components/products/Filters';
-import { ButtonGray } from '~/components/products/ButtonGray';
-import { SearchContext } from '~/context/searchContext';
 import { useProducts } from '~/hooks/useProducts';
 import { useFilters } from '~/hooks/useFilters';
+import { ButtonOrange } from '~/components/products/ButtonOrange';
 
 const Home = () => {
-	// TODO Refactorizar código.
 	const { selectFilters, setSelectFilters } = useFilters();
 	const { products, isLoading, showMoreProducts, showAllProducts } =
 		useProducts({ selectFilters });
@@ -57,11 +45,11 @@ const Home = () => {
 						<ProductsCardList products={products} />
 					)}
 				</Flex>
-				<ButtonGray onClick={showMoreProducts}>
+				<ButtonOrange p='18px 35px' onClick={showMoreProducts}>
 					{showAllProducts
 						? 'VER MENOS PRODUCTOS'
 						: 'VER TODOS LOS PRODUCTOS'}
-				</ButtonGray>
+				</ButtonOrange>
 			</Stack>
 		</Flex>
 	);

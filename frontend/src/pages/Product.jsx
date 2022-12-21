@@ -26,6 +26,7 @@ import { useUserAuth } from '~/hooks/useUserAuth';
 import { ButtonGray } from '~/components/products/ButtonGray';
 
 const Product = () => {
+	const { isUserLogged } = useUserAuth();
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const productsCart = useSelector(productsInCart);
@@ -54,7 +55,6 @@ const Product = () => {
 			setCount((prevCount) => prevCount + 1);
 	};
 
-	const { isUserLogged } = useUserAuth();
 
 	const handleAddToCart = (product) => {
 		if (!isUserLogged) return navigate('/login');

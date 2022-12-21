@@ -1,74 +1,66 @@
-import { useCallback, useState, useContext, useEffect } from 'react';
-import { Flex, Image, Stack, Spinner, Text } from '@chakra-ui/react';
-import { ButtonGray } from '~/components/products/ButtonGray';
+import { useState } from 'react';
+import { Flex, Stack, Spinner } from '@chakra-ui/react';
+
+// ? components and hooks
+import { TopBanner } from '~/components/flavors/TopBanner';
+import { FooterBanners } from '~/components/flavors/FooterBanners';
 import { Filters } from '~/components/products/Filters';
 import { ProductsCardList } from '~/components/products/productsCardList';
-import {
-	isLoadingProducts,
-	productsStore,
-	searchProducts,
-	getProducts
-} from '~/features/products/getProductsSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { SearchContext } from '~/context/searchContext';
+import { AsideFilters } from '~/components/flavors/AsideFilters';
+import { ButtonOrange } from '~/components/products/ButtonOrange';
+import { useFilters } from '~/hooks/useFilters';
+import { useProducts } from '~/hooks/useProducts';
 
 const Flavors = () => {
-	// TODO hook
-	const productsList = useSelector(productsStore);
-	const isLoading = useSelector(isLoadingProducts);
-	const dispatch = useDispatch();
+	const { selectFilters, setSelectFilters } = useFilters();
+	const {
+		products,
+		isLoading,
+		showMoreProducts,
+		showAllProducts,
+		productsList
+	} = useProducts({ selectFilters });
 
-	const [showAllProducts, setShowAllProducts] = useState(false);
-	const [selectFilters, setSelectFilters] = useState('');
-	const { isSearching, setIsSearching } = useContext(SearchContext);
+	// ? filters aside
+	const [selectedCategories, setSelectedCategories] = useState([]);
 
-	// ? funcion que recorta el array de productos en la vista
-	const productsSlice = productsList.slice(0, 10);
+	const filteredProducts = () => {
+		if (!selectedCategories.length) return products();
 
-	// ? Mostrar mas productos en la view
-	const showMoreProducts = () => {
-		setShowAllProducts((prevState) => !prevState);
+		const filtered = productsList.filter((product) =>
+			selectedCategories.includes(product.category_id)
+		);
+
+		return filtered.length > 10 && !showAllProducts
+			? filtered.slice(0, 10)
+			: filtered;
 	};
 
-	const products = useCallback(
-		() => (showAllProducts ? productsList : productsSlice),
-		[showAllProducts, selectFilters, productsList]
-	);
-	// TODO hook
-
-	// ? llamada para traer todos los productos o los filtros
-	useEffect(() => {
-		if (selectFilters) {
-			dispatch(
-				searchProducts({ search: selectFilters, name: 'category_id' })
-			);
-			setIsSearching(false);
-			return;
-		}
-		if (!isSearching) dispatch(getProducts());
-	}, [selectFilters, isSearching]);
 	return (
 		<Flex
 			as='main'
 			flexDir='column'
-			pt='120px'
+			pt='110px'
 			color='white'
 			minH='100vh'
 			justify='center'
 			align='center'
-			gap='10rem'
+			gap='50px'
 		>
-			<Image alt='banner' />
-			{/* filters */}
+			<TopBanner />
 			<Flex w='100%'>
-				<Stack w='20%'>
-					<Text>asdasd</Text>
-				</Stack>
+				{/* AsideFilters */}
+				<AsideFilters
+					selectedCategories={selectedCategories}
+					setSelectedCategories={setSelectedCategories}
+				/>
+				{/* AsideFilters */}
 				<Stack
 					flex='1'
-					maxW='1040px'
+					maxW='1030px'
+					m='0 auto'
 					alignItems='center'
-					pl='50px'
+					justifyContent='center'
 					gap='80px'
 				>
 					<Filters
@@ -79,18 +71,23 @@ const Flavors = () => {
 						{isLoading ? (
 							<Spinner size='xl' alignSelf='center' />
 						) : (
-							<ProductsCardList products={products} />
+							<ProductsCardList products={filteredProducts} />
 						)}
 					</Flex>
-					<ButtonGray onClick={showMoreProducts}>
+					<ButtonOrange
+						p='18px 35px'
+						disabled={filteredProducts().length < 10}
+						onClick={showMoreProducts}
+					>
 						{showAllProducts
 							? 'VER MENOS PRODUCTOS'
 							: 'VER TODOS LOS PRODUCTOS'}
-					</ButtonGray>
+					</ButtonOrange>
+					{/* footer */}
+					<FooterBanners />
+					{/* footer */}
 				</Stack>
 			</Flex>
-
-			{/* productList */}
 		</Flex>
 	);
 };

@@ -15,6 +15,7 @@ import userReducer from '~/features/user/userSlice';
 import productsReducer from '~/features/products/getProductsSlice';
 import jwtReducer from '~/features/user/jwtSlice';
 import productsCartReducer from '~/features/products/productsCartSlice';
+import cartReducer from '~/features/cart/cartSlice';
 
 // ?persist state
 const persistConfigToken = {
@@ -40,7 +41,8 @@ export const store = configureStore({
 		user: userReducer,
 		products: productsReducer,
 		jwt: persistedReducerToken,
-		cartProducts: persistedReducerCartProducts
+		cartProducts: persistedReducerCartProducts,
+		cart: cartReducer
 	},
 
 	middleware: (getDefaultMiddleware) =>

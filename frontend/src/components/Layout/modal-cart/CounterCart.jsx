@@ -9,7 +9,6 @@ import {
 export const CounterCart = ({ initialCount, id, stock }) => {
 	const [count, setCount] = useState(initialCount);
 	const dispatch = useDispatch();
-	console.log(stock);
 
 	const handleIncreaseCount = () => {
 		if (stock <= 0) return;

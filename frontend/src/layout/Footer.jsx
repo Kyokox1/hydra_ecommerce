@@ -1,9 +1,7 @@
-import { Box, Flex, Grid, Text } from '@chakra-ui/react';
-
-import { FaFacebookF } from 'react-icons/fa';
-import { AiFillInstagram } from 'react-icons/ai';
+import { Box, Grid, Text } from '@chakra-ui/react';
 
 import { NavList } from '~/components/Layout/NavList';
+import FooterSocialMedia from './footer/FooterSocialMedia';
 
 const Footer = () => {
 	return (
@@ -50,18 +48,7 @@ const Footer = () => {
 					<Text>CONTACTO</Text>
 					<Text color='gray'>0800-12345678</Text>
 				</Box>
-				<Box fontSize='1.2rem'>
-					<Text>REDES SOCIALES</Text>
-					<Flex
-						color='gray'
-						gap='10px'
-						alignItems='center'
-						justify='center'
-					>
-						<FaFacebookF size='1.6rem' />
-						<AiFillInstagram size='2rem' />
-					</Flex>
-				</Box>
+				<FooterSocialMedia />
 			</Grid>
 		</Box>
 	);

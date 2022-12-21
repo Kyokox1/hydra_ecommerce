@@ -6,7 +6,7 @@ import Login from '~/pages/Login';
 import Product from '~/pages/Product';
 import Promotions from '~/pages/Promotions';
 import Checkout from '~/pages/Checkout';
-import Sucess from '~/pages/Sucess';
+import Success from '~/pages/Success';
 import Flavors from '~/pages/Flavors';
 
 const RoutesComp = () => {
@@ -21,7 +21,7 @@ const RoutesComp = () => {
 					<Route path='flavors' element={<Flavors />} />
 					<Route path='product/:id' element={<Product />} />
 					<Route path='checkout' element={<Checkout />} />
-					<Route path='sucess' element={<Sucess />} />
+					<Route path='checkout/success' element={<Success />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

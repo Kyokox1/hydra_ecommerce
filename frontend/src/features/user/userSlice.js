@@ -102,7 +102,7 @@ export const loginUser =
 	};
 
 export const logoutUser =
-	({ jwt, navigate }) =>
+	({ jwt, navigate, closePopover }) =>
 	async (dispatch) => {
 		try {
 			dispatch(fetchUserStart());
@@ -111,6 +111,7 @@ export const logoutUser =
 
 			if (!status || status !== 'success') return;
 
+			closePopover();
 			dispatch(fetchUserReset());
 			dispatch(updateJwt(null));
 			navigate('/login');
