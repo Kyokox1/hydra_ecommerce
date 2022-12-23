@@ -57,7 +57,6 @@ const Flavors = () => {
 				{/* AsideFilters */}
 				<Stack
 					flex='1'
-					maxW='1030px'
 					m='0 auto'
 					alignItems='center'
 					justifyContent='center'

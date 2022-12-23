@@ -7,10 +7,12 @@ import {
 	isLoadingProducts,
 	productsStore
 } from '~/features/products/getProductsSlice';
+import { useWindowSize } from './useWindowSize';
 
 export const useProducts = ({ selectFilters, productsInView = 10 }) => {
 	const [showAllProducts, setShowAllProducts] = useState(false);
 	const { isSearching } = useContext(SearchContext);
+	const { width } = useWindowSize();
 
 	const dispatch = useDispatch();
 	const productsList = useSelector(productsStore);
@@ -24,6 +26,12 @@ export const useProducts = ({ selectFilters, productsInView = 10 }) => {
 	const showMoreProducts = () => {
 		setShowAllProducts((prevState) => !prevState);
 	};
+
+	// ? Efecto que detecta el tamaño de la pantalla, para asi poder mostrar todos los productos siempre en mobile
+	useEffect(() => {
+		if (width < 992) setShowAllProducts(true);
+		else setShowAllProducts(false);
+	}, [width]);
 
 	const products = useCallback(
 		() => (showAllProducts ? productsList : productsSlice),

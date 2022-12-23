@@ -1,4 +1,4 @@
-import { Flex, Stack, Spinner } from '@chakra-ui/react';
+import { Flex, Stack, Spinner, Box } from '@chakra-ui/react';
 
 // assets
 import bgProducts from '/assets/bg-products.png';
@@ -19,37 +19,51 @@ const Home = () => {
 		<Flex
 			as='main'
 			minH='100vh'
+			justify={{ base: 'center', lg: 'initial' }}
 			bgPos='right'
 			bgSize='contain'
 			bgRepeat='no-repeat'
-			bgImage={bgProducts}
+			bgImage={{ base: 'none', lg: bgProducts }}
 			color='white'
 			pb='80px'
 			pt='150px'
 		>
 			<Stack
-				w='80%'
-				maxW='1040px'
-				alignItems='center'
-				pl='50px'
+				w={{ base: '100%', md: '95%', xl: '80%' }}
+				justifyContent='center'
+				align={{ base: 'center', lg: 'none' }}
+				pl={{ base: '0', lg: '50px' }}
 				gap='80px'
 			>
 				<Filters
 					selectFilters={selectFilters}
 					setSelectFilters={setSelectFilters}
 				/>
-				<Flex minH='100vh' w='100%' justify='center'>
+				<Flex
+					minH={{
+						base: '80vh',
+						md: '70vh'
+					}}
+					w='100%'
+					justify='center'
+				>
 					{isLoading ? (
 						<Spinner size='xl' alignSelf='center' />
 					) : (
 						<ProductsCardList products={products} />
 					)}
 				</Flex>
-				<ButtonOrange p='18px 35px' onClick={showMoreProducts}>
-					{showAllProducts
-						? 'VER MENOS PRODUCTOS'
-						: 'VER TODOS LOS PRODUCTOS'}
-				</ButtonOrange>
+				<Box display={{ base: 'none', lg: 'block' }}>
+					<ButtonOrange
+						onClick={showMoreProducts}
+						disabled={products().length < 10}
+						p='18px 35px'
+					>
+						{showAllProducts
+							? 'VER MENOS PRODUCTOS'
+							: 'VER TODOS LOS PRODUCTOS'}
+					</ButtonOrange>
+				</Box>
 			</Stack>
 		</Flex>
 	);

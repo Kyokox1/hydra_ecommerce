@@ -13,12 +13,22 @@ export const ProductsCardList = ({ products }) => {
 		return count;
 	};
 
+	const halfOfProducts = Math.round(products().length / 2);
+
 	return (
 		<Grid
 			as='section'
 			w='100%'
-			gridTemplateColumns='repeat(auto-fill, minmax(160px,1fr))'
+			minW={{ base: 'none', lg: '878px' }}
+			maxW='1030px'
+			gridTemplateColumns={{
+				base: `repeat(${halfOfProducts}, minmax(180px,1fr))`,
+				md: 'repeat(auto-fill, minmax(160px,1fr))'
+			}}
 			gap='15px'
+			px={{ base: '20px', md: '0' }}
+			overflow='auto'
+			overscrollBehaviorX={{ base: 'contain', md: 'none' }}
 		>
 			{products().map((product) => (
 				<ProductsCardItem

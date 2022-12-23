@@ -18,7 +18,7 @@ export const theme = extendTheme({
 				TextDecoder: 'none',
 				_hover: { color: 'inherit' }
 			},
-			'@media (min-width: 990px)': {
+			'@media (min-width: 992px)': {
 				'::-webkit-scrollbar': {
 					position: 'absolute',
 					width: '6px',
