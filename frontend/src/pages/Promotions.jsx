@@ -4,8 +4,8 @@ import { Flex, Spinner, Stack } from '@chakra-ui/react';
 import { useFilters } from '~/hooks/useFilters';
 import { useProducts } from '~/hooks/useProducts';
 import { AsideFilters } from '~/components/flavors/AsideFilters';
-import { Filters } from '~/components/products/Filters';
-import { ProductsCardList } from '~/components/products/productsCardList';
+import { Filters } from '~/components/home/Filters';
+import { ProductsCardList } from '~/components/home/productsCardList';
 import { FooterBanners } from '~/components/flavors/FooterBanners';
 
 const Promotions = () => {

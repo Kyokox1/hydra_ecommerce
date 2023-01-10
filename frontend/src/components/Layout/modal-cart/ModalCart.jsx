@@ -26,7 +26,7 @@ import { useUserAuth } from '~/hooks/useUserAuth';
 import { PopoverButton } from '../popover-auth-user/PopoverButton';
 
 export const ModalCart = ({ isOpen, onClose }) => {
-	const { isUserLogged } = useUserAuth();
+	const { isUserAuthenticated } = useUserAuth();
 	const productsCart = useSelector(productsInCart);
 	const { totalPriceProducts, totalCost } = useShipping();
 
@@ -51,9 +51,9 @@ export const ModalCart = ({ isOpen, onClose }) => {
 						flexDir='column'
 						gap='30px'
 						fontSize='.8rem'
-						justifyContent={!isUserLogged && 'center'}
+						justifyContent={!isUserAuthenticated && 'center'}
 					>
-						{!isUserLogged ? (
+						{!isUserAuthenticated ? (
 							<Stack>
 								<PopoverButton onClose={onClose} route='/login'>
 									Iniciar Sesión
@@ -76,20 +76,28 @@ export const ModalCart = ({ isOpen, onClose }) => {
 									productsCart={productsCart}
 									totalPriceProducts={totalPriceProducts}
 								/>
-								<Box pl='10%'>
-									<PostalCode />
-								</Box>
-								{/* section */}
-								<ShippingOptions />
-								{/* section */}
+								{productsCart.length ? (
+									<>
+										<Box pl='10%'>
+											<PostalCode />
+										</Box>
+										{/* section */}
+										<ShippingOptions />
+										{/* section */}
 
-								<PresentCart />
+										<PresentCart />
+									</>
+								) : null}
 							</>
 						)}
 					</DrawerBody>
 
-					{isUserLogged && (
-						<FooterCart totalCost={totalCost} onClose={onClose} />
+					{isUserAuthenticated && (
+						<FooterCart
+							totalCost={totalCost}
+							productsCart={productsCart}
+							onClose={onClose}
+						/>
 					)}
 				</DrawerContent>
 			</Drawer>

@@ -1,11 +1,12 @@
 import { Stack, Link as LinkChakra } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
+import { PATHS } from '~/constans/pathsRoutes';
 
 const LoginNav = () => {
 	return (
 		<Stack textAlign='center'>
 			<LinkChakra
-				to='/signIn'
+				to={PATHS.REGISTER}
 				as={Link}
 				fontWeight='300'
 				_hover={{
@@ -16,7 +17,7 @@ const LoginNav = () => {
 				Olvidaste Contraseña
 			</LinkChakra>
 			<LinkChakra
-				to='/signIn'
+				to={PATHS.REGISTER}
 				as={Link}
 				textDecoration='none'
 				fontWeight='300'

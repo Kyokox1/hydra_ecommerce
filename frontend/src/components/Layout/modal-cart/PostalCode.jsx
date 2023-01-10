@@ -1,6 +1,6 @@
 import { Flex, Text, FormControl, Input } from '@chakra-ui/react';
 
-import { ButtonGray } from '~/components/products/ButtonGray';
+import { ButtonGray } from '~/components/home/ButtonGray';
 
 export const PostalCode = () => {
 	return (

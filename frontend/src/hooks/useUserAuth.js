@@ -3,7 +3,7 @@ import { currentToken } from '~/features/user/jwtSlice';
 
 export const useUserAuth = () => {
 	const jwt = useSelector(currentToken);
-	const isUserLogged = Boolean(jwt);
+	const isUserAuthenticated = Boolean(jwt);
 
-	return { isUserLogged, jwt };
+	return { isUserAuthenticated, jwt };
 };

@@ -3,18 +3,19 @@ import {
 	Flex,
 	Stack,
 	Box,
-	Image,
 	Text,
 	Button,
 	StackDivider,
 	Spinner
 } from '@chakra-ui/react';
-
 import { useParams, useNavigate } from 'react-router-dom';
+
+import { useUserAuth } from '~/hooks/useUserAuth';
+import { ProductImg } from '~/components/product/ProductImg';
+import { ButtonOrange } from '~/components/home/ButtonOrange';
 import { getSingleProduct } from '~/services/products';
 
-// assets
-import productImg from '/assets/img-product.png';
+// ? redux
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	addProduct,
@@ -22,11 +23,9 @@ import {
 	productsInCart
 } from '~/features/products/productsCartSlice';
 
-import { useUserAuth } from '~/hooks/useUserAuth';
-import { ButtonGray } from '~/components/products/ButtonGray';
-
 const Product = () => {
-	const { isUserLogged } = useUserAuth();
+	// TODO Refactorizar codigo y dividir en componentes
+	const { isUserAuthenticated } = useUserAuth();
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const productsCart = useSelector(productsInCart);
@@ -43,21 +42,16 @@ const Product = () => {
 		);
 	}, [product, productsCart]);
 
-	const stockCart = () => {
-		if (findProductInCart()?.stock === 0) return 0;
-		if (!findProductInCart()?.stock) return stock;
-		return findProductInCart()?.stock;
-	};
+	const stockCart = findProductInCart()?.stock ?? stock;
 
 	const handleCounter = (text) => {
 		if (text === 'res' && count > 0) setCount((prevCount) => prevCount - 1);
-		if (text === 'sum' && count < stockCart())
+		if (text === 'sum' && count < stockCart)
 			setCount((prevCount) => prevCount + 1);
 	};
 
-
 	const handleAddToCart = (product) => {
-		if (!isUserLogged) return navigate('/login');
+		if (!isUserAuthenticated) return navigate('/login');
 
 		const isProductExistInCart = productsCart.some(
 			(productElement) => product.id === productElement.id
@@ -85,11 +79,13 @@ const Product = () => {
 		<Flex
 			as='main'
 			pt='120px'
+			pb='50px'
 			color='white'
 			minH='100vh'
 			justify='center'
 			align='center'
-			gap='10rem'
+			gap={{ base: '3rem', lg: '10rem' }}
+			flexDir={{ base: 'column-reverse', lg: 'row' }}
 		>
 			{isLoading ? (
 				<Spinner size='xl' alignSelf='center' />
@@ -101,13 +97,12 @@ const Product = () => {
 						align='center'
 						justifyContent='space-between'
 						gap='20px'
+						textAlign={{ base: 'center', lg: 'initial' }}
+						fontSize={{ base: '.875rem', sm: '1rem' }}
+						px={{ base: '15px', lg: '0' }}
 					>
-						<Box
-							maxW='300px'
-							border='1.5rem solid rgba(243, 243, 243, 0.09);'
-						>
-							<Image src={productImg} alt={name} />
-						</Box>
+						<ProductImg display={{ base: 'none', lg: 'block' }} />
+
 						<Text>
 							Lorem ipsum dolor sit amet, consectetur adipiscing
 							elit. Suspendisse mattis elit ac tortor gravida
@@ -121,85 +116,126 @@ const Product = () => {
 							mattis. Nulla facilisi.
 						</Text>
 					</Stack>
-					<Stack
+
+					{/* Second section */}
+					<Flex
 						as='section'
-						divider={<StackDivider />}
-						flexBasis='25%'
-						align='center'
-						gap='40px'
+						align={{ base: 'center', lg: 'start' }}
+						gap={{
+							base: '10px',
+							sm: '30px',
+							md: '50px',
+							lg: 'none'
+						}}
+						px={{ base: '15px', md: '0' }}
 					>
-						<Flex direction='column' gap='15px'>
-							<Box>
-								<Text fontSize='1.2rem' fontWeight='300'>
-									{name?.toUpperCase()}
-								</Text>
+						<ProductImg display={{ base: 'block', lg: 'none' }} />
+
+						<Stack
+							divider={
+								<StackDivider
+									display={{ base: 'none', md: 'block' }}
+								/>
+							}
+							flexBasis='25%'
+							align='center'
+							gap='40px'
+						>
+							<Flex
+								direction='column'
+								gap='15px'
+								fontSize={{ base: '.875rem', sm: '1.2rem' }}
+								fontWeight='300'
+							>
+								<Box>
+									<Text>{name?.toUpperCase()}</Text>
+									<Stack
+										direction='row'
+										gap='5px'
+										divider={<StackDivider />}
+										whiteSpace='nowrap'
+									>
+										<Text>EN STOCK: {stockCart}</Text>
+										<Text>COD: {code}</Text>
+									</Stack>
+								</Box>
+								<Box pl='10px'>
+									<Text
+										color='#B4B4B4'
+										textDecor='line-through'
+										fontSize={{ base: '.7rem', sm: '1rem' }}
+									>
+										${price}
+									</Text>
+									<Text>${cost}</Text>
+								</Box>
+							</Flex>
+							{/* Second section */}
+							<Flex
+								w='100%'
+								justify={{ base: 'start', md: 'center' }}
+							>
 								<Stack
-									direction='row'
-									gap='5px'
-									divider={<StackDivider />}
+									flexDir={{
+										base: 'row-reverse',
+										md: 'column'
+									}}
+									alignItems='center'
+									gap='8px'
 								>
-									<Text fontSize='1.2rem' fontWeight='300'>
-										EN STOCK: {stockCart()}
+									<Text
+										display={{ base: 'none', lg: 'block' }}
+										fontWeight='300'
+									>
+										CANTIDAD
 									</Text>
-									<Text fontSize='1.2rem' fontWeight='300'>
-										COD: {code}
-									</Text>
+									{/* contador */}
+									<Flex
+										align='center'
+										gap={{ base: '8px', md: '15px' }}
+									>
+										<Button
+											onClick={() => handleCounter('res')}
+											bgColor='#D9D9D9'
+											color='black'
+											fontWeight='700'
+											borderRadius='50%'
+											size={{ base: 'xs', sm: 'sm' }}
+										>
+											-
+										</Button>
+										<Text textAlign='center' w='20px'>
+											{count}
+										</Text>
+										<Button
+											onClick={() => handleCounter('sum')}
+											bgColor='#D9D9D9'
+											color='black'
+											fontWeight='700'
+											borderRadius='50%'
+											size={{ base: 'xs', sm: 'sm' }}
+										>
+											+
+										</Button>
+									</Flex>
+									{/* contador */}
+									<ButtonOrange
+										onClick={() => handleAddToCart(product)}
+										disabled={Boolean(!count)}
+										p={{
+											base: '10px 5px',
+											md: '18px 35px'
+										}}
+										color='black'
+									>
+										{/* AGREGAR AL CARRITO */}
+										COMPRAR
+									</ButtonOrange>
 								</Stack>
-							</Box>
-							<Box pl='10px'>
-								<Text
-									color='#B4B4B4'
-									fontWeight='300'
-									textDecor='line-through'
-								>
-									${price}
-								</Text>
-								<Text fontSize='1.2rem' fontWeight='300'>
-									${cost}
-								</Text>
-							</Box>
-						</Flex>
-						{/* Second section */}
-						<Flex align='center'>
-							<Stack alignItems='center' gap='8px'>
-								<Text fontWeight='300'>CANTIDAD</Text>
-								{/* contador */}
-								<Flex align='center' gap='15px'>
-									<Button
-										onClick={() => handleCounter('res')}
-										bgColor='#D9D9D9'
-										color='black'
-										fontWeight='700'
-										borderRadius='50%'
-										size='sm'
-									>
-										-
-									</Button>
-									<Text textAlign='center' w='20px'>
-										{count}
-									</Text>
-									<Button
-										onClick={() => handleCounter('sum')}
-										bgColor='#D9D9D9'
-										color='black'
-										fontWeight='700'
-										borderRadius='50%'
-										size='sm'
-									>
-										+
-									</Button>
-								</Flex>
-								{/* contador */}
-								<ButtonGray
-									onClick={() => handleAddToCart(product)}
-									disabled={Boolean(!count)}
-								>
-									AGREGAR AL CARRITO
-								</ButtonGray>
-							</Stack>
-							<Stack></Stack>
-						</Flex>
-					</Stack>
+								<Stack></Stack>
+							</Flex>
+						</Stack>
+					</Flex>
 				</>
 			)}
 		</Flex>

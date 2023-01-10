@@ -1,5 +1,5 @@
 import { FormControl, Input, Flex } from '@chakra-ui/react';
-import { ButtonOrange } from '../products/ButtonOrange';
+import { ButtonOrange } from '../home/ButtonOrange';
 
 export const PayModalBody = ({ onClose }) => {
 	return (

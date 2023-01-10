@@ -1,10 +1,11 @@
 import { Flex } from '@chakra-ui/react';
+import { PATHS } from '~/constans/pathsRoutes';
 import { NavLinkChakra } from './NavLinkChakra';
 
 const navElement = [
 	{ name: 'inicio', path: '/' },
-	{ name: 'sabores', path: 'flavors' },
-	{ name: 'promociones', path: 'promotions' }
+	{ name: 'sabores', path: PATHS.FLAVORS },
+	{ name: 'promociones', path: PATHS.PROMOTIONS }
 ];
 
 export const NavList = ({ direction = 'row', gap = '0', mayus = false }) => {

@@ -1,27 +1,29 @@
-import {
-	Flex,
-	Stack,
-	Text,
-	Box,
-	Input,
-	Image,
-	StackDivider,
-	useDisclosure
-} from '@chakra-ui/react';
-import { useSelector } from 'react-redux';
-import { PayModal } from '~/components/pay-modal/PayModal';
+import { Flex, Stack, Text, Box, Input, useDisclosure } from '@chakra-ui/react';
 
-import { ButtonOrange } from '~/components/products/ButtonOrange';
-import { presentCartState } from '~/features/cart/cartSlice';
+// ? components and hooks
+import { PaymentInformation } from '~/components/checkout/PaymentInformation';
+import { PaypalCheckoutButton } from '~/components/checkout/PaypalCheckoutButton';
+import { PayModal } from '~/components/pay-modal/PayModal';
+// import { PaymentOptions } from '~/components/checkout/PaymentOptions';
+// import { ButtonOrange } from '~/components/home/ButtonOrange';
 import { useShipping } from '~/hooks/useShipping';
-import bgProduct from '/assets/img-product.png';
+import { NoProductsCheckout } from '~/components/checkout/NoProductsCheckout';
+
+// ? redux
+import { useSelector } from 'react-redux';
+import { productsInCart } from '~/features/products/productsCartSlice';
+import { presentCartState } from '~/features/cart/cartSlice';
 
 const Checkout = () => {
+	const productsCart = useSelector(productsInCart);
+
 	const isPresent = useSelector(presentCartState);
 
 	const { selectOption, totalCost } = useShipping();
 
 	const { isOpen, onOpen, onClose } = useDisclosure();
+
+	if (!productsCart.length) return <NoProductsCheckout />;
 
 	return (
 		<>
@@ -34,53 +36,14 @@ const Checkout = () => {
 				gap='30px'
 			>
 				{/* header */}
-				<Flex justify='space-between' w='100%'>
-					<Stack
-						divider={<StackDivider />}
-						w='65%'
-						border='1px solid white'
-						p='25px'
-					>
-						<Text pl='20px'>Hunteando123@gmail.com</Text>
-						<Box pl='20px'>
-							<Text fontWeight='700'>
-								{selectOption.textHeader}
-							</Text>
-							<Text>{selectOption.price}</Text>
-							<Text fontWeight='700'>Datos de cobranza</Text>
-							<Text>Hunteando proyectos</Text>
-							<Text>+5411234567</Text>
-						</Box>
-					</Stack>
-					<Flex gap='30px' alignSelf='center'>
-						<Box
-							w='150px'
-							border='.5rem solid rgba(243, 243, 243, 0.09)'
-							h='max-content'
-						>
-							<Image w='100%' src={bgProduct} alt='vino' />
-						</Box>
-						<Stack>
-							<Text>CREMA DE WISKHY</Text>
-							<Text>{totalCost}</Text>
-						</Stack>
-					</Flex>
-				</Flex>
+				<PaymentInformation
+					selectOption={selectOption}
+					totalCost={totalCost}
+				/>
 				{/* header */}
 
 				<Flex w='65%' flexDir='column' align='initial' gap='30px'>
-					<Stack gap='10px'>
-						<Text pb='10px'>MEDIO DE PAGO</Text>
-						<Box border='1px solid white' p='12px'>
-							Tarjeta de crédito debito
-						</Box>
-						<Box border='1px solid white' p='12px'>
-							Rapipago o Pago fácil
-						</Box>
-						<Box border='1px solid white' p='12px'>
-							Mercado pago
-						</Box>
-					</Stack>
+					{/* <PaymentOptions /> */}
 
 					{/* optional */}
 					{isPresent && (
@@ -96,11 +59,18 @@ const Checkout = () => {
 						</Stack>
 					)}
 					{/* optional */}
-					<Flex justify='flex-end'>
-						<ButtonOrange onClick={onOpen} color='black'>
-							PAGAR
-						</ButtonOrange>
-					</Flex>
+
+					{/* <Flex justify='flex-end' > */}
+					{/* <ButtonOrange onClick={onOpen} color='black'> */}
+					{/* PAGAR */}
+					{/* </ButtonOrange> */}
+					{/* </Flex> */}
+					<Box w='310px' m='0 auto'>
+						<PaypalCheckoutButton
+							amount={totalCost}
+							products={productsCart}
+						/>
+					</Box>
 				</Flex>
 			</Flex>
 			{/* Modal */}

@@ -1,4 +1,4 @@
-import { Flex, Image, Stack } from '@chakra-ui/react';
+import { Flex, Image, Stack, Heading } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
 // assets
@@ -6,9 +6,9 @@ import whiteLogo from '/assets/logo-white.png';
 import navBarBg from '/assets/navBar.png';
 
 // components
-import { NavList } from '~/components/Layout/NavList';
-import { NavSearch } from '~/components/Layout/NavSearch';
-import { NavIcons } from '~/components/Layout/NavIcons';
+import { NavList } from '~/components/layout/NavList';
+import { NavSearch } from '~/components/layout/NavSearch';
+import { NavIcons } from '~/components/layout/NavIcons';
 
 export const NavBar = () => {
 	return (
@@ -33,7 +33,9 @@ export const NavBar = () => {
 					zIndex='-1'
 				/>
 				<Link to='/'>
-					<Image src={whiteLogo} alt='logo' />
+					<Heading as='h1'>
+						<Image src={whiteLogo} alt='HYRA STORE' />
+					</Heading>
 				</Link>
 				<Stack
 					as='nav'

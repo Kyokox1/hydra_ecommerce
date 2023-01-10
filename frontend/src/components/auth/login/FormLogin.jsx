@@ -19,7 +19,7 @@ const FormLogin = () => {
 	const { showPassword, handleShowPassword } = useShowPassword();
 	const emailRef = useRef();
 	const navigate = useNavigate();
-	const { isUserLogged } = useUserAuth();
+	const { isUserAuthenticated } = useUserAuth();
 
 	const isInvalidUser = useSelector(userError);
 	const isLoading = useSelector(userIsLoading);
@@ -31,10 +31,10 @@ const FormLogin = () => {
 	}, []);
 
 	useEffect(() => {
-		if (!isUserLogged) return;
+		if (!isUserAuthenticated) return;
 		setEmail('');
 		setPassword('');
-	}, [isUserLogged]);
+	}, [isUserAuthenticated]);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();

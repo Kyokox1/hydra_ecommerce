@@ -4,12 +4,13 @@ import { Flex, Stack, Spinner } from '@chakra-ui/react';
 // ? components and hooks
 import { TopBanner } from '~/components/flavors/TopBanner';
 import { FooterBanners } from '~/components/flavors/FooterBanners';
-import { Filters } from '~/components/products/Filters';
-import { ProductsCardList } from '~/components/products/productsCardList';
+import { Filters } from '~/components/home/Filters';
+import { ProductsCardList } from '~/components/home/productsCardList';
 import { AsideFilters } from '~/components/flavors/AsideFilters';
-import { ButtonOrange } from '~/components/products/ButtonOrange';
+import { ButtonOrange } from '~/components/home/ButtonOrange';
 import { useFilters } from '~/hooks/useFilters';
 import { useProducts } from '~/hooks/useProducts';
+import { useEnableButton } from '~/hooks/useEnableButton';
 
 const Flavors = () => {
 	const { selectFilters, setSelectFilters } = useFilters();
@@ -35,6 +36,8 @@ const Flavors = () => {
 			? filtered.slice(0, 10)
 			: filtered;
 	};
+
+	const { disabledButton } = useEnableButton(filteredProducts());
 
 	return (
 		<Flex
@@ -75,7 +78,7 @@ const Flavors = () => {
 					</Flex>
 					<ButtonOrange
 						p='18px 35px'
-						disabled={filteredProducts().length < 10}
+						disabled={disabledButton}
 						onClick={showMoreProducts}
 					>
 						{showAllProducts

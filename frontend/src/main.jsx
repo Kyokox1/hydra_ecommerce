@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
+import { initialOptions } from './constans/paypalOptions';
 
 // styles
 import { ChakraProvider } from '@chakra-ui/react';
@@ -22,9 +24,11 @@ root.render(
 		<Provider store={store}>
 			<PersistGate loading={null} persistor={persistor}>
 				<SearchProvider>
-					<ChakraProvider theme={theme}>
-						<App />
-					</ChakraProvider>
+					<PayPalScriptProvider options={initialOptions}>
+						<ChakraProvider theme={theme}>
+							<App />
+						</ChakraProvider>
+					</PayPalScriptProvider>
 				</SearchProvider>
 			</PersistGate>
 		</Provider>

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { userIsLoading } from '~/features/user/userSlice';
 import { PopoverButton } from './PopoverButton';
 
-export const PopoverAuthUser = ({ isUserLogged, handleLogout, onClose }) => {
+export const PopoverAuthUser = ({ isUserAuthenticated, handleLogout, onClose }) => {
 	const isLoadingUser = useSelector(userIsLoading);
 
 	return (
@@ -14,7 +14,7 @@ export const PopoverAuthUser = ({ isUserLogged, handleLogout, onClose }) => {
 				fontSize='1rem'
 				textAlign='center'
 			>
-				{!isUserLogged ? (
+				{!isUserAuthenticated ? (
 					<>
 						<PopoverButton onClose={onClose} route='/login'>
 							Iniciar Sesión

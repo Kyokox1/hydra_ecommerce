@@ -1,8 +1,8 @@
 import { Box, Grid, Text, Stack } from '@chakra-ui/react';
-import { FooterSubscribe } from '~/components/Layout/footer/FooterSubscribe';
+import { FooterSubscribe } from '~/components/layout/footer/FooterSubscribe';
 
-import { NavList } from '~/components/Layout/NavList';
-import FooterSocialMedia from '../components/Layout/footer/FooterSocialMedia';
+import { NavList } from '~/components/layout/NavList';
+import FooterSocialMedia from '../components/layout/footer/FooterSocialMedia';
 
 const Footer = () => {
 	return (
@@ -28,10 +28,10 @@ const Footer = () => {
 					<Text color='gray'>todas las tarjetas</Text>
 				</Box>
 				<Box as='section'>
-					<Text>ENVIOS A TODO EL PAIS</Text>
+					<Text>ENVIOS A TODO EL PAÍS</Text>
 					<Text color='gray'>
-						Recibe el pedido en tu casa o retiralo en la sucursal de
-						Correo mas cercana
+						Recibe el pedido en tu casa o retíralo en la sucursal de
+						Correo más cercana
 					</Text>
 				</Box>
 				<Box
@@ -41,7 +41,7 @@ const Footer = () => {
 					gap='5px'
 					fontSize='1.2rem'
 				>
-					<Text>NAVEGACION</Text>
+					<Text>NAVEGACIÓN</Text>
 					<Box as='nav' color='gray' textAlign='initial'>
 						<NavList direction='column' />
 					</Box>

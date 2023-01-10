@@ -20,11 +20,11 @@ import { useUserAuth } from '~/hooks/useUserAuth';
 // ? assets
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { BsFillPersonFill } from 'react-icons/bs';
-import { ModalCart } from '~/components/Layout/modal-cart/ModalCart';
+import { ModalCart } from '~/components/layout/modal-cart/ModalCart';
 import { PopoverAuthUser } from './popover-auth-user/PopoverAuthUser';
 
 export const NavIcons = () => {
-	const { jwt, isUserLogged } = useUserAuth();
+	const { jwt, isUserAuthenticated } = useUserAuth();
 	const { isOpen, onClose, onOpen } = useDisclosure();
 	const productsCart = useSelector(productsInCart);
 	const dispatch = useDispatch();
@@ -51,7 +51,7 @@ export const NavIcons = () => {
 						</PopoverTrigger>
 						<PopoverAuthUser
 							handleLogout={() => handleLogout(onClose)}
-							isUserLogged={isUserLogged}
+							isUserAuthenticated={isUserAuthenticated}
 							onClose={onClose}
 						/>
 					</>
@@ -70,7 +70,7 @@ export const NavIcons = () => {
 				/>
 				<ModalCart isOpen={isOpen} onClose={onClose} />
 			</Box>
-			{Boolean(productsCart.length) && isUserLogged ? (
+			{Boolean(productsCart.length) && isUserAuthenticated ? (
 				<Text
 					as='span'
 					display='flex'

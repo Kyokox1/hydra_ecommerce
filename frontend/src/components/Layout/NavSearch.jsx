@@ -10,6 +10,7 @@ import { FiSearch } from 'react-icons/fi';
 // ? redux
 import { useDispatch } from 'react-redux';
 import { searchProducts } from '~/features/products/getProductsSlice';
+import { PATHS } from '~/constans/pathsRoutes';
 
 export const NavSearch = () => {
 	const [search, setSearch] = useState('');
@@ -22,7 +23,7 @@ export const NavSearch = () => {
 
 	const handleSearch = (event) => {
 		event.preventDefault();
-		if (pathname !== '/flavors') navigate('/flavors');
+		if (pathname !== PATHS.FLAVORS) navigate(PATHS.FLAVORS);
 
 		dispatch(searchProducts({ search }));
 		setIsSearching(true);
