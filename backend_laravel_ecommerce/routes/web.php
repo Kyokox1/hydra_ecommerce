@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('categories','CategoryController')->except('create');
+//index,xcreate(store),edit(update),destroy
+//vista - edit GET categories/{categoryId}/edit
+//index - index get categories
