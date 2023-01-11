@@ -16,17 +16,8 @@ const productsCartSLice = createSlice({
 				(product) => product.id !== action.payload.id
 			);
 		},
-		incrementProduct(state, action) {
-			state.products.map((product) =>
-				product.id === action.payload.id ? product.count++ : product
-			);
-		},
-		decreaseProduct(state, action) {
-			state.products.map((product) =>
-				product.id === action.payload.id && product.count > 0
-					? product.count--
-					: product
-			);
+		removeAllProducts(state) {
+			state.products = initialState.products;
 		},
 		incrementProductCount(state, action) {
 			state.products.map((product) =>
@@ -52,8 +43,7 @@ export const productsInCart = (state) => state.cartProducts.products;
 export const {
 	addProduct,
 	removeProduct,
-	incrementProduct,
-	decreaseProduct,
+	removeAllProducts,
 	incrementProductCount,
 	decrementProductCount
 } = productsCartSLice.actions;

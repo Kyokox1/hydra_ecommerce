@@ -2,21 +2,29 @@ import { PayPalButtons } from '@paypal/react-paypal-js';
 import { useToast } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { useUserAuth } from '~/hooks/useUserAuth';
+import { PATHS } from '~/constans/pathsRoutes';
+import {
+	extractInfoResgisterProducts,
+	postRegisterOrder
+} from '~/services/orders';
+import { useDispatch } from 'react-redux';
+import { removeAllProducts } from '~/features/products/productsCartSlice';
 
 export const PaypalCheckoutButton = ({ amount, products }) => {
-	const { isUserAuthenticated } = useUserAuth();
+	const { isUserAuthenticated, jwt } = useUserAuth();
 	const toast = useToast();
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	const sendOrder = (name, data) => {
 		if (data.status === 'COMPLETED') {
-			const orderData = {
-				buyer: name,
-				products,
-				payment: data
-			};
+			const purchaseOrder = extractInfoResgisterProducts(products);
+			postRegisterOrder({
+				purchaseOrder,
+				jwt
+			}).then(dispatch(removeAllProducts()));
 
-			navigate('success');
+			navigate(PATHS.SUCCESS);
 
 			toast({
 				description: `Transacción completada por ${name}`,
@@ -39,7 +47,6 @@ export const PaypalCheckoutButton = ({ amount, products }) => {
 			description: `Hubo un error, intentelo más tarde`,
 			status: 'error'
 		});
-
 		console.error(error);
 	};
 

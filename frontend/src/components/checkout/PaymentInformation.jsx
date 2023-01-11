@@ -3,12 +3,18 @@ import bgProduct from '/assets/img-product.png';
 
 export const PaymentInformation = ({ selectOption, totalCost }) => {
 	return (
-		<Flex justify='space-between' w='100%'>
+		<Flex
+			flexDir={{ base: 'column', lg: 'row' }}
+			justify='space-between'
+			gap={{ base: '40px', lg: '0' }}
+			align='center'
+			w='100%'
+		>
 			<Stack
 				divider={<StackDivider />}
 				w='65%'
 				border='1px solid white'
-				p='25px'
+				p={{ base: '10px', sm: '20px', lg: '25px' }}
 			>
 				<Text pl='20px'>Hunteando123@gmail.com</Text>
 				<Box pl='20px'>

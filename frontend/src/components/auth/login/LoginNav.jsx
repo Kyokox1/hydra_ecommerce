@@ -6,7 +6,7 @@ const LoginNav = () => {
 	return (
 		<Stack textAlign='center'>
 			<LinkChakra
-				to={`/${PATHS.REGISTER}`}
+				to={PATHS.REGISTER}
 				as={Link}
 				fontWeight='300'
 				_hover={{
@@ -17,7 +17,7 @@ const LoginNav = () => {
 				Olvidaste Contraseña
 			</LinkChakra>
 			<LinkChakra
-				to={`/${PATHS.REGISTER}`}
+				to={PATHS.REGISTER}
 				as={Link}
 				textDecoration='none'
 				fontWeight='300'

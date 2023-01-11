@@ -4,13 +4,14 @@ import {
 	Stack,
 	Box,
 	Text,
-	Button,
 	StackDivider,
 	Spinner
 } from '@chakra-ui/react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import { useUserAuth } from '~/hooks/useUserAuth';
+import { useWindowSize } from '~/hooks/useWindowSize';
+import { ProductCounter } from '~/components/product/ProductCounter';
 import { ProductImg } from '~/components/product/ProductImg';
 import { ButtonOrange } from '~/components/home/ButtonOrange';
 import { getSingleProduct } from '~/services/products';
@@ -26,6 +27,7 @@ import {
 const Product = () => {
 	// TODO Refactorizar codigo y dividir en componentes
 	const { isUserAuthenticated } = useUserAuth();
+	const { width } = useWindowSize();
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const productsCart = useSelector(productsInCart);
@@ -43,12 +45,6 @@ const Product = () => {
 	}, [product, productsCart]);
 
 	const stockCart = findProductInCart()?.stock ?? stock;
-
-	const handleCounter = (text) => {
-		if (text === 'res' && count > 0) setCount((prevCount) => prevCount - 1);
-		if (text === 'sum' && count < stockCart)
-			setCount((prevCount) => prevCount + 1);
-	};
 
 	const handleAddToCart = (product) => {
 		if (!isUserAuthenticated) return navigate('/login');
@@ -190,34 +186,11 @@ const Product = () => {
 										CANTIDAD
 									</Text>
 									{/* contador */}
-									<Flex
-										align='center'
-										gap={{ base: '8px', md: '15px' }}
-									>
-										<Button
-											onClick={() => handleCounter('res')}
-											bgColor='#D9D9D9'
-											color='black'
-											fontWeight='700'
-											borderRadius='50%'
-											size={{ base: 'xs', sm: 'sm' }}
-										>
-											-
-										</Button>
-										<Text textAlign='center' w='20px'>
-											{count}
-										</Text>
-										<Button
-											onClick={() => handleCounter('sum')}
-											bgColor='#D9D9D9'
-											color='black'
-											fontWeight='700'
-											borderRadius='50%'
-											size={{ base: 'xs', sm: 'sm' }}
-										>
-											+
-										</Button>
-									</Flex>
+									<ProductCounter
+										count={count}
+										setCount={setCount}
+										stockCart={stockCart}
+									/>
 									{/* contador */}
 									<ButtonOrange
 										onClick={() => handleAddToCart(product)}
@@ -228,8 +201,9 @@ const Product = () => {
 										}}
 										color='black'
 									>
-										{/* AGREGAR AL CARRITO */}
-										COMPRAR
+										{width >= 768
+											? 'AGREGAR AL CARRITO'
+											: 'COMPRAR'}
 									</ButtonOrange>
 								</Stack>
 								<Stack></Stack>

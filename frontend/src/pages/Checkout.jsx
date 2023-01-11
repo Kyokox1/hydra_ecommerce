@@ -1,13 +1,14 @@
-import { Flex, Stack, Text, Box, Input, useDisclosure } from '@chakra-ui/react';
+import { Flex, Box, useDisclosure } from '@chakra-ui/react';
 
 // ? components and hooks
 import { PaymentInformation } from '~/components/checkout/PaymentInformation';
 import { PaypalCheckoutButton } from '~/components/checkout/PaypalCheckoutButton';
 import { PayModal } from '~/components/pay-modal/PayModal';
-// import { PaymentOptions } from '~/components/checkout/PaymentOptions';
-// import { ButtonOrange } from '~/components/home/ButtonOrange';
+import { PresentDedication } from '~/components/checkout/PresentDedication';
 import { useShipping } from '~/hooks/useShipping';
 import { NoProductsCheckout } from '~/components/checkout/NoProductsCheckout';
+// import { ButtonOrange } from '~/components/home/ButtonOrange';
+// import { PaymentOptions } from '~/components/checkout/PaymentOptions';
 
 // ? redux
 import { useSelector } from 'react-redux';
@@ -32,8 +33,13 @@ const Checkout = () => {
 				flexDir='column'
 				color='white'
 				minH='100vh'
-				p='150px 5% 50px'
-				gap='30px'
+				p={{
+					base: '150px 0  50px',
+					lg: '150px 2% 50px',
+					xl: '150px 5% 50px'
+				}}
+				gap='40px'
+				align={{ base: 'center', lg: 'initial' }}
 			>
 				{/* header */}
 				<PaymentInformation
@@ -42,22 +48,16 @@ const Checkout = () => {
 				/>
 				{/* header */}
 
-				<Flex w='65%' flexDir='column' align='initial' gap='30px'>
+				<Flex
+					w={{ base: '100%', lg: '65%' }}
+					flexDir='column'
+					align='initial'
+					gap='30px'
+				>
 					{/* <PaymentOptions /> */}
 
 					{/* optional */}
-					{isPresent && (
-						<Stack gap='20px'>
-							<Text>DEDICATORIA PARA REGALO</Text>
-							<Input
-								as='textarea'
-								minH='8rem'
-								maxH='8rem'
-								w='100%'
-								p='15px'
-							/>
-						</Stack>
-					)}
+					{isPresent && <PresentDedication />}
 					{/* optional */}
 
 					{/* <Flex justify='flex-end' > */}
