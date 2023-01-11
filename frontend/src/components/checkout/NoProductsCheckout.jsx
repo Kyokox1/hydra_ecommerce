@@ -8,9 +8,11 @@ export const NoProductsCheckout = () => {
 			minH='100vh'
 			justifyContent='center'
 			align='center'
-			fontSize='2rem'
+			fontSize={{ base: '1.3rem', sm: '1.8rem', md: '2.2rem' }}
 		>
-			<Heading as='h2'>No existen productos en el Carrito.</Heading>
+			<Heading as='h2' fontSize='inherit'>
+				No existen productos en el Carrito.
+			</Heading>
 		</Flex>
 	);
 };
