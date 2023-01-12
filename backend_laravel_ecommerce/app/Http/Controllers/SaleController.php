@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Sale;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SaleController extends Controller
 {
@@ -35,7 +38,45 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $venta=Sale::create([
+                'num_sale'=>'B1929'.rand(1,100000),
+                'date_sale'=>Carbon::now(),
+                'intervalos_cuotas'=>Carbon::now(),
+                'abono_inicial'=>0,
+                'cant_cuotas'=>0
+            ]);
+            $products = json_decode(json_encode($request->products));
+            foreach ($products as $product) {
+               DB::table('product_sale')->insert([
+                'quantity_products'=>$product->quantity,
+                'product_id'=>$product->product_id,
+                'sale_id'=>$venta->id,
+                'total'=>$product->total
+               ]);
+            }
+            DB::table('sale_user')->insert([
+                'sale_id'=>$venta->id,
+                'user_id'=>Auth::user()->id,
+                'abono'=>0,
+                'saldo_historico'=>0,
+                'date_abono'=>Carbon::now()
+            ]);
+            DB::commit();
+            return response()->json([
+                'message' => 'Compra realizada con exito',
+                'status' => 'success',
+                'compra' => $venta
+            ], 201);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json([
+                'message' => 'Error al realizar la compra',
+                'status' => 'error',
+                'error' => $th->getMessage()
+            ], 400);
+        }
     }
 
     /**
@@ -83,3 +124,4 @@ class SaleController extends Controller
         //
     }
 }
+
