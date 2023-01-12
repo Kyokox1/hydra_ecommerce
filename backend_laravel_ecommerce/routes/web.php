@@ -22,6 +22,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('categories','CategoryController')->except('create');
 Route::resource('products','Backend\ProductController')->except('create');
+Route::resource('sales','Backend\SaleController')->except('create','store','edit','update');
 //index,xcreate(store),edit(update),destroy
 //vista - edit GET categories/{categoryId}/edit
 //index - index get categories

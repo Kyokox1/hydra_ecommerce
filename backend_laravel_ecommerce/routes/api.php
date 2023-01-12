@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::group(['middleware' => 'roles:Client'], function () {
         Route::post('venta-client','SaleController@store');
+        Route::get('mis-ordenes','SaleController@index');
     });
 });
 
