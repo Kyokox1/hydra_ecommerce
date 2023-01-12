@@ -349,16 +349,8 @@ return [
             'icon'    => 'fas fa-users',
             'submenu' => [
                 [
-                    'text' => 'Ventas Pendientes',
-                    'url'  => '#',
-                ],
-                [
-                    'text' => 'Ventas Aceptadas',
-                    'url'  => '#',
-                ],
-                [
-                    'text' => 'Ventas Canceladas',
-                    'url'  => '#',
+                    'text' => 'Ventas registradas',
+                    'url'  => 'sales',
                 ],
             ],
         ],
