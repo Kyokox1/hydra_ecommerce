@@ -8,11 +8,23 @@ const navElement = [
 	{ name: 'promociones', path: PATHS.PROMOTIONS }
 ];
 
-export const NavList = ({ direction = 'row', gap = '0', mayus = false }) => {
+export const NavList = ({
+	direction = 'row',
+	gap = '0',
+	mayus = false,
+	icon,
+	onClick = null
+}) => {
 	return (
-		<Flex direction={direction} flex='1' justify='space-around' gap={gap}>
-			{navElement.map(({ name, path }) => (
-				<NavLinkChakra key={`nav-${name}`} to={path}>
+		<Flex
+			onClick={onClick}
+			direction={direction}
+			flex='1'
+			justify='space-around'
+			gap={gap}
+		>
+			{navElement.map(({ name, path }, i) => (
+				<NavLinkChakra key={`nav-${name}`} to={path} icon={icon} i={i}>
 					{mayus ? name.toUpperCase() : name}
 				</NavLinkChakra>
 			))}

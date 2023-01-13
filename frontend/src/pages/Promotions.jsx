@@ -10,7 +10,7 @@ import { FooterBanners } from '~/components/flavors/FooterBanners';
 
 const Promotions = () => {
 	const { selectFilters, setSelectFilters } = useFilters();
-	const { products, isLoading, showAllProducts, productsList } = useProducts({
+	const { products, isLoading } = useProducts({
 		selectFilters,
 		productsInView: 5
 	});
@@ -19,15 +19,11 @@ const Promotions = () => {
 	const [selectedCategories, setSelectedCategories] = useState([]);
 
 	const filteredProducts = () => {
-		if (!selectedCategories.length) return products();
+		if (!selectedCategories.length) return products().slice(0, 5);
 
-		const filtered = productsList.filter((product) =>
+		return products().filter((product) =>
 			selectedCategories.includes(product.category_id)
 		);
-
-		return filtered.length > 5 && !showAllProducts
-			? filtered.slice(0, 5)
-			: filtered;
 	};
 
 	return (
@@ -54,6 +50,7 @@ const Promotions = () => {
 					alignItems='center'
 					justifyContent='center'
 					gap='80px'
+					w='100%'
 				>
 					<Filters
 						selectFilters={selectFilters}

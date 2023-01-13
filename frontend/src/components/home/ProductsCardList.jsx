@@ -1,4 +1,4 @@
-import { Grid } from '@chakra-ui/react';
+import { Grid, Text } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import { productsInCart } from '~/features/products/productsCartSlice';
 import { ProductsCardItem } from './ProductsCardItem';
@@ -15,6 +15,13 @@ export const ProductsCardList = ({ products }) => {
 
 	const halfOfProducts = Math.round(products().length / 2);
 
+	if (!products().length)
+		return (
+			<Text fontSize='2rem' color='white'>
+				No existen productos
+			</Text>
+		);
+
 	return (
 		<Grid
 			as='section'
@@ -23,12 +30,12 @@ export const ProductsCardList = ({ products }) => {
 			maxW='1030px'
 			gridTemplateColumns={{
 				base: `repeat(${halfOfProducts}, minmax(180px,1fr))`,
-				md: 'repeat(auto-fill, minmax(160px,1fr))'
+				lg: 'repeat(auto-fill, minmax(160px,1fr))'
 			}}
 			gap='15px'
 			px={{ base: '20px', md: '0' }}
 			overflow='auto'
-			overscrollBehaviorX={{ base: 'contain', md: 'none' }}
+			overscrollBehaviorX={{ base: 'contain', lg: 'none' }}
 		>
 			{products().map((product) => (
 				<ProductsCardItem

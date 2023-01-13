@@ -21,7 +21,13 @@ export const AsideFilters = ({ selectedCategories, setSelectedCategories }) => {
 	};
 
 	return (
-		<Stack as='aside' w='20%' gap='80px' alignItems='center'>
+		<Stack
+			display={{ base: 'none', lg: 'flex' }}
+			as='aside'
+			w='20%'
+			gap='80px'
+			alignItems='center'
+		>
 			<Text as='header'>
 				Incio
 				<Text as='span' fontWeight='700'>

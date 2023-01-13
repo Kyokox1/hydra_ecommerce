@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Flex, Stack, Spinner } from '@chakra-ui/react';
+import { Flex, Stack, Spinner, Box } from '@chakra-ui/react';
 
 // ? components and hooks
 import { TopBanner } from '~/components/flavors/TopBanner';
@@ -64,6 +64,7 @@ const Flavors = () => {
 					alignItems='center'
 					justifyContent='center'
 					gap='80px'
+					w='100%'
 				>
 					<Filters
 						selectFilters={selectFilters}
@@ -76,15 +77,17 @@ const Flavors = () => {
 							<ProductsCardList products={filteredProducts} />
 						)}
 					</Flex>
-					<ButtonOrange
-						p='18px 35px'
-						disabled={disabledButton}
-						onClick={showMoreProducts}
-					>
-						{showAllProducts
-							? 'VER MENOS PRODUCTOS'
-							: 'VER TODOS LOS PRODUCTOS'}
-					</ButtonOrange>
+					<Box display={{ base: 'none', lg: 'block' }}>
+						<ButtonOrange
+							p='18px 35px'
+							disabled={disabledButton}
+							onClick={showMoreProducts}
+						>
+							{showAllProducts
+								? 'VER MENOS PRODUCTOS'
+								: 'VER TODOS LOS PRODUCTOS'}
+						</ButtonOrange>
+					</Box>
 					{/* footer */}
 					<FooterBanners />
 					{/* footer */}

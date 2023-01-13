@@ -12,7 +12,7 @@ import { useDispatch } from 'react-redux';
 import { searchProducts } from '~/features/products/getProductsSlice';
 import { PATHS } from '~/constans/pathsRoutes';
 
-export const NavSearch = () => {
+export const NavSearch = ({ onClose = null }) => {
 	const [search, setSearch] = useState('');
 	const { setIsSearching } = useContext(SearchContext);
 
@@ -28,6 +28,7 @@ export const NavSearch = () => {
 		dispatch(searchProducts({ search }));
 		setIsSearching(true);
 		setSearch('');
+		onClose && onClose();
 	};
 
 	return (
@@ -35,7 +36,7 @@ export const NavSearch = () => {
 			as='form'
 			onSubmit={handleSearch}
 			display='flex'
-			w='100px'
+			w={{ base: '200px', sm: '150px', md: '100px' }}
 			alignItems='center'
 			borderBottom='white 1px solid'
 		>

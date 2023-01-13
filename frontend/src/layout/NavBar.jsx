@@ -6,9 +6,9 @@ import whiteLogo from '/assets/logo-white.png';
 import navBarBg from '/assets/navBar.png';
 
 // components
-import { NavList } from '~/components/layout/NavList';
-import { NavSearch } from '~/components/layout/NavSearch';
-import { NavIcons } from '~/components/layout/NavIcons';
+import { NavList } from '~/components/layout/navbar/NavList';
+import { NavSearch } from '~/components/layout/navbar/NavSearch';
+import { NavIcons } from '~/components/layout/navbar/NavIcons';
 
 export const NavBar = () => {
 	return (
@@ -42,11 +42,22 @@ export const NavBar = () => {
 					direction='row'
 					w='70%'
 					gap='30px'
-					justifyContent='space-evenly'
+					justifyContent={{
+						base: 'flex-end',
+						md: 'space-evenly'
+					}}
 					alignItems='center'
 				>
-					<NavList gap='20px' mayus={true} />
-					<NavSearch />
+					<Flex
+						display={{ base: 'none', md: 'flex' }}
+						gap='30px'
+						flex='1'
+					>
+						<NavList gap='20px' mayus={true} />
+					</Flex>
+					<Flex display={{ base: 'none', sm: 'flex' }}>
+						<NavSearch />
+					</Flex>
 					<NavIcons />
 				</Stack>
 			</Flex>

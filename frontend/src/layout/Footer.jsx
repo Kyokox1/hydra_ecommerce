@@ -1,7 +1,7 @@
 import { Box, Grid, Text, Stack } from '@chakra-ui/react';
 import { FooterSubscribe } from '~/components/layout/footer/FooterSubscribe';
 
-import { NavList } from '~/components/layout/NavList';
+import { NavList } from '~/components/layout/navbar/NavList';
 import FooterSocialMedia from '../components/layout/footer/FooterSocialMedia';
 
 const Footer = () => {

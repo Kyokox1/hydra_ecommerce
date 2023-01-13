@@ -1,7 +1,6 @@
 import {
 	Flex,
 	IconButton,
-	Text,
 	Box,
 	useDisclosure,
 	Popover,
@@ -10,8 +9,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 // ? redux
-import { useDispatch, useSelector } from 'react-redux';
-import { productsInCart } from '~/features/products/productsCartSlice';
+import { useDispatch } from 'react-redux';
 import { logoutUser } from '~/features/user/userSlice';
 
 // ? components
@@ -21,12 +19,16 @@ import { useUserAuth } from '~/hooks/useUserAuth';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { ModalCart } from '~/components/layout/modal-cart/ModalCart';
-import { PopoverAuthUser } from './popover-auth-user/PopoverAuthUser';
+import { PopoverAuthUser } from '../popover-auth-user/PopoverAuthUser';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { NavIconButton } from './NavIconButton';
+import { HamburgerModal } from '../mobile-modal-nav/HamburgerModal';
+import { CartCounterIndicator } from './CartCounterIndicator';
 
 export const NavIcons = () => {
 	const { jwt, isUserAuthenticated } = useUserAuth();
-	const { isOpen, onClose, onOpen } = useDisclosure();
-	const productsCart = useSelector(productsInCart);
+	const cart = useDisclosure();
+	const hamburger = useDisclosure();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
@@ -35,7 +37,13 @@ export const NavIcons = () => {
 	};
 
 	return (
-		<Flex justify='center' align='center' pos='relative' fontSize='1.5rem'>
+		<Flex
+			justify='center'
+			align='center'
+			pos='relative'
+			gap={{ base: '10px', md: '0' }}
+			fontSize='1.5rem'
+		>
 			<Popover placement='bottom-end'>
 				{({ isOpen, onClose }) => (
 					<>
@@ -59,35 +67,26 @@ export const NavIcons = () => {
 			</Popover>
 
 			<Box pos='relative'>
-				<IconButton
-					onClick={onOpen}
-					fontSize='inherit'
-					variant='ghost'
-					color='white'
-					colorScheme='whiteAlpha'
-					isRound
+				<NavIconButton
 					icon={<AiOutlineShoppingCart />}
+					onClick={cart.onOpen}
 				/>
-				<ModalCart isOpen={isOpen} onClose={onClose} />
+				<ModalCart isOpen={cart.isOpen} onClose={cart.onClose} />
 			</Box>
-			{Boolean(productsCart.length) && isUserAuthenticated ? (
-				<Text
-					as='span'
-					display='flex'
-					justifyContent='center'
-					alignItems='center'
-					pos='absolute'
-					top='2px'
-					right='5px'
-					h='15px'
-					w='15px'
-					fontSize='.8rem'
-					bgColor='red'
-					borderRadius='50%'
-				>
-					{productsCart.length}
-				</Text>
-			) : null}
+
+			<Box pos='relative' display={{ base: 'block', md: 'none' }}>
+				<NavIconButton
+					icon={<GiHamburgerMenu size='1.4rem' />}
+					onClick={hamburger.onOpen}
+				/>
+
+				<HamburgerModal
+					isOpen={hamburger.isOpen}
+					onClose={hamburger.onClose}
+				/>
+			</Box>
+
+			<CartCounterIndicator isUserAuthenticated={isUserAuthenticated} />
 		</Flex>
 	);
 };
