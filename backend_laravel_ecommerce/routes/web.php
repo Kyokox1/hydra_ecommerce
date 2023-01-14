@@ -26,3 +26,4 @@ Route::resource('sales','Backend\SaleController')->except('create','store','edit
 //index,xcreate(store),edit(update),destroy
 //vista - edit GET categories/{categoryId}/edit
 //index - index get categories
+Route::resource('registers','UserController')->except('create');
