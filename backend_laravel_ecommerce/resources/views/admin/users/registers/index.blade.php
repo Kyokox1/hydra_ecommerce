@@ -70,7 +70,7 @@
             </div>
         </div>
     </div>
-    @include('admin.categories.modal')
+    @include('admin.users.registers.modal')
 @endsection
 @section('scripts')
     @include('admin.util')

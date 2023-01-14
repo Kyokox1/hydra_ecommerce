@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <form action="{{ route('users.update',$user->id) }}" class="card card-outline card-primary mt-2" method="POST">
+        <form action="{{ route('registers.update',$user->id) }}" class="card card-outline card-primary mt-2" method="POST">
             @csrf
             @method('PUT')
             <div class="card-header">
@@ -11,7 +11,7 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="name">Nombre(*)</label>
-                    <input type="text" class="form-control name-user" name="name"
+                    <input type="text" class="form-control name-category" name="name"
                         placeholder="Ingrese el nombre de usuario" value="{{ old('name') ?? $user->name }}">
                 </div>
             </div>
