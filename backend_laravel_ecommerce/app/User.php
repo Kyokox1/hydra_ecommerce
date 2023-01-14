@@ -40,6 +40,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+    public function sales()
+    {
+        return $this->belongsToMany(Sale::class);
+    }
     public function hasRoles(array $roles){
         foreach($roles as $rol){
             if($this->role->name==$rol){
