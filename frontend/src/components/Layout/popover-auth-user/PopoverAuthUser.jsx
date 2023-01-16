@@ -1,6 +1,7 @@
 import { PopoverBody, PopoverContent, Spinner, Text } from '@chakra-ui/react';
 import { BiLogIn, BiLogOut } from 'react-icons/bi';
 import { GoSignIn } from 'react-icons/go';
+import { MdHistory } from 'react-icons/md';
 
 import { PopoverButton } from './PopoverButton';
 import { PATHS } from '~/constans/pathsRoutes';
@@ -37,6 +38,10 @@ export const PopoverAuthUser = ({
 					</>
 				) : (
 					<>
+						<PopoverButton onClick={onClose} route={PATHS.HISTORY}>
+							<MdHistory size='1.3rem' />
+							<Text ml='8px'>Historial</Text>
+						</PopoverButton>
 						<PopoverButton onClick={handleLogout}>
 							{isLoadingUser ? (
 								<Spinner colorScheme='white' />

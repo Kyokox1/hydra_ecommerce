@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
 import {
 	Flex,
 	Text,
@@ -8,15 +7,18 @@ import {
 	Spinner,
 	useDisclosure
 } from '@chakra-ui/react';
+import { BiLogIn } from 'react-icons/bi';
 
-import { useUserAuth } from '~/hooks/useUserAuth';
-import { PATHS } from '~/constans/pathsRoutes';
 import { MyAccountTable } from '~/components/history/MyAccountTable';
 import { LastOrdersTable } from '~/components/history/LastOrdersTable';
+import { DetailsModal } from '~/components/history/details-modal/DetailsModal';
+import { PopoverButton } from '~/components/layout/popover-auth-user/PopoverButton';
+import { useUserAuth } from '~/hooks/useUserAuth';
+import { useFetch } from '~/hooks/useFetch';
+import { PATHS } from '~/constans/pathsRoutes';
+
 import { useSelector } from 'react-redux';
 import { productsInCart } from '~/features/products/productsCartSlice';
-import { DetailsModal } from '~/components/history/DetailsModal';
-import { useFetch } from '~/hooks/useFetch';
 
 const RedeemHistory = () => {
 	const { isUserAuthenticated, jwt } = useUserAuth();
@@ -35,26 +37,25 @@ const RedeemHistory = () => {
 		[productsHistory, productsInCart]
 	);
 
-	const newArr = useMemo(
-		() =>
-			productsHistory.map((product) => ({
-				numOrder: product.num_sale,
-				subtotal: product.products.reduce(
+	const newArr = useMemo(() => {
+		if (!productsHistory.length) return [];
+		return productsHistory.map((product) => ({
+			numOrder: product.num_sale,
+			subtotal: product.products.reduce(
+				(acc, curr) => acc + curr.pivot.total,
+				0
+			),
+			discount: 0,
+			shippingAmount: 1300,
+			total:
+				product.products.reduce(
 					(acc, curr) => acc + curr.pivot.total,
 					0
-				),
-				discount: 0,
-				shippingAmount: 1300,
-				total:
-					product.products.reduce(
-						(acc, curr) => acc + curr.pivot.total,
-						0
-					) + 1300,
-				state: 'enviado',
-				dateSale: product.date_sale
-			})),
-		[productsHistory]
-	);
+				) + 1300,
+			state: 'enviado',
+			dateSale: product.date_sale
+		}));
+	}, [productsHistory]);
 
 	const lastOrders = useMemo(
 		() => ({
@@ -91,7 +92,10 @@ const RedeemHistory = () => {
 			textAlign={{ base: 'center', md: 'initial' }}
 		>
 			{!isUserAuthenticated ? (
-				<Link to={PATHS.LOGIN}>Iniciar Sesión</Link>
+				<PopoverButton route={PATHS.LOGIN}>
+					<BiLogIn size='1.4rem' />
+					<Text ml='8px'>Iniciar Sesión</Text>
+				</PopoverButton>
 			) : isLoading ? (
 				<Spinner size='xl' alignSelf='center' />
 			) : (
