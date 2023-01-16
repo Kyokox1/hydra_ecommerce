@@ -15,6 +15,7 @@ import { DetailsModal } from '~/components/history/details-modal/DetailsModal';
 import { PopoverButton } from '~/components/layout/popover-auth-user/PopoverButton';
 import { useUserAuth } from '~/hooks/useUserAuth';
 import { useFetch } from '~/hooks/useFetch';
+import { getProductsHistory } from '~/services/orders/getProductsHistory';
 import { PATHS } from '~/constans/pathsRoutes';
 
 import { useSelector } from 'react-redux';
@@ -22,7 +23,9 @@ import { productsInCart } from '~/features/products/productsCartSlice';
 
 const RedeemHistory = () => {
 	const { isUserAuthenticated, jwt } = useUserAuth();
-	const { productsHistory, isLoading } = useFetch({ jwt });
+	const { product: productsHistory, isLoading } = useFetch(() =>
+		getProductsHistory({ jwt })
+	);
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const productsCart = useSelector(productsInCart);
 	const [contentModal, setContentModal] = useState({});

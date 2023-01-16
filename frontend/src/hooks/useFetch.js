@@ -1,16 +1,15 @@
 import { useState, useEffect } from 'react';
-import { getProductsHistory } from '~/services/orders/getProductsHistory';
 
-export const useFetch = ({ jwt }) => {
-	const [productsHistory, setProductsHistory] = useState([]);
+export const useFetch = (service) => {
+	const [product, setProduct] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		getProductsHistory({ jwt }).then((data) => {
-			setProductsHistory(data);
+		service().then((data) => {
+			setProduct(data);
 			setIsLoading(false);
 		});
 	}, []);
 
-	return { productsHistory, isLoading };
+	return { product, isLoading };
 };

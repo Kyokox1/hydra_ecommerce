@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import {
 	Flex,
 	Stack,
@@ -23,6 +23,7 @@ import {
 	incrementProductCount,
 	productsInCart
 } from '~/features/products/productsCartSlice';
+import { useFetch } from '~/hooks/useFetch';
 
 const Product = () => {
 	// TODO Refactorizar codigo y dividir en componentes
@@ -31,8 +32,7 @@ const Product = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const productsCart = useSelector(productsInCart);
-	const [product, setProduct] = useState({});
-	const [isLoading, setIsLoading] = useState(true);
+	const { product, isLoading } = useFetch(() => getSingleProduct({ id }));
 	const [count, setCount] = useState(0);
 	const navigate = useNavigate();
 
@@ -63,13 +63,6 @@ const Product = () => {
 		dispatch(incrementProductCount({ id: product.id, count }));
 		setCount(0);
 	};
-
-	useEffect(() => {
-		getSingleProduct({ id }).then((data) => {
-			setProduct(data);
-			setIsLoading(false);
-		});
-	}, []);
 
 	return (
 		<Flex
