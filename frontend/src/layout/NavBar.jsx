@@ -1,14 +1,15 @@
 import { Flex, Image, Stack, Heading } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
-// assets
+// ? assets
 import whiteLogo from '/assets/logo-white.png';
 import navBarBg from '/assets/navBar.png';
 
-// components
+// ? components
 import { NavList } from '~/components/layout/navbar/NavList';
 import { NavSearch } from '~/components/layout/navbar/NavSearch';
 import { NavIcons } from '~/components/layout/navbar/NavIcons';
+import { PATHS } from '~/constans/pathsRoutes';
 
 export const NavBar = () => {
 	return (
@@ -32,7 +33,7 @@ export const NavBar = () => {
 					opacity='0.9'
 					zIndex='-1'
 				/>
-				<Link to='/'>
+				<Link to={PATHS.HOME}>
 					<Heading as='h1'>
 						<Image src={whiteLogo} alt='HYRA STORE' />
 					</Heading>

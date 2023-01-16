@@ -13,6 +13,7 @@ export const ButtonOrange = ({
 			disabled={disabled}
 			h='max-content'
 			p={p}
+			type='submit'
 			fontSize='0.875rem'
 			fontWeight='600'
 			bgColor='#E68C11'

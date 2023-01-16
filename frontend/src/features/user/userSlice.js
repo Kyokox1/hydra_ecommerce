@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { postLoginUser, postLogoutUser, postSignUpUser } from '~/services/auth';
 import { updateJwt } from './jwtSlice';
+import { PATHS } from '~/constans/pathsRoutes';
 
 const initialState = {
 	user: {},
@@ -73,7 +74,7 @@ export const registerUser =
 
 			dispatch(fetchUserComplete({ user, jwt }));
 			dispatch(updateJwt(jwt));
-			navigate('/');
+			navigate(PATHS.HOME);
 			resetForm();
 		} catch (error) {
 			dispatch(fetchUserError(error));
@@ -95,7 +96,7 @@ export const loginUser =
 				return dispatch(fetchUserError(true));
 			dispatch(fetchUserComplete({ user, jwt: token }));
 			dispatch(updateJwt(token));
-			navigate('/');
+			navigate(PATHS.HOME);
 		} catch (error) {
 			dispatch(fetchUserError(error));
 		}
@@ -114,7 +115,7 @@ export const logoutUser =
 			closePopover();
 			dispatch(fetchUserReset());
 			dispatch(updateJwt(null));
-			navigate('/login');
+			navigate(PATHS.LOGIN);
 		} catch (error) {
 			dispatch(fetchUserError(error));
 		}

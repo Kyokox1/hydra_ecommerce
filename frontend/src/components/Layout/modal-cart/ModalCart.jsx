@@ -6,7 +6,8 @@ import {
 	DrawerContent,
 	DrawerCloseButton,
 	Box,
-	Stack
+	Stack,
+	Text
 } from '@chakra-ui/react';
 
 // ? redux
@@ -24,6 +25,10 @@ import { CartProductList } from './CartProductList';
 import { useShipping } from '~/hooks/useShipping';
 import { useUserAuth } from '~/hooks/useUserAuth';
 import { PopoverButton } from '../popover-auth-user/PopoverButton';
+import { PATHS } from '~/constans/pathsRoutes';
+
+import { BiLogIn } from 'react-icons/bi';
+import { GoSignIn } from 'react-icons/go';
 
 export const ModalCart = ({ isOpen, onClose }) => {
 	const { isUserAuthenticated } = useUserAuth();
@@ -55,14 +60,19 @@ export const ModalCart = ({ isOpen, onClose }) => {
 					>
 						{!isUserAuthenticated ? (
 							<Stack>
-								<PopoverButton onClose={onClose} route='/login'>
-									Iniciar Sesión
+								<PopoverButton
+									onClick={onClose}
+									route={PATHS.LOGIN}
+								>
+									<BiLogIn size='1.4rem' />
+									<Text ml='8px'>Iniciar Sesión </Text>
 								</PopoverButton>
 								<PopoverButton
-									onClose={onClose}
-									route='/signIn'
+									onClick={onClose}
+									route={PATHS.REGISTER}
 								>
-									Registrarse
+									<GoSignIn size='1.3rem' />
+									<Text ml='8px'>Registrarse</Text>
 								</PopoverButton>
 							</Stack>
 						) : (

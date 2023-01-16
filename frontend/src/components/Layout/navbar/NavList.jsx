@@ -3,7 +3,7 @@ import { PATHS } from '~/constans/pathsRoutes';
 import { NavLinkChakra } from './NavLinkChakra';
 
 const navElement = [
-	{ name: 'inicio', path: '/' },
+	{ name: 'inicio', path: PATHS.HOME },
 	{ name: 'sabores', path: PATHS.FLAVORS },
 	{ name: 'promociones', path: PATHS.PROMOTIONS }
 ];

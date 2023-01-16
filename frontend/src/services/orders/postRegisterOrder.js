@@ -17,7 +17,6 @@ export const postRegisterOrder = async ({ purchaseOrder, jwt }) => {
 			options
 		);
 		const data = await response.json();
-		console.log(data);
 		return data;
 	} catch (error) {
 		console.log(error);

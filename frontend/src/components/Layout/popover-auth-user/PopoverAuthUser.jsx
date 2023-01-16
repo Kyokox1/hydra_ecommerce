@@ -1,9 +1,19 @@
-import { PopoverBody, PopoverContent, Button, Spinner } from '@chakra-ui/react';
+import { PopoverBody, PopoverContent, Spinner, Text } from '@chakra-ui/react';
+import { BiLogIn, BiLogOut } from 'react-icons/bi';
+import { GoSignIn } from 'react-icons/go';
+
+import { PopoverButton } from './PopoverButton';
+import { PATHS } from '~/constans/pathsRoutes';
+
+//  ? redux
 import { useSelector } from 'react-redux';
 import { userIsLoading } from '~/features/user/userSlice';
-import { PopoverButton } from './PopoverButton';
 
-export const PopoverAuthUser = ({ isUserAuthenticated, handleLogout, onClose }) => {
+export const PopoverAuthUser = ({
+	isUserAuthenticated,
+	handleLogout,
+	onClose
+}) => {
 	const isLoadingUser = useSelector(userIsLoading);
 
 	return (
@@ -16,28 +26,27 @@ export const PopoverAuthUser = ({ isUserAuthenticated, handleLogout, onClose }) 
 			>
 				{!isUserAuthenticated ? (
 					<>
-						<PopoverButton onClose={onClose} route='/login'>
-							Iniciar Sesión
+						<PopoverButton onClick={onClose} route={PATHS.LOGIN}>
+							<BiLogIn size='1.4rem' />
+							<Text ml='8px'>Iniciar Sesión </Text>
 						</PopoverButton>
-						<PopoverButton onClose={onClose} route='/signIn'>
-							Registrarse
+						<PopoverButton onClick={onClose} route={PATHS.REGISTER}>
+							<GoSignIn size='1.3rem' />
+							<Text ml='8px'>Registrarse</Text>
 						</PopoverButton>
 					</>
 				) : (
 					<>
-						<Button
-							onClick={handleLogout}
-							w='100%'
-							variant='ghost'
-							colorScheme='whiteAlpha'
-							color='white'
-						>
+						<PopoverButton onClick={handleLogout}>
 							{isLoadingUser ? (
 								<Spinner colorScheme='white' />
 							) : (
-								'Cerrar Sesión'
+								<>
+									<BiLogOut size='1.3rem' />
+									<Text ml='8px'>Cerrar Sesión</Text>
+								</>
 							)}
-						</Button>
+						</PopoverButton>
 					</>
 				)}
 			</PopoverBody>

@@ -1,11 +1,11 @@
 import { Button } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
-export const PopoverButton = ({ onClose, route, children }) => {
+export const PopoverButton = ({ onClick, route, children }) => {
 	return (
 		<Link to={route}>
 			<Button
-				onClick={onClose}
+				onClick={onClick}
 				w='100%'
 				variant='ghost'
 				colorScheme='whiteAlpha'

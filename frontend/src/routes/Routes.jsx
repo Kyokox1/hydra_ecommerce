@@ -9,6 +9,7 @@ import Promotions from '~/pages/Promotions';
 import Checkout from '~/pages/Checkout';
 import Success from '~/pages/Success';
 import Flavors from '~/pages/Flavors';
+import RedeemHistory from '~/pages/RedeemHistory';
 import AuthGuard from '~/guards/AuthGuard';
 import { PATHS } from '~/constans/pathsRoutes';
 
@@ -16,7 +17,7 @@ const RoutesComp = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path='/' element={<Layout />}>
+				<Route path={PATHS.HOME} element={<Layout />}>
 					<Route index element={<Home />} />
 					<Route element={<AuthGuard />}>
 						<Route path={PATHS.LOGIN} element={<Login />} />
@@ -25,9 +26,10 @@ const RoutesComp = () => {
 					<Route path={PATHS.PROMOTIONS} element={<Promotions />} />
 					<Route path={PATHS.FLAVORS} element={<Flavors />} />
 					<Route path={PATHS.PRODUCT} element={<Product />} />
-					<Route path='*' element={<Home />} />
 					<Route path={PATHS.CHECKOUT} element={<Checkout />} />
 					<Route path={PATHS.SUCCESS} element={<Success />} />
+					<Route path={PATHS.HISTORY} element={<RedeemHistory />} />
+					<Route path='*' element={<Home />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>
