@@ -24,6 +24,7 @@ import {
 	productsInCart
 } from '~/features/products/productsCartSlice';
 import { useFetch } from '~/hooks/useFetch';
+import { currencyFormatter } from '~/services/prices/currencyFormatter';
 
 const Product = () => {
 	// TODO Refactorizar codigo y dividir en componentes
@@ -37,6 +38,8 @@ const Product = () => {
 	const navigate = useNavigate();
 
 	const { name, price, cost, code, stock } = product;
+	const priceFormat = currencyFormatter({ value: price });
+	const costFormat = currencyFormatter({ value: cost });
 
 	const findProductInCart = useCallback(() => {
 		return productsCart.find(
@@ -154,9 +157,9 @@ const Product = () => {
 										textDecor='line-through'
 										fontSize={{ base: '.7rem', sm: '1rem' }}
 									>
-										${price}
+										{priceFormat}
 									</Text>
-									<Text>${cost}</Text>
+									<Text>{costFormat}</Text>
 								</Box>
 							</Flex>
 							{/* Second section */}

@@ -8,6 +8,7 @@ import {
 } from '@chakra-ui/react';
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { currencyFormatter } from '~/services/prices/currencyFormatter';
 
 // components
 import { ButtonOrange } from './ButtonOrange';
@@ -25,6 +26,8 @@ export const ProductsCardItem = ({
 	count
 }) => {
 	const canBuyProduct = useMemo(() => stock <= count(), [count, stock]);
+	const prevPriceFormat = currencyFormatter({ value: prevPrice });
+	const priceFormat = currencyFormatter({ value: price });
 
 	return (
 		<Box
@@ -54,9 +57,9 @@ export const ProductsCardItem = ({
 					</Heading>
 				</LinkChakra>
 				<Text fontWeight='100' textDecoration='line-through'>
-					{prevPrice}
+					{prevPriceFormat}
 				</Text>
-				<Text fontWeight='100'>{price}</Text>
+				<Text fontWeight='100'>{priceFormat}</Text>
 			</Stack>
 			<Link to={`/product/${id}`}>
 				<ButtonOrange disabled={canBuyProduct}>COMPRAR</ButtonOrange>

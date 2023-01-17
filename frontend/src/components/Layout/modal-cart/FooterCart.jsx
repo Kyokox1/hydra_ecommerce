@@ -3,14 +3,16 @@ import { Link } from 'react-router-dom';
 
 import { ButtonOrange } from '~/components/home/ButtonOrange';
 import { PATHS } from '~/constans/pathsRoutes';
+import { currencyFormatter } from '~/services/prices/currencyFormatter';
 
 export const FooterCart = ({ totalCost, onClose, productsCart }) => {
+	const totalCostFormat = currencyFormatter({ value: totalCost });
 	return (
 		<DrawerFooter display='flex' flexDir='column' gap='20px' as='footer'>
 			<Flex w='100%' justify='space-between'>
 				<Text>Total :</Text>
 				<Text pr='10%'>
-					{!productsCart.length ? '$000' : `$${totalCost}`}
+					{!productsCart.length ? '$000' : totalCostFormat}
 				</Text>
 			</Flex>
 			<Flex w='100%' justify='space-between' align='center'>

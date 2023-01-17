@@ -1,6 +1,8 @@
 import { RadioGroup, Flex, Radio, Text, Box } from '@chakra-ui/react';
-import { useDispatch, useSelector } from 'react-redux';
 import { optionsShipping } from '~/constans/optionsShipping';
+import { currencyFormatter } from '~/services/prices/currencyFormatter';
+
+import { useDispatch, useSelector } from 'react-redux';
 import {
 	changeShippingOption,
 	shippingCartState
@@ -22,7 +24,7 @@ export const ShippingOptions = () => {
 			gap='10px'
 			defaultValue={shippingOption}
 		>
-			{optionsShipping.map((option, i) => (
+			{optionsShipping.map((option) => (
 				<Flex key={option.header} flexDir='column'>
 					<Text>{option.header}</Text>
 					<Flex
@@ -44,7 +46,9 @@ export const ShippingOptions = () => {
 								<Text>{option.textBody}</Text>
 							</Box>
 						</Flex>
-						<Text>{option.price}</Text>
+						<Text>
+							{currencyFormatter({ value: option.price })}
+						</Text>
 					</Flex>
 				</Flex>
 			))}

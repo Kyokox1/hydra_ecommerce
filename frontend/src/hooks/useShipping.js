@@ -18,11 +18,8 @@ export const useShipping = () => {
 		.map((product) => product.cost * product.count)
 		.reduce((acc, curr) => acc + curr, 0);
 
-	// ? Transform the price product "$1300" in 1300
-	const shippingPrice = Number(selectOption.price.slice(1));
-
 	// ? Calculate the price of all products plus shipping
-	const totalCost = totalPriceProducts + shippingPrice;
+	const totalCost = totalPriceProducts + selectOption.price;
 
 	return { shippingOption, selectOption, totalPriceProducts, totalCost };
 };

@@ -31,7 +31,7 @@ export const PostalCode = () => {
 					CALCULAR
 				</ButtonGray>
 			</FormControl>
-			<Text fontSize='.9rem'>Envio gratis superando los $15.000</Text>
+			<Text fontSize='.9rem'>Envio gratis superando los $15,000</Text>
 		</Flex>
 	);
 };

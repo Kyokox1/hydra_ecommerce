@@ -7,6 +7,7 @@ import {
 	TableContainer,
 	Badge
 } from '@chakra-ui/react';
+import { currencyFormatter } from '~/services/prices/currencyFormatter';
 import { TdResponsive } from './TdResponsive';
 
 export const LastOrdersTable = ({ titles, body, handleClick }) => {
@@ -62,16 +63,18 @@ export const LastOrdersTable = ({ titles, body, handleClick }) => {
 								{data.numOrder}
 							</TdResponsive>
 							<TdResponsive titles={titles[1]}>
-								$ {data.subtotal}
+								{currencyFormatter({ value: data.subtotal })}
 							</TdResponsive>
 							<TdResponsive titles={titles[2]}>
-								$ {data.discount}
+								{currencyFormatter({ value: data.discount })}
 							</TdResponsive>
 							<TdResponsive titles={titles[3]}>
-								$ {data.shippingAmount}
+								{currencyFormatter({
+									value: data.shippingAmount
+								})}
 							</TdResponsive>
 							<TdResponsive titles={titles[4]}>
-								$ {data.total}
+								{currencyFormatter({ value: data.total })}
 							</TdResponsive>
 							<TdResponsive
 								titles={titles[5]}
