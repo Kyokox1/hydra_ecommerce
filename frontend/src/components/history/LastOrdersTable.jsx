@@ -7,7 +7,7 @@ import {
 	TableContainer,
 	Badge
 } from '@chakra-ui/react';
-import { currencyFormatter } from '~/services/prices/currencyFormatter';
+import { currencyFormatter } from '~/services/utils/currencyFormatter';
 import { TdResponsive } from './TdResponsive';
 
 export const LastOrdersTable = ({ titles, body, handleClick }) => {

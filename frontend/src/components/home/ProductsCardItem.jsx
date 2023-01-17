@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react';
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { currencyFormatter } from '~/services/prices/currencyFormatter';
+import { currencyFormatter } from '~/services/utils/currencyFormatter';
 
 // components
 import { ButtonOrange } from './ButtonOrange';

@@ -24,7 +24,7 @@ import {
 	productsInCart
 } from '~/features/products/productsCartSlice';
 import { useFetch } from '~/hooks/useFetch';
-import { currencyFormatter } from '~/services/prices/currencyFormatter';
+import { currencyFormatter } from '~/services/utils/currencyFormatter';
 
 const Product = () => {
 	// TODO Refactorizar codigo y dividir en componentes

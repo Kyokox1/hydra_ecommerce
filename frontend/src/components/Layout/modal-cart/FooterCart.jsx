@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { ButtonOrange } from '~/components/home/ButtonOrange';
 import { PATHS } from '~/constans/pathsRoutes';
-import { currencyFormatter } from '~/services/prices/currencyFormatter';
+import { currencyFormatter } from '~/services/utils/currencyFormatter';
 
 export const FooterCart = ({ totalCost, onClose, productsCart }) => {
 	const totalCostFormat = currencyFormatter({ value: totalCost });

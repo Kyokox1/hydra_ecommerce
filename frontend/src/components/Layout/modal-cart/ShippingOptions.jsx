@@ -1,6 +1,6 @@
 import { RadioGroup, Flex, Radio, Text, Box } from '@chakra-ui/react';
 import { optionsShipping } from '~/constans/optionsShipping';
-import { currencyFormatter } from '~/services/prices/currencyFormatter';
+import { currencyFormatter } from '~/services/utils/currencyFormatter';
 
 import { useDispatch, useSelector } from 'react-redux';
 import {
