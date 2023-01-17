@@ -19,11 +19,13 @@ export const StarsRating = ({ fillStar, setFillStar }) => {
 		<Flex alignSelf='center' gap='2px'>
 			{new Array(5).fill('').map((_, index) => (
 				<AiFillStar
-					onClick={() => handleClickStar(index)}
-					onMouseOver={() => handleOverStar(index)}
+					onClick={() => handleClickStar(index + 1)}
+					onMouseOver={() => handleOverStar(index + 1)}
 					onMouseLeave={handleLeaveStart}
 					key={`star-${index}`}
-					color={(hoverValue || fillStar) >= index ? 'gold' : 'gray'}
+					color={
+						(hoverValue || fillStar) >= index + 1 ? 'gold' : 'gray'
+					}
 					size='1.3rem'
 					cursor='pointer'
 				/>

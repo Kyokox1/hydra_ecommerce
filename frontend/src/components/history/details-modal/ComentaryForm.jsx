@@ -3,7 +3,7 @@ import { Flex, Stack, Text, Textarea } from '@chakra-ui/react';
 import { ButtonOrange } from '~/components/home/ButtonOrange';
 import { StarsRating } from './StarsRating';
 
-const initialValueStar = 0;
+const initialValueStar = 1;
 
 export const ComentaryForm = ({ onClose }) => {
 	const [fillStar, setFillStar] = useState(initialValueStar);
