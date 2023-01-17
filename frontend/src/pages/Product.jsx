@@ -30,10 +30,10 @@ const Product = () => {
 	const { isUserAuthenticated } = useUserAuth();
 	const { width } = useWindowSize();
 	const { id } = useParams();
-	const dispatch = useDispatch();
-	const productsCart = useSelector(productsInCart);
 	const { product, isLoading } = useFetch(() => getSingleProduct({ id }));
 	const [count, setCount] = useState(0);
+	const productsCart = useSelector(productsInCart);
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const { name, price, cost, code, stock } = product;

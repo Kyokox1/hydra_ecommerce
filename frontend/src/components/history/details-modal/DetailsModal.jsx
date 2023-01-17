@@ -47,7 +47,7 @@ export const DetailsModal = ({ isOpen, onClose, contentModal }) => {
 							EVALUA ESTA COMPRA
 						</Text>
 						{/* form */}
-						<ComentaryForm />
+						<ComentaryForm onClose={onClose} />
 						{/* form */}
 					</Stack>
 				</ModalBody>
