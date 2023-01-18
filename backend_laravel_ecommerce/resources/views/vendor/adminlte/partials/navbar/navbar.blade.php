@@ -37,7 +37,7 @@
         @endif
         <form action="{{route('logoutdos')}}" method="POST">
             @csrf
-            <button>Cerrar</button>
+            <button class="btn btn-danger">Cerrar</button>
         </form>
 
     </ul>

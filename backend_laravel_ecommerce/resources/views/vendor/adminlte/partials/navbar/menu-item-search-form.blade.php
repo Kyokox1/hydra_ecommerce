@@ -1,4 +1,4 @@
-<li class="nav-item">
+<!-- <li class="nav-item">
 
     {{-- Search toggle button --}}
     <a class="nav-link" data-widget="navbar-search" href="#" role="button">
@@ -33,4 +33,4 @@
         </form>
     </div>
 
-</li>
+</li> -->
