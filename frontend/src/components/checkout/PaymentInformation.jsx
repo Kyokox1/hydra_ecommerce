@@ -1,7 +1,10 @@
 import { Flex, Stack, Text, Box, StackDivider, Image } from '@chakra-ui/react';
+import { currencyFormatter } from '~/services/utils/currencyFormatter';
 import bgProduct from '/assets/img-product.png';
 
 export const PaymentInformation = ({ selectOption, totalCost }) => {
+	const price = currencyFormatter({ value: selectOption.price });
+	const totalCostFormat = currencyFormatter({ value: totalCost });
 	return (
 		<Flex
 			flexDir={{ base: 'column', lg: 'row' }}
@@ -19,7 +22,7 @@ export const PaymentInformation = ({ selectOption, totalCost }) => {
 				<Text pl='20px'>Hunteando123@gmail.com</Text>
 				<Box pl='20px'>
 					<Text fontWeight='700'>{selectOption.textHeader}</Text>
-					<Text>{selectOption.price}</Text>
+					<Text>{price}</Text>
 					<Text fontWeight='700'>Datos de cobranza</Text>
 					<Text>Hunteando proyectos</Text>
 					<Text>+5411234567</Text>
@@ -35,7 +38,7 @@ export const PaymentInformation = ({ selectOption, totalCost }) => {
 				</Box>
 				<Stack>
 					<Text>CREMA DE WISKHY</Text>
-					<Text>${totalCost}</Text>
+					<Text>{totalCostFormat}</Text>
 				</Stack>
 			</Flex>
 		</Flex>

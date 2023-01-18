@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Flex, Stack, Text, Textarea } from '@chakra-ui/react';
+import { Flex, Stack, Text, Textarea, useToast } from '@chakra-ui/react';
 import { ButtonOrange } from '~/components/home/ButtonOrange';
 import { StarsRating } from './StarsRating';
 
@@ -7,11 +7,17 @@ const initialValueStar = 1;
 
 export const ComentaryForm = ({ onClose }) => {
 	const [fillStar, setFillStar] = useState(initialValueStar);
+	const toast = useToast();
+
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		event.target.commentary.value = '';
 		setFillStar(initialValueStar);
 		onClose();
+		toast({
+			description: 'Calificación Enviada.',
+			status: 'success'
+		});
 	};
 
 	return (

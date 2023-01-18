@@ -22,7 +22,7 @@ const Checkout = () => {
 
 	const { selectOption, totalCost } = useShipping();
 
-	const { isOpen, onOpen, onClose } = useDisclosure();
+	const { isOpen, onClose } = useDisclosure();
 
 	if (!productsCart.length) return <NoProductsCheckout />;
 

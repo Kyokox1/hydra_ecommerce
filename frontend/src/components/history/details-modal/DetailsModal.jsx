@@ -53,7 +53,7 @@ export const DetailsModal = ({ isOpen, onClose, contentModal }) => {
 				</ModalBody>
 				{/* body */}
 				{/* footer */}
-				<FooterDetailsModal />
+				<FooterDetailsModal onClose={onClose} />
 				{/* footer */}
 			</ModalContent>
 		</Modal>
