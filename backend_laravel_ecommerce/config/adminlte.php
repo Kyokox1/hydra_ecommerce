@@ -302,22 +302,22 @@ return [
         ],
 
         // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
+        // [
+        //     'type' => 'sidebar-menu-search',
+        //     'text' => 'search',
+        // ],
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        [
-            'text'        => 'Dashboard',
-            'url'         => '/home',
-            'icon'        => 'fas fa-tachometer-alt',
-            // 'label'       => 4,
-            // 'label_color' => 'success',
-        ],
+        // [
+        //     'text'        => 'Dashboard',
+        //     'url'         => '/home',
+        //     'icon'        => 'fas fa-tachometer-alt',
+        //     // 'label'       => 4,
+        //     // 'label_color' => 'success',
+        // ],
         ['header' => 'Configuración'],
         [
             'text' => 'Categorias',

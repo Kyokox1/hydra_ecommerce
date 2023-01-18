@@ -27,3 +27,4 @@ Route::resource('sales','Backend\SaleController')->except('create','store','edit
 //vista - edit GET categories/{categoryId}/edit
 //index - index get categories
 Route::resource('registers','UserController')->except('create');
+Route::post('logoutdos','UserController@logout')->name('logoutdos');
