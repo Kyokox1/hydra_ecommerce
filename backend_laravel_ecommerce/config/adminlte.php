@@ -334,10 +334,6 @@ return [
             'icon'    => 'fas fa-users',
             'submenu' => [
                 [
-                    'text' => 'Roles',
-                    'url'  => 'roles',
-                ],
-                [
                     'text' => 'Registros',
                     'url'  => 'registers',
                 ],
