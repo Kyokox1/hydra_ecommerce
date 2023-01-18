@@ -48,7 +48,7 @@
                                                 class="btn btn-warning mr-1">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <a href="#" class="btn btn-danger" data-table="users"
+                                            <a href="#" class="btn btn-danger" data-table="registers"
                                                 data-id={{ $user->id }}>
                                                 X
                                             </a>
@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div class="col-12-col-md-2">
-                <button class="btn btn-app" data-toggle="modal" data-target="#modal-categories">
+                <button class="btn btn-app" data-toggle="modal" data-target="#modal-users">
                     <i class="fas fa-plus"></i> Agregar
                 </button>
             </div>

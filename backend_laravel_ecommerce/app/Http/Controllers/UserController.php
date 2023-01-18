@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -36,7 +37,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      
+        $request->validate([
+            'name'=>'required|min:5',
+            'email'=>'required|unique:users',
+            'password'=>'required|min:6'
+        
+        ]);
+        $user=new User();
+        $user->role_id = 1;
+        $user->name=$request->name;
+        $user->email=$request->email;
+        $user->password=Hash::make($request->password);
+        $user->save();
+        return redirect()->route('registers.index')->withSuccess('Se registro correctamente el usuario');
     }
 
     /**
@@ -56,8 +70,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
+        $user = User::findOrFail($id);
         return view('admin.users.registers.edit',compact('user'));
 
     }
@@ -69,14 +84,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'name'=>'required|min:5'
         ]);
+        $user = User::findOrFail($id);
         $user->name=$request->name;
         $user->save();
-        return redirect()->route('categories.index')->withSuccess('Se actualizó correctamente la categoría');
+        return redirect()->route('registers.index')->withSuccess('Se actualizó correctamente la categoría');
     
     }
 
