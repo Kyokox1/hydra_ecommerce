@@ -54,6 +54,7 @@ export const NavSearch = ({ onClose = null }) => {
 				icon={<FiSearch />}
 				colorScheme='white'
 				isRound
+				aria-label='search-button'
 			/>
 		</FormControl>
 	);

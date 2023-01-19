@@ -54,6 +54,7 @@ export const NavIcons = () => {
 								color='white'
 								colorScheme='whiteAlpha'
 								isRound
+								aria-label='profile-button'
 								icon={<BsFillPersonFill />}
 							/>
 						</PopoverTrigger>
@@ -70,6 +71,7 @@ export const NavIcons = () => {
 				<NavIconButton
 					icon={<AiOutlineShoppingCart />}
 					onClick={cart.onOpen}
+					ariaLabel={'cart-button'}
 				/>
 				<ModalCart isOpen={cart.isOpen} onClose={cart.onClose} />
 			</Box>
@@ -78,6 +80,7 @@ export const NavIcons = () => {
 				<NavIconButton
 					icon={<GiHamburgerMenu size='1.4rem' />}
 					onClick={hamburger.onOpen}
+					ariaLabel={'hamburger-button'}
 				/>
 
 				<HamburgerModal

@@ -1,6 +1,6 @@
 import { IconButton } from '@chakra-ui/react';
 
-export const NavIconButton = ({ icon, onClick = null } = {}) => {
+export const NavIconButton = ({ icon, onClick = null, ariaLabel } = {}) => {
 	return (
 		<IconButton
 			onClick={onClick}
@@ -9,6 +9,7 @@ export const NavIconButton = ({ icon, onClick = null } = {}) => {
 			color='white'
 			colorScheme='whiteAlpha'
 			isRound
+			aria-label={ariaLabel}
 			icon={icon}
 		/>
 	);

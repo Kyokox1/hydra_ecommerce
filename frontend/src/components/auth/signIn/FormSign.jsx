@@ -70,7 +70,9 @@ const FormSign = () => {
 			pt='20px'
 		>
 			<Box pos='relative'>
-				<FormLabel m='0'>USUARIO</FormLabel>
+				<FormLabel m='0' htmlFor='username'>
+					USUARIO
+				</FormLabel>
 				<Input
 					id='username'
 					type='text'
@@ -81,7 +83,9 @@ const FormSign = () => {
 				<TextError>{errors.username?.message}</TextError>
 			</Box>
 			<Box pos='relative'>
-				<FormLabel m='0'>CORREO ELECTRONICO</FormLabel>
+				<FormLabel m='0' htmlFor='email'>
+					CORREO ELECTRONICO
+				</FormLabel>
 				<Input
 					id='email'
 					variant='flushed'
@@ -95,8 +99,11 @@ const FormSign = () => {
 				</TextError>
 			</Box>
 			<Box pos='relative'>
-				<FormLabel m='0'>CONTRASEÑA</FormLabel>
+				<FormLabel m='0' htmlFor='password'>
+					CONTRASEÑA
+				</FormLabel>
 				<Input
+					id='password'
 					type={showPassword ? 'text' : 'password'}
 					variant='flushed'
 					{...register('password')}
@@ -108,7 +115,9 @@ const FormSign = () => {
 				<TextError>{errors.password?.message}</TextError>
 			</Box>
 			<Box pos='relative'>
-				<FormLabel m='0'>REPETIR CONTRASEÑA</FormLabel>
+				<FormLabel m='0' htmlFor='confirmPassword'>
+					REPETIR CONTRASEÑA
+				</FormLabel>
 				<Input
 					id='confirmPassword'
 					type={showPassword ? 'text' : 'password'}
@@ -118,7 +127,9 @@ const FormSign = () => {
 				<TextError>{errors.confirmPassword?.message}</TextError>
 			</Box>
 			<Box pos='relative'>
-				<FormLabel m='0'>TELÉFONO / MÓVIL</FormLabel>
+				<FormLabel m='0' htmlFor='cellPhone'>
+					TELÉFONO / MÓVIL
+				</FormLabel>
 				<Input
 					id='cellPhone'
 					type='number'
