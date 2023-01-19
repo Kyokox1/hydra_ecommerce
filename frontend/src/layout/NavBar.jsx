@@ -22,17 +22,23 @@ export const NavBar = () => {
 			zIndex='900'
 			fontFamily='Roboto, sans-serif'
 		>
-			<Flex pos='relative' justify='space-around' w='inherit'>
-				<Image
-					pos='absolute'
-					src={navBarBg}
-					top='0'
-					left='0'
-					h='100%'
-					w='100%'
-					opacity='0.9'
-					zIndex='-1'
-				/>
+			<Flex
+				pos='relative'
+				justify='space-around'
+				w='inherit'
+				overflow='unset'
+				_before={{
+					content: '""',
+					background: `url(${navBarBg}) top left`,
+					pos: 'absolute',
+					top: '0',
+					left: '0',
+					w: '100%',
+					h: '100%',
+					opacity: '0.9',
+					zIndex: '-1'
+				}}
+			>
 				<Link to={PATHS.HOME}>
 					<Heading as='h1'>
 						<Image src={whiteLogo} alt='HYRA STORE' />

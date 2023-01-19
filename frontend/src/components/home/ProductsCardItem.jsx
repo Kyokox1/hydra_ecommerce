@@ -52,7 +52,7 @@ export const ProductsCardItem = ({
 					transition={'color .3s ease'}
 					to={`/product/${id}`}
 				>
-					<Heading as='h3' fontWeight='100' fontSize='inherit'>
+					<Heading as='h2' fontWeight='100' fontSize='inherit'>
 						{name}
 					</Heading>
 				</LinkChakra>
