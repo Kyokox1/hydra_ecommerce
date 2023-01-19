@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { Spinner, FormControl, Box, Input, FormLabel } from '@chakra-ui/react';
 
 // redux
@@ -17,7 +17,6 @@ const FormLogin = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const { showPassword, handleShowPassword } = useShowPassword();
-	const emailRef = useRef();
 	const navigate = useNavigate();
 	const { isUserAuthenticated } = useUserAuth();
 
@@ -25,10 +24,6 @@ const FormLogin = () => {
 	const isLoading = useSelector(userIsLoading);
 
 	const dispatch = useDispatch();
-
-	useEffect(() => {
-		emailRef.current.focus();
-	}, []);
 
 	useEffect(() => {
 		if (!isUserAuthenticated) return;
@@ -56,11 +51,11 @@ const FormLogin = () => {
 				</FormLabel>
 				<Input
 					id='email'
-					ref={emailRef}
 					type='text'
 					value={email}
 					onChange={(event) => setEmail(event.target.value)}
 					variant='flushed'
+					autoFocus
 				/>
 			</Box>
 			<Box pos='relative'>

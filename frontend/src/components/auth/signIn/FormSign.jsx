@@ -22,8 +22,8 @@ const FormSign = () => {
 		register,
 		handleSubmit,
 		reset,
-		formState: { errors },
-		setFocus
+		formState: { errors }
+		// setFocus
 	} = useForm({
 		resolver: yupResolver(schema)
 	});
@@ -33,10 +33,6 @@ const FormSign = () => {
 
 	const { showPassword, handleShowPassword } = useShowPassword();
 	const [isEmailInvalid, setisEmailInvalid] = useState(false);
-
-	useEffect(() => {
-		setFocus('username');
-	}, [setFocus]);
 
 	// submit
 	const onSubmit = (data) => {
@@ -79,6 +75,7 @@ const FormSign = () => {
 					id='username'
 					type='text'
 					variant='flushed'
+					autoFocus
 					{...register('username')}
 				/>
 				<TextError>{errors.username?.message}</TextError>

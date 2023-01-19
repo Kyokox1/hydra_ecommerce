@@ -43,6 +43,7 @@ export const ComentaryForm = ({ onClose }) => {
 					background='#FFFFFF26'
 					fontSize='.9rem'
 					maxH='80px'
+					autoFocus
 				/>
 			</Stack>
 			<Flex alignSelf='center'>
