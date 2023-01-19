@@ -1,5 +1,6 @@
 import FormSign from '~/components/auth/signIn/FormSign';
 
+import Title from '~/components/auth/Title';
 // redux
 import AuthLayout from '~/layout/auth-layout';
 // import FooterAuth from '~/components/auth/login/FooterAuth';
@@ -7,7 +8,7 @@ import AuthLayout from '~/layout/auth-layout';
 const SignIn = () => {
 	return (
 		<AuthLayout>
-			{/* <Title /> */}
+			<Title fontSize='2rem'>Crear cuenta</Title>
 			<FormSign />
 			{/* <FooterAuth /> */}
 		</AuthLayout>
