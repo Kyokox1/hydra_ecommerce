@@ -1,11 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-	postLoginUser,
-	postLogoutUser,
-	postSignUpUser
-} from '../../services/auth';
-import { signClear } from '../sigIn/signSlice';
+import { postLoginUser, postLogoutUser, postSignUpUser } from '~/services/auth';
 import { updateJwt } from './jwtSlice';
+import { PATHS } from '~/constans/pathsRoutes';
 
 const initialState = {
 	user: {},
@@ -20,6 +16,9 @@ export const userSlice = createSlice({
 	reducers: {
 		fetchUserStart(state) {
 			state.isLoading = true;
+		},
+		fetchUserCancelLoading(state) {
+			state.isLoading = false;
 		},
 		fetchUserComplete(state, action) {
 			state.user = action.payload.user;
@@ -44,6 +43,7 @@ export const currentUser = (state) => state.user.user;
 export const userIsLoading = (state) => state.user.isLoading;
 export const userError = (state) => state.user.error;
 
+// ? middlewares
 export const registerUser =
 	({
 		email,
@@ -56,7 +56,7 @@ export const registerUser =
 	}) =>
 	async (dispatch) => {
 		try {
-			dispatch(fetchUserStart);
+			dispatch(fetchUserStart());
 			// ? Call the API
 			const response = await postSignUpUser({
 				email,
@@ -66,12 +66,15 @@ export const registerUser =
 			});
 			const { token: jwt, user, status } = response;
 
-			if (!status || status !== 'success') return setisEmailInvalid(true);
+			if (!status || status !== 'success') {
+				setisEmailInvalid(true);
+				dispatch(fetchUserCancelLoading());
+				return;
+			}
 
 			dispatch(fetchUserComplete({ user, jwt }));
-			dispatch(signClear(false));
 			dispatch(updateJwt(jwt));
-			navigate('/productos');
+			navigate(PATHS.HOME);
 			resetForm();
 		} catch (error) {
 			dispatch(fetchUserError(error));
@@ -79,10 +82,10 @@ export const registerUser =
 	};
 
 export const loginUser =
-	({ email, password }) =>
+	({ email, password, navigate }) =>
 	async (dispatch) => {
 		try {
-			dispatch(fetchUserStart);
+			dispatch(fetchUserStart());
 			// ? Call the API
 			const { status, token, user } = await postLoginUser({
 				email,
@@ -93,24 +96,26 @@ export const loginUser =
 				return dispatch(fetchUserError(true));
 			dispatch(fetchUserComplete({ user, jwt: token }));
 			dispatch(updateJwt(token));
+			navigate(PATHS.HOME);
 		} catch (error) {
 			dispatch(fetchUserError(error));
 		}
 	};
 
 export const logoutUser =
-	({ jwt, navigate }) =>
+	({ jwt, navigate, closePopover }) =>
 	async (dispatch) => {
 		try {
-			dispatch(fetchUserStart);
+			dispatch(fetchUserStart());
 			// ? Call the API
 			const { status } = await postLogoutUser({ jwt });
 
 			if (!status || status !== 'success') return;
 
+			closePopover();
 			dispatch(fetchUserReset());
 			dispatch(updateJwt(null));
-			navigate('/');
+			navigate(PATHS.LOGIN);
 		} catch (error) {
 			dispatch(fetchUserError(error));
 		}
@@ -119,6 +124,7 @@ export const logoutUser =
 // Action creators are generated for each case reducer function
 export const {
 	fetchUserStart,
+	fetchUserCancelLoading,
 	fetchUserComplete,
 	fetchUserError,
 	fetchUserReset

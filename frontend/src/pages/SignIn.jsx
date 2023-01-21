@@ -1,29 +1,17 @@
-import { Logo } from '../components/home/signIn/Logo';
-import FormSign from '../components/home/signIn/FormSign';
-import FooterSign from '../components/home/signIn/FooterSign';
-import '../components/home/signIn/signIn.css';
-import { AiFillCloseCircle } from 'react-icons/ai';
+import FormSign from '~/components/auth/signIn/FormSign';
 
+import Title from '~/components/auth/Title';
 // redux
-import { useSelector, useDispatch } from 'react-redux';
-import { signClear } from '../features/sigIn/signSlice';
+import AuthLayout from '~/layout/auth-layout';
+// import FooterAuth from '~/components/auth/login/FooterAuth';
 
 const SignIn = () => {
-	const estado = useSelector((state) => state.sign);
-	const dispatch = useDispatch();
-
 	return (
-		<div className='signIn'>
-			<Logo />
+		<AuthLayout>
+			<Title fontSize='2rem'>Crear cuenta</Title>
 			<FormSign />
-			<FooterSign />
-			<span
-				onClick={() => dispatch(signClear(!estado.estado))}
-				className='signIn-close'
-			>
-				<AiFillCloseCircle />
-			</span>
-		</div>
+			{/* <FooterAuth /> */}
+		</AuthLayout>
 	);
 };
 

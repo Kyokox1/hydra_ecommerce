@@ -1,12 +1,11 @@
-import './app.css';
-
-import RoutesComp from './routes/Routes';
+import RoutesComp from '~/routes/Routes';
+import { Box } from '@chakra-ui/react';
 
 function App() {
 	return (
-		<div className='main'>
+		<Box bgColor='#000000'>
 			<RoutesComp />
-		</div>
+		</Box>
 	);
 }
 

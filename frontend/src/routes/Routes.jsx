@@ -1,29 +1,36 @@
-import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Layout from '../layout/Layout';
-import Carrito from '../pages/Carrito';
-import Comprar from '../pages/Comprar';
-import Contacto from '../pages/Contacto';
-import Home from '../pages/Home';
-import Login from '../pages/Login';
-import { Productos } from '../pages/Productos';
-import Promociones from '../pages/Promociones';
-import SignIn from '../pages/SignIn';
+
+import Layout from '~/layout/Layout';
+import Home from '~/pages/Home';
+import SignIn from '~/pages/SignIn';
+import Login from '~/pages/Login';
+import Product from '~/pages/Product';
+import Promotions from '~/pages/Promotions';
+import Checkout from '~/pages/Checkout';
+import Success from '~/pages/Success';
+import Flavors from '~/pages/Flavors';
+import RedeemHistory from '~/pages/RedeemHistory';
+import AuthGuard from '~/guards/AuthGuard';
+import { PATHS } from '~/constans/pathsRoutes';
 
 const RoutesComp = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path='/' element={<Layout />}>
+				<Route path={PATHS.HOME} element={<Layout />}>
 					<Route index element={<Home />} />
-					<Route path='/productos' element={<Productos />} />
-					<Route path='/promociones' element={<Promociones />} />
-					<Route path='/comprar' element={<Comprar />} />
-					<Route path='/contacto' element={<Contacto />} />
-					<Route path='/carrito' element={<Carrito />} />
+					<Route element={<AuthGuard />}>
+						<Route path={PATHS.LOGIN} element={<Login />} />
+						<Route path={PATHS.REGISTER} element={<SignIn />} />
+					</Route>
+					<Route path={PATHS.PROMOTIONS} element={<Promotions />} />
+					<Route path={PATHS.FLAVORS} element={<Flavors />} />
+					<Route path={PATHS.PRODUCT} element={<Product />} />
+					<Route path={PATHS.CHECKOUT} element={<Checkout />} />
+					<Route path={PATHS.SUCCESS} element={<Success />} />
+					<Route path={PATHS.HISTORY} element={<RedeemHistory />} />
+					<Route path='*' element={<Home />} />
 				</Route>
-				<Route path='/login' element={<Login />} />
-				<Route path='/register' element={<SignIn />} />
 			</Routes>
 		</BrowserRouter>
 	);

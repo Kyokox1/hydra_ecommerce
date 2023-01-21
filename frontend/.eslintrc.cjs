@@ -17,6 +17,14 @@ module.exports = {
 	},
 	plugins: ['react'],
 	rules: {
-		'react/prop-types': 0
+		'react/prop-types': 0,
+		'import/no-absolute-path': 'off'
+	},
+	settings: {
+		'import/resolver': {
+			node: {
+				moduleDirectory: ['node_modules', 'src/']
+			}
+		}
 	}
 };
