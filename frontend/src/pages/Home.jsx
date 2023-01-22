@@ -4,12 +4,12 @@ import { Flex, Stack, Spinner, Box } from '@chakra-ui/react';
 import bgProducts from '/assets/bg-products.png';
 
 // components and hooks
-import { ProductsCardList } from '~/components/home/productsCardList';
 import { Filters } from '~/components/home/Filters';
 import { useProducts } from '~/hooks/useProducts';
 import { useFilters } from '~/hooks/useFilters';
 import { ButtonOrange } from '~/components/home/ButtonOrange';
 import { useEnableButton } from '~/hooks/useEnableButton';
+import { ProductsCardList } from '~/components/home/ProductsCardList';
 
 const Home = () => {
 	const { selectFilters, setSelectFilters } = useFilters();

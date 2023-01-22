@@ -5,7 +5,7 @@ import { Flex, Stack, Spinner, Box } from '@chakra-ui/react';
 import { TopBanner } from '~/components/flavors/TopBanner';
 import { FooterBanners } from '~/components/flavors/FooterBanners';
 import { Filters } from '~/components/home/Filters';
-import { ProductsCardList } from '~/components/home/productsCardList';
+import { ProductsCardList } from '~/components/home/ProductsCardList';
 import { AsideFilters } from '~/components/flavors/AsideFilters';
 import { ButtonOrange } from '~/components/home/ButtonOrange';
 import { useFilters } from '~/hooks/useFilters';
