@@ -1,5 +1,5 @@
 import { Flex, Text } from '@chakra-ui/react';
-import { CartProductItem } from './cartProductItem';
+import { CartProductItem } from './CartProductItem';
 
 export const CartProductList = ({ productsCart }) => {
 	return (
