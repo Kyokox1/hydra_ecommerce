@@ -5,7 +5,7 @@ import { useFilters } from '~/hooks/useFilters';
 import { useProducts } from '~/hooks/useProducts';
 import { AsideFilters } from '~/components/flavors/AsideFilters';
 import { Filters } from '~/components/home/Filters';
-import { ProductsCardList } from '~/components/home/productsCardList';
+import { ProductsCardList } from '~/components/home/ProductsCardList';
 import { FooterBanners } from '~/components/flavors/FooterBanners';
 
 const Promotions = () => {
