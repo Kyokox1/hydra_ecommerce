@@ -8,12 +8,12 @@
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1>Gestión de ventas</h1>
+                                <h1>Gestión de categorías</h1>
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
-                                    <!-- <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li> -->
-                                    <li class="breadcrumb-item active">Ventas</li>
+                                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
+                                    <li class="breadcrumb-item active">Categorías</li>
                                 </ol>
                             </div>
                         </div>
@@ -27,33 +27,29 @@
             <div class="col-12 col-md-10">
                 <div class="card card-outline card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Registro de ventas</h3>
+                        <h3 class="card-title">Registro de categorías</h3>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th style="width: 10px">#</th>
-                                    <th>Cliente</th>
-                                    <th>Num_Venta</th>
-                                    <th>Fecha</th>
+                                    <th>Nombre</th>
                                     <th style="width: 40px">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody id="table">
-                                @foreach ($sales as $sale)
+                                @foreach ($users as $user)
                                     <tr>
-                                        <td>{{ $sale->id }}</td>
-                                        <td>{{ $sale->users[0]->name }}</td>
-                                        <td>{{ $sale->num_sale }}</td>
-                                        <td>{{ $sale->date_sale }}</td>
+                                        <td>{{ $user->id }}</td>
+                                        <td>{{ $user->name }}</td>
                                         <td class="d-flex justify-content-lg-center">
-                                            <a href="{{ route('sales.show', $sale->id) }}"
-                                                class="btn btn-primary mr-1">
-                                                <i class="fas fa-eye"></i>
+                                            <a href="{{ route('registers.edit', $user->id) }}"
+                                                class="btn btn-warning mr-1">
+                                                <i class="fas fa-edit"></i>
                                             </a>
-                                            <a href="#" class="btn btn-danger" data-table="sales"
-                                                data-id={{ $sale->id }}>
+                                            <a href="#" class="btn btn-danger" data-table="registers"
+                                                data-id={{ $user->id }}>
                                                 X
                                             </a>
                                         </td>
@@ -63,12 +59,18 @@
                         </table>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
-                        {{ $sales->links() }}
+                        {{ $users->links() }}
                     </div>
                 </div>
             </div>
+            <div class="col-12-col-md-2">
+                <button class="btn btn-app" data-toggle="modal" data-target="#modal-users">
+                    <i class="fas fa-plus"></i> Agregar
+                </button>
+            </div>
         </div>
     </div>
+    @include('admin.users.registers.modal')
 @endsection
 @section('scripts')
     @include('admin.util')

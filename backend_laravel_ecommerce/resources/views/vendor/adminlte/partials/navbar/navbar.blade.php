@@ -35,6 +35,11 @@
         @if(config('adminlte.right_sidebar'))
             @include('adminlte::partials.navbar.menu-item-right-sidebar-toggler')
         @endif
+        <form action="{{route('logoutdos')}}" method="POST">
+            @csrf
+            <button class="btn btn-danger">Cerrar</button>
+        </form>
+
     </ul>
 
 </nav>

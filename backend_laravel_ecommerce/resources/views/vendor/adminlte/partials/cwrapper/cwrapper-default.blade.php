@@ -28,13 +28,12 @@
                     {{ session()->get('success') }}.
                 </div>
             @endif
-            @if (session()->has('error'))
+            @foreach ($errors->all() as $error)
                 <div class="alert alert-danger alert-dismissible mt-2">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <h5><i class="icon fas fa-ban"></i> Error!</h5>
-                    {{ session()->get('error') }}.
+                    <h5><i class="icon fas fa-ban"></i> {{ $error }}</h5>
                 </div>
-            @endif
+                @endforeach
             @yield('content')
         </div>
     </div>

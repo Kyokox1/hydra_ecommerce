@@ -14,7 +14,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+ 
+        return view('admin.users.roles.index');
     }
 
     /**

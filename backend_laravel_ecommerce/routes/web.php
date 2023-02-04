@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes(['register',false]);
+Auth::routes(['register'=>false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('categories','CategoryController')->except('create');
@@ -26,3 +26,5 @@ Route::resource('sales','Backend\SaleController')->except('create','store','edit
 //index,xcreate(store),edit(update),destroy
 //vista - edit GET categories/{categoryId}/edit
 //index - index get categories
+Route::resource('registers','UserController')->except('create');
+Route::post('logoutdos','UserController@logout')->name('logoutdos');
